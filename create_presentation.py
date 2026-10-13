@@ -224,6 +224,68 @@ def create_deck(output_path):
         p2.font.size = Pt(13)
         p2.font.color.rgb = c_text_dark
 
+    # ---------------- SLIDE 4B: 5 DEPARTMENTS RESOURCE & SKILL MATRIX ----------------
+    s4b = prs.slides.add_slide(blank_layout)
+    add_header(s4b, "Cross-Disciplinary Coverage: 5 Departments • 50 Resources • 50 Skills", "MULTI-DEPARTMENT CAMPUS MATRIX")
+
+    dept_matrix = [
+        ("MECH", "Mechanical Engineering", c_orange,
+         "10 Marketplace Items:\n• Mechanics Textbooks\n• Engg Drawing Tools\n• Vernier Caliper & Gauge\n• Workshop Tool Kits\n• Machine Design & Thermo Notes\n• CAD Books & 3D Practice Files\n• Manufacturing Lab Manuals",
+         "10 Skill Hub Skills:\n• AutoCAD & SolidWorks\n• CATIA Basics & 3D Modeling\n• Engineering Drawing\n• CNC Machining\n• Workshop Safety\n• Thermodynamics Concepts\n• Machine Design Fundamentals"),
+        
+        ("ELEC", "Electrical Engineering", c_blue,
+         "10 Marketplace Items:\n• Electrical Machines Books\n• Circuit Theory Notes\n• Digital Multimeter\n• Breadboards & Jumpers\n• Electronic Component Kits\n• Measuring Instruments\n• Power & Control Systems Notes\n• Simulation Project Files",
+         "10 Skill Hub Skills:\n• Circuit Analysis\n• MATLAB / Simulink\n• Circuit Simulation\n• Basic Electronics\n• Digital Logic Design\n• Arduino Circuit Projects\n• Power System Analysis\n• PCB Design Basics"),
+        
+        ("CIVIL", "Civil Engineering", RGBColor(16, 185, 129),
+         "10 Marketplace Items:\n• Surveying Vol 1 & 2\n• A1/A2 Drawing Sheets\n• Scale Rulers & Stencils\n• Field Surveying Manuals\n• 30m Land Measuring Tapes\n• Plumb Bob & Field Kit\n• Building Materials Notes\n• Structural Analysis Books",
+         "10 Skill Hub Skills:\n• AutoCAD 2D Drafting\n• Civil 3D & Revit/BIM\n• Surveying Total Station\n• Quantity Estimation\n• Building Planning\n• Structural Analysis\n• Excel for Civil Calculations\n• Concrete Mix Design"),
+
+        ("CE", "Computer Engineering", RGBColor(99, 102, 241),
+         "10 Marketplace Items:\n• Programming Textbooks\n• DSA & LeetCode Notes\n• Operating Systems Books\n• DBMS Review Binders\n• Raspberry Pi 4 Model B\n• Arduino Uno R3 Boards\n• 37-in-1 Sensor Modules\n• Computer Networks Manuals",
+         "10 Skill Hub Skills:\n• C/C++ & Java\n• Python Programming\n• Full-Stack Web Dev\n• React.js Basics\n• Database & SQL\n• Git & GitHub Versioning\n• Machine Learning Basics\n• UI/UX & Cybersecurity"),
+
+        ("BIOMED", "Biomedical Engineering", c_pink,
+         "10 Marketplace Items:\n• Biomedical Textbooks\n• Ross & Wilson Anatomy\n• Medical Instrumentation\n• Signal Processing Notes\n• Medical Electronics Manuals\n• Anatomical Heart Models\n• AD8232 ECG Modules\n• MAX30102 Pulse Oximeters",
+         "10 Skill Hub Skills:\n• Biomedical Instruments\n• Human Physiology\n• ECG Signal Interpretation\n• MATLAB Signal Processing\n• Medical Image Processing\n• Biosensor Interfacing\n• Arduino Medical Prototypes\n• Biomedical Data Analytics")
+    ]
+
+    for i, (code, dname, col, res_list, skill_list) in enumerate(dept_matrix):
+        x = Inches(0.6 + i * 2.45)
+        card = s4b.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, x, Inches(1.7), Inches(2.35), Inches(5.3))
+        card.fill.solid()
+        card.fill.fore_color.rgb = c_gray_bg
+        card.line.color.rgb = col
+        card.line.width = Pt(2)
+
+        # Header tag
+        tag = s4b.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, x + Inches(0.1), Inches(1.8), Inches(2.15), Inches(0.55))
+        tag.fill.solid()
+        tag.fill.fore_color.rgb = col
+        tag.line.color.rgb = col
+        ttf = tag.text_frame
+        tp = ttf.paragraphs[0]
+        tp.text = f"{code}: {dname.split()[0]}"
+        tp.font.size = Pt(11)
+        tp.font.bold = True
+        tp.font.color.rgb = c_white
+        tp.alignment = PP_ALIGN.CENTER
+
+        tb = s4b.shapes.add_textbox(x + Inches(0.1), Inches(2.4), Inches(2.15), Inches(4.5))
+        tf = tb.text_frame
+        tf.word_wrap = True
+
+        p_r = tf.paragraphs[0]
+        p_r.text = res_list
+        p_r.font.size = Pt(8.5)
+        p_r.font.color.rgb = c_text_dark
+        p_r.space_after = Pt(8)
+
+        p_s = tf.add_paragraph()
+        p_s.text = skill_list
+        p_s.font.size = Pt(8.5)
+        p_s.font.color.rgb = c_navy
+
     # ---------------- SLIDE 5: AI ENGINE 1 - SKILL MATCHER ----------------
     s5 = prs.slides.add_slide(blank_layout)
     add_header(s5, "AI Module 1: Semantic Peer Skill Matcher (SDG 4)")

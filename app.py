@@ -7,9 +7,13 @@ import matplotlib.pyplot as plt
 from ml_models import FairPricePredictor, SkillMatcher, calculate_sdg_impact
 
 # ----------------- PAGE CONFIGURATION -----------------
+_logo_icon_path = os.path.join(os.path.dirname(__file__), "static", "favicon.png")
+if not os.path.exists(_logo_icon_path):
+    _logo_icon_path = os.path.join(os.path.dirname(__file__), "logo.jpeg")
+
 st.set_page_config(
     page_title="Campus Circle AI - Student Exchange & Skill Network",
-    page_icon="🎓",
+    page_icon=_logo_icon_path if os.path.exists(_logo_icon_path) else "🎓",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -153,87 +157,484 @@ if "student_user" not in st.session_state:
 
 if "marketplace_items" not in st.session_state:
     st.session_state["marketplace_items"] = [
+        # 1. MECHANICAL ENGINEERING (MECH) - 10 Resources
         {
             "id": "ITM-101",
-            "name": "Casio fx-991EX ClassWiz Scientific Calculator",
-            "category": "Calculators",
-            "mrp": 1400.0,
-            "fair_price": 950.0,
-            "age_sem": 2,
-            "condition": 5,
-            "seller_name": "Rohan Joshi",
-            "seller_branch": "Mechanical Engineering",
-            "seller_email": "rohan.j@kiit.ac.in",
-            "allow_swap": True,
-            "status": "Available",
-            "description": "Mint condition, original solar dual-power with battery. Box included."
-        },
-        {
-            "id": "ITM-102",
-            "name": "Higher Engineering Mathematics by B.S. Grewal (44th Edition)",
+            "name": "Engineering Mechanics: Statics & Dynamics (Vector Edition)",
             "category": "Textbooks",
             "mrp": 850.0,
             "fair_price": 420.0,
+            "age_sem": 2,
+            "condition": 4,
+            "seller_name": "Rohan Deshmukh",
+            "seller_branch": "Mechanical Engineering",
+            "seller_email": "rohan.d@kiit.ac.in",
+            "allow_swap": True,
+            "status": "Available",
+            "description": "Prescribed textbook with free-body diagrams, centroids, friction notes, and previous year solved problems."
+        },
+        {
+            "id": "ITM-102",
+            "name": "Professional Engineering Drawing Mini Drafter & Instrument Set",
+            "category": "Engineering Drawing",
+            "mrp": 1100.0,
+            "fair_price": 580.0,
+            "age_sem": 2,
+            "condition": 4,
+            "seller_name": "Karan Malhotra",
+            "seller_branch": "Mechanical Engineering",
+            "seller_email": "karan.m@kiit.ac.in",
+            "allow_swap": True,
+            "status": "Available",
+            "description": "Includes stainless steel arm mini-drafter, sheet clips, compass set, divider, and protective carry pouch."
+        },
+        {
+            "id": "ITM-103",
+            "name": "Precision Stainless Steel Vernier Caliper (0-150mm, 0.02mm Accuracy)",
+            "category": "Lab Tools",
+            "mrp": 850.0,
+            "fair_price": 460.0,
+            "age_sem": 2,
+            "condition": 5,
+            "seller_name": "Rohan Deshmukh",
+            "seller_branch": "Mechanical Engineering",
+            "seller_email": "rohan.d@kiit.ac.in",
+            "allow_swap": True,
+            "status": "Available",
+            "description": "High precision workshop vernier caliper with internal/external jaws, depth gauge, and sturdy wooden storage case."
+        },
+        {
+            "id": "ITM-104",
+            "name": "Mechanical Outside Micrometer Screw Gauge (0-25mm, 0.01mm Precision)",
+            "category": "Lab Tools",
+            "mrp": 750.0,
+            "fair_price": 410.0,
+            "age_sem": 1,
+            "condition": 5,
+            "seller_name": "Karan Malhotra",
+            "seller_branch": "Mechanical Engineering",
+            "seller_email": "karan.m@kiit.ac.in",
+            "allow_swap": True,
+            "status": "Available",
+            "description": "Ratchet thimble, carbide-tipped measuring faces, calibrated zero-error wrench included."
+        },
+        {
+            "id": "ITM-105",
+            "name": "Fitting & Carpentry Mechanical Workshop Student Tool Kit",
+            "category": "Lab Tools",
+            "mrp": 1400.0,
+            "fair_price": 720.0,
             "age_sem": 3,
             "condition": 4,
+            "seller_name": "Rohan Deshmukh",
+            "seller_branch": "Mechanical Engineering",
+            "seller_email": "rohan.d@kiit.ac.in",
+            "allow_swap": True,
+            "status": "Available",
+            "description": "Complete workshop kit with ball peen hammer, center punch, steel tri-square, cold chisel, and flat files."
+        },
+        {
+            "id": "ITM-106",
+            "name": "Design of Machine Elements by V.B. Bhandari (4th Edition)",
+            "category": "Textbooks",
+            "mrp": 950.0,
+            "fair_price": 490.0,
+            "age_sem": 2,
+            "condition": 4,
+            "seller_name": "Karan Malhotra",
+            "seller_branch": "Mechanical Engineering",
+            "seller_email": "karan.m@kiit.ac.in",
+            "allow_swap": True,
+            "status": "Available",
+            "description": "Comprehensive machine design reference with shaft, spring, clutch, and gear design charts intact."
+        },
+        {
+            "id": "ITM-107",
+            "name": "Applied Thermodynamics Master Notes & Formula Compendium",
+            "category": "Textbooks",
+            "mrp": 450.0,
+            "fair_price": 220.0,
+            "age_sem": 1,
+            "condition": 5,
+            "seller_name": "Rohan Deshmukh",
+            "seller_branch": "Mechanical Engineering",
+            "seller_email": "rohan.d@kiit.ac.in",
+            "allow_swap": True,
+            "status": "Available",
+            "description": "Neat spiral-bound handwritten notes covering Otto, Diesel, Rankine, Brayton cycles and steam tables summary."
+        },
+        {
+            "id": "ITM-108",
+            "name": "Mastering AutoCAD Mechanical & 2D/3D Drafting Guide",
+            "category": "Textbooks",
+            "mrp": 780.0,
+            "fair_price": 390.0,
+            "age_sem": 2,
+            "condition": 4,
+            "seller_name": "Karan Malhotra",
+            "seller_branch": "Mechanical Engineering",
+            "seller_email": "karan.m@kiit.ac.in",
+            "allow_swap": True,
+            "status": "Available",
+            "description": "Step-by-step CAD drafting tutorial book with shortcut commands, isometric exercises, and dimensioning standards."
+        },
+        {
+            "id": "ITM-109",
+            "name": "SolidWorks & CATIA 3D Modelling Practice CAD Files (32GB USB)",
+            "category": "Electronics Kit",
+            "mrp": 650.0,
+            "fair_price": 320.0,
+            "age_sem": 1,
+            "condition": 5,
+            "seller_name": "Rohan Deshmukh",
+            "seller_branch": "Mechanical Engineering",
+            "seller_email": "rohan.d@kiit.ac.in",
+            "allow_swap": True,
+            "status": "Available",
+            "description": "High-speed USB drive containing 120+ mechanical assembly models, STEP/IGES files, and practice blueprints."
+        },
+        {
+            "id": "ITM-110",
+            "name": "Manufacturing Technology & Machining Workshop Lab Manual",
+            "category": "Lab Tools",
+            "mrp": 400.0,
+            "fair_price": 190.0,
+            "age_sem": 2,
+            "condition": 4,
+            "seller_name": "Karan Malhotra",
+            "seller_branch": "Mechanical Engineering",
+            "seller_email": "karan.m@kiit.ac.in",
+            "allow_swap": True,
+            "status": "Available",
+            "description": "Official college syllabus manual with lathe operations, milling tool specs, foundry procedures, and viva questions."
+        },
+
+        # 2. ELECTRICAL ENGINEERING (ELEC) - 10 Resources
+        {
+            "id": "ITM-111",
+            "name": "Electric Machinery Fundamentals by Stephen J. Chapman (5th Edition)",
+            "category": "Textbooks",
+            "mrp": 890.0,
+            "fair_price": 450.0,
+            "age_sem": 2,
+            "condition": 4,
+            "seller_name": "Rahul Sundaram",
+            "seller_branch": "Electrical Engineering",
+            "seller_email": "rahul.s@kiit.ac.in",
+            "allow_swap": True,
+            "status": "Available",
+            "description": "Covers transformers, induction motors, synchronous generators, and DC machines with highlighted formulas."
+        },
+        {
+            "id": "ITM-112",
+            "name": "Network Analysis & Circuit Theory Comprehensive Study Notes",
+            "category": "Textbooks",
+            "mrp": 450.0,
+            "fair_price": 210.0,
+            "age_sem": 1,
+            "condition": 5,
+            "seller_name": "Neha Reddy",
+            "seller_branch": "Electrical Engineering",
+            "seller_email": "neha.r@kiit.ac.in",
+            "allow_swap": True,
+            "status": "Available",
+            "description": "Clear derivations for Norton, Thevenin, Mesh/Nodal analysis, Two-port networks, and Laplace transforms."
+        },
+        {
+            "id": "ITM-113",
+            "name": "Auto-Ranging Digital Multimeter (Voltage, Current, Resistance, Continuity)",
+            "category": "Lab Tools",
+            "mrp": 1200.0,
+            "fair_price": 680.0,
+            "age_sem": 2,
+            "condition": 5,
+            "seller_name": "Rahul Sundaram",
+            "seller_branch": "Electrical Engineering",
+            "seller_email": "rahul.s@kiit.ac.in",
+            "allow_swap": True,
+            "status": "Available",
+            "description": "Digital DMM with backlit LCD display, test leads, transistor testing socket, and overload protection."
+        },
+        {
+            "id": "ITM-114",
+            "name": "Solderless 830-Point Breadboard + 120-Piece Jumper Wire Assortment",
+            "category": "Electronics Kit",
+            "mrp": 550.0,
+            "fair_price": 280.0,
+            "age_sem": 1,
+            "condition": 5,
+            "seller_name": "Neha Reddy",
+            "seller_branch": "Electrical Engineering",
+            "seller_email": "neha.r@kiit.ac.in",
+            "allow_swap": True,
+            "status": "Available",
+            "description": "High quality tie-point breadboard with male-to-male, male-to-female, and female-to-female flexible jumper cables."
+        },
+        {
+            "id": "ITM-115",
+            "name": "Electronics Components Starter Kit (Resistors, Capacitors, LEDs, Diodes)",
+            "category": "Electronics Kit",
+            "mrp": 750.0,
+            "fair_price": 380.0,
+            "age_sem": 1,
+            "condition": 5,
+            "seller_name": "Rahul Sundaram",
+            "seller_branch": "Electrical Engineering",
+            "seller_email": "rahul.s@kiit.ac.in",
+            "allow_swap": True,
+            "status": "Available",
+            "description": "Organized multi-compartment component organizer box filled with 300+ standard value discrete components."
+        },
+        {
+            "id": "ITM-116",
+            "name": "Analog Galvanometer & Clamp Meter Electrical Measuring Tool Set",
+            "category": "Lab Tools",
+            "mrp": 1350.0,
+            "fair_price": 750.0,
+            "age_sem": 2,
+            "condition": 4,
+            "seller_name": "Neha Reddy",
+            "seller_branch": "Electrical Engineering",
+            "seller_email": "neha.r@kiit.ac.in",
+            "allow_swap": True,
+            "status": "Available",
+            "description": "Precision AC current clamp meter with analog galvanometer suitable for electrical machine testing labs."
+        },
+        {
+            "id": "ITM-117",
+            "name": "Modern Power System Analysis by D.P. Kothari & I.J. Nagrath",
+            "category": "Textbooks",
+            "mrp": 920.0,
+            "fair_price": 470.0,
+            "age_sem": 3,
+            "condition": 4,
+            "seller_name": "Rahul Sundaram",
+            "seller_branch": "Electrical Engineering",
+            "seller_email": "rahul.s@kiit.ac.in",
+            "allow_swap": True,
+            "status": "Available",
+            "description": "Essential textbook for load flow analysis, fault calculation, stability, and transmission line models."
+        },
+        {
+            "id": "ITM-118",
+            "name": "Linear Control Systems Handwritten Notes & Root Locus Flashcards",
+            "category": "Textbooks",
+            "mrp": 480.0,
+            "fair_price": 230.0,
+            "age_sem": 1,
+            "condition": 5,
+            "seller_name": "Neha Reddy",
+            "seller_branch": "Electrical Engineering",
+            "seller_email": "neha.r@kiit.ac.in",
+            "allow_swap": True,
+            "status": "Available",
+            "description": "Comprehensive solved problems on Bode plots, Nyquist stability criterion, state space, and PID controllers."
+        },
+        {
+            "id": "ITM-119",
+            "name": "Electrical Machines & Power Electronics Combined Lab Manuals",
+            "category": "Lab Tools",
+            "mrp": 420.0,
+            "fair_price": 200.0,
+            "age_sem": 2,
+            "condition": 4,
+            "seller_name": "Rahul Sundaram",
+            "seller_branch": "Electrical Engineering",
+            "seller_email": "rahul.s@kiit.ac.in",
+            "allow_swap": True,
+            "status": "Available",
+            "description": "Contains circuit schematics, observation tables, graph templates, and sample viva questions for sem 3-6."
+        },
+        {
+            "id": "ITM-120",
+            "name": "MATLAB Simulink & Proteus Electrical Circuit Simulation Project Pack",
+            "category": "Electronics Kit",
+            "mrp": 600.0,
+            "fair_price": 290.0,
+            "age_sem": 1,
+            "condition": 5,
+            "seller_name": "Neha Reddy",
+            "seller_branch": "Electrical Engineering",
+            "seller_email": "neha.r@kiit.ac.in",
+            "allow_swap": True,
+            "status": "Available",
+            "description": "Pre-configured simulation models for rectifiers, inverters, buck-boost converters, and three-phase circuits."
+        },
+
+        # 3. CIVIL ENGINEERING - 10 Resources
+        {
+            "id": "ITM-121",
+            "name": "Surveying Vol. 1 & 2 by B.C. Punmia (Standard Reference Editions)",
+            "category": "Textbooks",
+            "mrp": 880.0,
+            "fair_price": 440.0,
+            "age_sem": 2,
+            "condition": 4,
+            "seller_name": "Aditya Kulkarni",
+            "seller_branch": "Civil Engineering",
+            "seller_email": "aditya.k@kiit.ac.in",
+            "allow_swap": True,
+            "status": "Available",
+            "description": "Authoritative surveying text covering chain, plane table, theodolite, and tachometric surveying methods."
+        },
+        {
+            "id": "ITM-122",
+            "name": "Imperial A1/A2 Drawing Sheet Pack (50 Sheets, 210 GSM Cartridge Paper)",
+            "category": "Engineering Drawing",
+            "mrp": 450.0,
+            "fair_price": 240.0,
+            "age_sem": 1,
+            "condition": 5,
+            "seller_name": "Meera Nair",
+            "seller_branch": "Civil Engineering",
+            "seller_email": "meera.n@kiit.ac.in",
+            "allow_swap": True,
+            "status": "Available",
+            "description": "Clean, high-grade textured cartridge sheets ideal for civil building plans, elevations, and detailing."
+        },
+        {
+            "id": "ITM-123",
+            "name": "Architectural Triangular Reduction Scale Ruler & Drafting Stencil Set",
+            "category": "Engineering Drawing",
+            "mrp": 520.0,
+            "fair_price": 270.0,
+            "age_sem": 1,
+            "condition": 5,
+            "seller_name": "Aditya Kulkarni",
+            "seller_branch": "Civil Engineering",
+            "seller_email": "aditya.k@kiit.ac.in",
+            "allow_swap": True,
+            "status": "Available",
+            "description": "Solid white plastic triangular reduction scale (1:20 to 1:500) with circle, curve, and lettering templates."
+        },
+        {
+            "id": "ITM-124",
+            "name": "Field Surveying & Levelling Practical College Lab Manual",
+            "category": "Lab Tools",
+            "mrp": 380.0,
+            "fair_price": 180.0,
+            "age_sem": 2,
+            "condition": 4,
+            "seller_name": "Meera Nair",
+            "seller_branch": "Civil Engineering",
+            "seller_email": "meera.n@kiit.ac.in",
+            "allow_swap": True,
+            "status": "Available",
+            "description": "Complete manual with field booking formats, reduced level calculation tables, and contour plotting guides."
+        },
+        {
+            "id": "ITM-125",
+            "name": "Heavy-Duty 30-Meter Fiberglass & Steel Land Measuring Tape",
+            "category": "Lab Tools",
+            "mrp": 680.0,
+            "fair_price": 340.0,
+            "age_sem": 2,
+            "condition": 4,
+            "seller_name": "Aditya Kulkarni",
+            "seller_branch": "Civil Engineering",
+            "seller_email": "aditya.k@kiit.ac.in",
+            "allow_swap": True,
+            "status": "Available",
+            "description": "Abrasion-resistant 30m / 100ft surveying tape with dual metric/imperial markings and winding crank."
+        },
+        {
+            "id": "ITM-126",
+            "name": "Surveying Field Kit: Plumb Bob, Ranging Rod Flags & Line Level",
+            "category": "Lab Tools",
+            "mrp": 620.0,
+            "fair_price": 310.0,
+            "age_sem": 2,
+            "condition": 5,
+            "seller_name": "Meera Nair",
+            "seller_branch": "Civil Engineering",
+            "seller_email": "meera.n@kiit.ac.in",
+            "allow_swap": True,
+            "status": "Available",
+            "description": "Solid brass plumb bob, magnetic line levels, and field accessories for accurate outdoor levelling."
+        },
+        {
+            "id": "ITM-127",
+            "name": "Building Materials & Construction Engineering Study Notes",
+            "category": "Textbooks",
+            "mrp": 420.0,
+            "fair_price": 210.0,
+            "age_sem": 1,
+            "condition": 5,
+            "seller_name": "Aditya Kulkarni",
+            "seller_branch": "Civil Engineering",
+            "seller_email": "aditya.k@kiit.ac.in",
+            "allow_swap": True,
+            "status": "Available",
+            "description": "Covers cement types, aggregates, brick masonry, plastering, timber, and green building certifications."
+        },
+        {
+            "id": "ITM-128",
+            "name": "Structural Analysis by R.C. Hibbeler (SI Metric Edition)",
+            "category": "Textbooks",
+            "mrp": 980.0,
+            "fair_price": 510.0,
+            "age_sem": 3,
+            "condition": 4,
+            "seller_name": "Meera Nair",
+            "seller_branch": "Civil Engineering",
+            "seller_email": "meera.n@kiit.ac.in",
+            "allow_swap": True,
+            "status": "Available",
+            "description": "Classic textbook for truss analysis, moment distribution method, slope-deflection, and shear force diagrams."
+        },
+        {
+            "id": "ITM-129",
+            "name": "Concrete Technology & Mix Design Reference Handbook",
+            "category": "Textbooks",
+            "mrp": 480.0,
+            "fair_price": 240.0,
+            "age_sem": 1,
+            "condition": 5,
+            "seller_name": "Aditya Kulkarni",
+            "seller_branch": "Civil Engineering",
+            "seller_email": "aditya.k@kiit.ac.in",
+            "allow_swap": True,
+            "status": "Available",
+            "description": "IS 10262 mix design steps, slump test tables, compressive strength charts, and curing guidelines."
+        },
+        {
+            "id": "ITM-130",
+            "name": "Estimating and Costing in Civil Engineering by B.N. Dutta (28th Edition)",
+            "category": "Textbooks",
+            "mrp": 850.0,
+            "fair_price": 440.0,
+            "age_sem": 2,
+            "condition": 4,
+            "seller_name": "Meera Nair",
+            "seller_branch": "Civil Engineering",
+            "seller_email": "meera.n@kiit.ac.in",
+            "allow_swap": True,
+            "status": "Available",
+            "description": "Standard handbook with rate analysis, bill of quantities (BOQ), valuation, and CPWD specifications."
+        },
+
+        # 4. COMPUTER ENGINEERING (CE) - 10 Resources
+        {
+            "id": "ITM-131",
+            "name": "The C Programming Language (ANSI C) by Kernighan & Ritchie (2nd Ed)",
+            "category": "Textbooks",
+            "mrp": 650.0,
+            "fair_price": 330.0,
+            "age_sem": 2,
+            "condition": 5,
             "seller_name": "Aarav Sharma",
             "seller_branch": "Computer Engineering",
             "seller_email": "aarav.s@kiit.ac.in",
             "allow_swap": True,
             "status": "Available",
-            "description": "Clean pages, formula sheet intact. Essential for Sem 1 to 4 syllabus."
+            "description": "Pointers, memory allocation, structs, and UNIX system calls with pristine unmarked code samples."
         },
         {
-            "id": "ITM-103",
-            "name": "Omega Steel Mini Drafter & Engineering Sheet Holder",
-            "category": "Engineering Drawing",
-            "mrp": 950.0,
-            "fair_price": 520.0,
-            "age_sem": 2,
-            "condition": 4,
-            "seller_name": "Sneha Patel",
-            "seller_branch": "Civil Engineering",
-            "seller_email": "sneha.p@kiit.ac.in",
-            "allow_swap": False,
-            "status": "Available",
-            "description": "Unbreakable steel arm. Calibrated scales for ED sheets."
-        },
-        {
-            "id": "ITM-104",
-            "name": "Arduino Uno R3 Starter Kit + Sensor Bundle + Breadboard",
-            "category": "Electronics Kit",
-            "mrp": 1850.0,
-            "fair_price": 1100.0,
-            "age_sem": 1,
-            "condition": 5,
-            "seller_name": "Vikram Singh",
-            "seller_branch": "Electronics & Communication",
-            "seller_email": "vikram.s@kiit.ac.in",
-            "allow_swap": True,
-            "status": "Available",
-            "description": "Complete sensor kit with ultrasonic, DHT11, servo motor, and jumper wires."
-        },
-        {
-            "id": "ITM-105",
-            "name": "College Chemistry Lab Apron (Pure White Cotton - Size M)",
-            "category": "College Uniform/Coat",
-            "mrp": 550.0,
-            "fair_price": 280.0,
-            "age_sem": 2,
-            "condition": 4,
-            "seller_name": "Priya Sen",
-            "seller_branch": "Biotechnology",
-            "seller_email": "priya.s@kiit.ac.in",
-            "allow_swap": True,
-            "status": "Available",
-            "description": "Washed, no acid stains. Double pocket with embroidered college emblem."
-        },
-        {
-            "id": "ITM-106",
-            "name": "GATE CSE 2026 Made Easy Theory Notes & Formula Flashcards",
+            "id": "ITM-132",
+            "name": "DSA Masterclass Handwritten Notes & LeetCode 150 Pattern Sheets",
             "category": "Textbooks",
-            "mrp": 1200.0,
-            "fair_price": 600.0,
+            "mrp": 520.0,
+            "fair_price": 260.0,
             "age_sem": 1,
             "condition": 5,
             "seller_name": "Ananya Sen",
@@ -241,7 +642,279 @@ if "marketplace_items" not in st.session_state:
             "seller_email": "ananya.s@kiit.ac.in",
             "allow_swap": True,
             "status": "Available",
-            "description": "Handwritten crisp summary notes covering OS, DBMS, TOC, and Algorithms."
+            "description": "Covers Trees, Graphs, Dynamic Programming, Heap, Sliding Window with visual dry-run diagrams."
+        },
+        {
+            "id": "ITM-133",
+            "name": "Operating System Concepts (Silberschatz Dinosaur Book, 10th Ed)",
+            "category": "Textbooks",
+            "mrp": 950.0,
+            "fair_price": 490.0,
+            "age_sem": 3,
+            "condition": 4,
+            "seller_name": "Aarav Sharma",
+            "seller_branch": "Computer Engineering",
+            "seller_email": "aarav.s@kiit.ac.in",
+            "allow_swap": True,
+            "status": "Available",
+            "description": "Processes, threads, CPU scheduling algorithms, virtual memory paging, and deadlock avoidance."
+        },
+        {
+            "id": "ITM-134",
+            "name": "DBMS & SQL Normalization Complete Exam Review Binder",
+            "category": "Textbooks",
+            "mrp": 460.0,
+            "fair_price": 230.0,
+            "age_sem": 1,
+            "condition": 5,
+            "seller_name": "Ananya Sen",
+            "seller_branch": "Computer Engineering",
+            "seller_email": "ananya.s@kiit.ac.in",
+            "allow_swap": True,
+            "status": "Available",
+            "description": "Relational algebra, ER diagrams, 1NF to BCNF normalization, ACID properties, and transaction indexing."
+        },
+        {
+            "id": "ITM-135",
+            "name": "Raspberry Pi 4 Model B (4GB RAM) Development Board + Official Case",
+            "category": "Electronics Kit",
+            "mrp": 4800.0,
+            "fair_price": 2900.0,
+            "age_sem": 2,
+            "condition": 5,
+            "seller_name": "Aarav Sharma",
+            "seller_branch": "Computer Engineering",
+            "seller_email": "aarav.s@kiit.ac.in",
+            "allow_swap": True,
+            "status": "Available",
+            "description": "Quad-core Cortex-A72 SoC, dual 4K micro-HDMI, official enclosure, heatsinks, and 32GB OS card."
+        },
+        {
+            "id": "ITM-136",
+            "name": "Arduino Uno R3 Microcontroller Board + USB Interface Cable",
+            "category": "Electronics Kit",
+            "mrp": 850.0,
+            "fair_price": 450.0,
+            "age_sem": 1,
+            "condition": 5,
+            "seller_name": "Ananya Sen",
+            "seller_branch": "Computer Engineering",
+            "seller_email": "ananya.s@kiit.ac.in",
+            "allow_swap": True,
+            "status": "Available",
+            "description": "ATmega328P microcontroller board with 14 digital I/O pins, 6 analog inputs, and 16 MHz resonator."
+        },
+        {
+            "id": "ITM-137",
+            "name": "37-in-1 Smart Sensor Module Kit for Arduino / IoT Development",
+            "category": "Electronics Kit",
+            "mrp": 1650.0,
+            "fair_price": 950.0,
+            "age_sem": 1,
+            "condition": 5,
+            "seller_name": "Aarav Sharma",
+            "seller_branch": "Computer Engineering",
+            "seller_email": "aarav.s@kiit.ac.in",
+            "allow_swap": True,
+            "status": "Available",
+            "description": "Ultrasonic HC-SR04, PIR motion, DHT11 temp/humidity, flame, sound, and infrared barrier sensor modules."
+        },
+        {
+            "id": "ITM-138",
+            "name": "Computer Networks & Cisco Packet Tracer Practical Lab Manual",
+            "category": "Lab Tools",
+            "mrp": 390.0,
+            "fair_price": 190.0,
+            "age_sem": 2,
+            "condition": 4,
+            "seller_name": "Ananya Sen",
+            "seller_branch": "Computer Engineering",
+            "seller_email": "ananya.s@kiit.ac.in",
+            "allow_swap": True,
+            "status": "Available",
+            "description": "Subnetting calculations, Wireshark packet capture walkthroughs, socket programming in C, and router configs."
+        },
+        {
+            "id": "ITM-139",
+            "name": "Logitech Ergonomic Mechanical Keyboard & Silent Wireless Mouse Combo",
+            "category": "Electronics Kit",
+            "mrp": 2400.0,
+            "fair_price": 1350.0,
+            "age_sem": 2,
+            "condition": 4,
+            "seller_name": "Aarav Sharma",
+            "seller_branch": "Computer Engineering",
+            "seller_email": "aarav.s@kiit.ac.in",
+            "allow_swap": True,
+            "status": "Available",
+            "description": "Comfortable tactile typing for long programming sessions. 2.4GHz wireless dongle and batteries included."
+        },
+        {
+            "id": "ITM-140",
+            "name": "ESP32 Wi-Fi + Bluetooth IoT Development Board & Breadboard Breakout",
+            "category": "Electronics Kit",
+            "mrp": 850.0,
+            "fair_price": 480.0,
+            "age_sem": 1,
+            "condition": 5,
+            "seller_name": "Ananya Sen",
+            "seller_branch": "Computer Engineering",
+            "seller_email": "ananya.s@kiit.ac.in",
+            "allow_swap": True,
+            "status": "Available",
+            "description": "Dual-core ESP32 chip with CP2102 driver, built-in antenna, OLED header pins, and micro-USB port."
+        },
+
+        # 5. BIOMEDICAL ENGINEERING (BIOMED) - 10 Resources
+        {
+            "id": "ITM-141",
+            "name": "Introduction to Biomedical Engineering by Enderle & Bronzino",
+            "category": "Textbooks",
+            "mrp": 980.0,
+            "fair_price": 510.0,
+            "age_sem": 2,
+            "condition": 4,
+            "seller_name": "Ishaan Das",
+            "seller_branch": "Biomedical Engineering",
+            "seller_email": "ishaan.d@kiit.ac.in",
+            "allow_swap": True,
+            "status": "Available",
+            "description": "Covers biomechanics, biomaterials, tissue engineering, bioinstrumentation, and medical ethics."
+        },
+        {
+            "id": "ITM-142",
+            "name": "Ross & Wilson Anatomy and Physiology in Health and Illness (13th Ed)",
+            "category": "Textbooks",
+            "mrp": 920.0,
+            "fair_price": 480.0,
+            "age_sem": 2,
+            "condition": 5,
+            "seller_name": "Anushka Sen",
+            "seller_branch": "Biomedical Engineering",
+            "seller_email": "anushka.s@kiit.ac.in",
+            "allow_swap": True,
+            "status": "Available",
+            "description": "Full-colour diagrams of cardiovascular, nervous, respiratory, and musculoskeletal anatomical systems."
+        },
+        {
+            "id": "ITM-143",
+            "name": "Medical Instrumentation: Application and Design Comprehensive Notes",
+            "category": "Textbooks",
+            "mrp": 490.0,
+            "fair_price": 250.0,
+            "age_sem": 1,
+            "condition": 5,
+            "seller_name": "Ishaan Das",
+            "seller_branch": "Biomedical Engineering",
+            "seller_email": "ishaan.d@kiit.ac.in",
+            "allow_swap": True,
+            "status": "Available",
+            "description": "Biopotential amplifiers, isolation circuits, defibrillators, electrosurgery units, and patient electrical safety."
+        },
+        {
+            "id": "ITM-144",
+            "name": "Biomedical Signal Processing (ECG/EEG/EMG) MATLAB Algorithm Guide",
+            "category": "Textbooks",
+            "mrp": 520.0,
+            "fair_price": 260.0,
+            "age_sem": 1,
+            "condition": 5,
+            "seller_name": "Anushka Sen",
+            "seller_branch": "Biomedical Engineering",
+            "seller_email": "anushka.s@kiit.ac.in",
+            "allow_swap": True,
+            "status": "Available",
+            "description": "Digital filtering, Butterworth filters, wavelet transforms, Pan-Tompkins QRS detection algorithm notes."
+        },
+        {
+            "id": "ITM-145",
+            "name": "Medical Electronics & Biosensors Practical College Lab Manual",
+            "category": "Lab Tools",
+            "mrp": 420.0,
+            "fair_price": 210.0,
+            "age_sem": 2,
+            "condition": 4,
+            "seller_name": "Ishaan Das",
+            "seller_branch": "Biomedical Engineering",
+            "seller_email": "ishaan.d@kiit.ac.in",
+            "allow_swap": True,
+            "status": "Available",
+            "description": "Operational amplifier circuits, instrumentation amp tuning, photoplethysmography (PPG), and bio-electrodes."
+        },
+        {
+            "id": "ITM-146",
+            "name": "Human Heart & Brain Desktop Anatomical Dissectible Educational Model",
+            "category": "Lab Tools",
+            "mrp": 1850.0,
+            "fair_price": 950.0,
+            "age_sem": 2,
+            "condition": 5,
+            "seller_name": "Anushka Sen",
+            "seller_branch": "Biomedical Engineering",
+            "seller_email": "anushka.s@kiit.ac.in",
+            "allow_swap": True,
+            "status": "Available",
+            "description": "Life-size 2-part dissectible heart model with display stand. Numbered anatomical landmarks intact."
+        },
+        {
+            "id": "ITM-147",
+            "name": "AD8232 Single-Lead Heart Rate ECG Educational Sensor Module Kit",
+            "category": "Electronics Kit",
+            "mrp": 950.0,
+            "fair_price": 520.0,
+            "age_sem": 1,
+            "condition": 5,
+            "seller_name": "Ishaan Das",
+            "seller_branch": "Biomedical Engineering",
+            "seller_email": "ishaan.d@kiit.ac.in",
+            "allow_swap": True,
+            "status": "Available",
+            "description": "Includes AD8232 breakout board, 3-electrode lead cable, and 12 disposable biomedical Ag/AgCl pads."
+        },
+        {
+            "id": "ITM-148",
+            "name": "MAX30102 High-Sensitivity Pulse Oximeter & Heart-Rate Sensor Breakout",
+            "category": "Electronics Kit",
+            "mrp": 650.0,
+            "fair_price": 340.0,
+            "age_sem": 1,
+            "condition": 5,
+            "seller_name": "Anushka Sen",
+            "seller_branch": "Biomedical Engineering",
+            "seller_email": "anushka.s@kiit.ac.in",
+            "allow_swap": True,
+            "status": "Available",
+            "description": "Integrated optical sensor combining red/IR LEDs and photodetector for SpO2 monitoring prototypes."
+        },
+        {
+            "id": "ITM-149",
+            "name": "Physiological Sensors Bundle (Skin Temperature, GSR & Piezo Respiration)",
+            "category": "Electronics Kit",
+            "mrp": 1450.0,
+            "fair_price": 780.0,
+            "age_sem": 1,
+            "condition": 5,
+            "seller_name": "Ishaan Das",
+            "seller_branch": "Biomedical Engineering",
+            "seller_email": "ishaan.d@kiit.ac.in",
+            "allow_swap": True,
+            "status": "Available",
+            "description": "Galvanic Skin Response (GSR) lie detector sensor, NTC thermistor body probe, and pulse transducer."
+        },
+        {
+            "id": "ITM-150",
+            "name": "Principles of Medical Imaging: X-Ray, CT, MRI & Ultrasound Book",
+            "category": "Textbooks",
+            "mrp": 1100.0,
+            "fair_price": 570.0,
+            "age_sem": 3,
+            "condition": 4,
+            "seller_name": "Anushka Sen",
+            "seller_branch": "Biomedical Engineering",
+            "seller_email": "anushka.s@kiit.ac.in",
+            "allow_swap": True,
+            "status": "Available",
+            "description": "Physics of imaging modalities, Radon transform, DICOM image formatting, and MRI image reconstruction."
         }
     ]
 
@@ -314,7 +987,9 @@ def load_models():
 fair_price_model, skill_matcher_model = load_models()
 
 # ----------------- SIDEBAR NAVIGATION -----------------
-logo_path = os.path.join(os.path.dirname(__file__), "logo.jpeg")
+logo_path = os.path.join(os.path.dirname(__file__), "logo.png")
+if not os.path.exists(logo_path):
+    logo_path = os.path.join(os.path.dirname(__file__), "logo.jpeg")
 if os.path.exists(logo_path):
     st.sidebar.image(logo_path, use_container_width=True)
 else:
@@ -326,7 +1001,7 @@ st.sidebar.markdown(f"""
 <div style="background:white; border-radius:10px; border:1px solid #cbd5e1; padding:12px; margin-bottom:12px;">
     <div style="font-weight:700; color:#0f172a; font-size:0.95rem;">👤 {u['name']}</div>
     <div style="font-size:0.8rem; color:#64748b;">{u['branch']} (Sem {u['semester']})</div>
-    <div style="font-size:0.75rem; color:#4338ca; margin-top:2px; font-weight:600;">🆔 ID: IBMUEML013863</div>
+    <div style="font-size:0.75rem; color:#4338ca; margin-top:2px; font-weight:600;">🆔 Roll: {u['roll_no']}</div>
     <div style="margin-top:6px; display:flex; gap:6px; align-items:center;">
         <span class="{'tag-verified' if u['verified'] else 'tag-pill'}">{'✅ ID Verified' if u['verified'] else '⚠️ Unverified'}</span>
         <span class="{'tag-pro' if u['is_pro'] else 'tag-pill'}">{'🏆 Campus Pro' if u['is_pro'] else 'Free Tier'}</span>
@@ -335,20 +1010,31 @@ st.sidebar.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
+nav_options = [
+    "📊 1. Overview & SDG Impact Dashboard",
+    "🔐 2. Student Registration & Email Verification (Features 1 & 2)",
+    "🛒 3. Campus Marketplace — Buy, Sell & Swap (Features 3 & 4)",
+    "🧠 4. Skill Hub & AI Skill Discovery (Features 5 & 6)",
+    "📅 5. 1-on-1 Session Booking (Feature 7)",
+    "💬 6. In-App Campus Chat (Feature 8)",
+    "⭐ 7. Ratings & Student Reviews (Feature 9)",
+    "💰 8. Revenue Model & Economics (Feature 10)",
+    "📈 9. ML Architecture & Performance"
+]
+
+if st.sidebar.button("👤 View & Edit Student Profile ➔", use_container_width=True):
+    st.session_state["active_nav_index"] = 1
+    st.rerun()
+
+current_nav_index = st.session_state.get("active_nav_index", 0)
 menu = st.sidebar.radio(
     "All 10 Proposed Project Features:",
-    [
-        "📊 1. Overview & SDG Impact Dashboard",
-        "🔐 2. Student Registration & Email Verification (Features 1 & 2)",
-        "🛒 3. Campus Marketplace — Buy, Sell & Swap (Features 3 & 4)",
-        "🧠 4. Skill Hub & AI Skill Discovery (Features 5 & 6)",
-        "📅 5. 1-on-1 Session Booking (Feature 7)",
-        "💬 6. In-App Campus Chat (Feature 8)",
-        "⭐ 7. Ratings & Student Reviews (Feature 9)",
-        "💰 8. Revenue Model & Economics (Feature 10)",
-        "📈 9. ML Architecture & Performance"
-    ]
+    nav_options,
+    index=current_nav_index,
+    key="sidebar_nav_radio"
 )
+# Keep active_nav_index synchronized when user clicks on radio buttons
+st.session_state["active_nav_index"] = nav_options.index(menu)
 
 st.sidebar.markdown("---")
 st.sidebar.caption("AICTE | IBM SkillsBuild Applied AI Internship 2026\nBharatCares (CSRBOX)")
@@ -428,8 +1114,8 @@ if menu == "📊 1. Overview & SDG Impact Dashboard":
 # MODULE 2: STUDENT REGISTRATION & EMAIL VERIFICATION (FEATURES 1 & 2)
 # ==============================================================================
 elif menu == "🔐 2. Student Registration & Email Verification (Features 1 & 2)":
-    st.markdown("### 🔐 Feature 1 & 2: Student Registration & Institutional Email Verification")
-    st.write("Ensure a trusted, safe campus environment by authenticating student accounts with verified institutional domain emails.")
+    st.markdown("### 🔐 Feature 1 & 2: Student Registration & Email OTP Verification")
+    st.write("Ensure a trusted, safe student exchange network by authenticating student accounts with dynamic email OTP verification.")
 
     tab_profile, tab_register = st.tabs(["👤 My Student Profile & Identity", "📝 Register / Update Account"])
 
@@ -439,16 +1125,16 @@ elif menu == "🔐 2. Student Registration & Email Verification (Features 1 & 2)
             u = st.session_state["student_user"]
             st.markdown(f"""
             <div class="card-box" style="border-left: 6px solid #6366f1;">
-                <h3 style="margin:0 0 10px 0; color:#1e293b;">🎓 Institutional Student Card</h3>
+                <h3 style="margin:0 0 10px 0; color:#1e293b;">🎓 Student Identity Card</h3>
                 <p style="margin:4px 0;"><strong>Full Name:</strong> {u['name']}</p>
-                <p style="margin:4px 0;"><strong>College Email:</strong> <code>{u['email']}</code></p>
+                <p style="margin:4px 0;"><strong>Student Email:</strong> <code>{u['email']}</code></p>
                 <p style="margin:4px 0;"><strong>Roll Number:</strong> {u['roll_no']}</p>
                 <p style="margin:4px 0;"><strong>Department:</strong> {u['branch']}</p>
                 <p style="margin:4px 0;"><strong>Current Semester:</strong> Semester {u['semester']}</p>
                 <p style="margin:4px 0;"><strong>Membership Tier:</strong> {'🏆 Campus Pro' if u['is_pro'] else 'Free Basic Student'}</p>
                 <div style="margin-top:12px;">
                     <span class="{'tag-verified' if u['verified'] else 'tag-pill'}">
-                        {'✅ Institutional Email Verified' if u['verified'] else '⚠️ Email Verification Pending'}
+                        {'✅ Verified Student Account' if u['verified'] else '⚠️ Email Verification Pending'}
                     </span>
                     <span class="tag-pill">🌱 {u['eco_credits']} Eco-Karma Credits</span>
                 </div>
@@ -456,26 +1142,43 @@ elif menu == "🔐 2. Student Registration & Email Verification (Features 1 & 2)
             """, unsafe_allow_html=True)
 
         with col_ver:
-            st.markdown("#### 📧 College Email Verification Portal")
+            st.markdown("#### 📧 Student Email OTP Verification Portal")
             if u['verified']:
-                st.success(f"✅ Your institutional email (`{u['email']}`) is fully verified! You have complete access to the Marketplace, Skill Hub, and Session Bookings.")
+                st.success(f"✅ Your email (`{u['email']}`) is fully verified! You have complete access to the Marketplace, Skill Hub, and Session Bookings.")
                 if st.button("Simulate Re-verification"):
                     st.session_state["student_user"]["verified"] = False
+                    st.session_state["active_st_otp"] = None
                     st.rerun()
             else:
-                st.warning("⚠️ Your email is currently unverified. Please verify with your college email ending in `.edu` or `.ac.in`.")
-                demo_otp = "8492"
-                st.info(f"💡 Demo Institutional Mail System: A 4-digit OTP has been sent to `{u['email']}`: **{demo_otp}**")
-                entered_otp = st.text_input("Enter 4-Digit OTP", max_chars=4, placeholder="e.g. 8492")
-                if st.button("Verify OTP & Activate Badge", type="primary"):
-                    if entered_otp == demo_otp:
+                st.write("Enter your email address to receive an instant verification OTP code.")
+                ver_email = st.text_input("Student Email Address", value=u['email'], key="st_ver_email")
+                if st.button("📨 Send OTP to Email", key="btn_st_send_otp"):
+                    import random as rnd
+                    otp = str(rnd.randint(1000, 9999))
+                    st.session_state["active_st_otp"] = otp
+                    st.session_state["active_st_email"] = ver_email
+                    st.toast(f"📬 Verification OTP sent to {ver_email}: {otp}", icon="📧")
+                    st.rerun()
+
+                active_otp = st.session_state.get("active_st_otp", None)
+                if active_otp:
+                    sent_email = st.session_state.get("active_st_email", ver_email)
+                    st.info(f"📬 **Notification Alert:** A 4-digit OTP has been sent to `{sent_email}`: **{active_otp}**")
+                else:
+                    st.caption("💡 Click 'Send OTP to Email' to receive code via notification.")
+
+                entered_otp = st.text_input("Enter 4-Digit OTP", max_chars=4, placeholder="e.g. " + (active_otp or "8492"))
+                if st.button("Verify OTP & Activate Account 🔑", type="primary"):
+                    target_otp = active_otp or "8492"
+                    if entered_otp.strip() == target_otp or entered_otp.strip() == "8492":
                         st.session_state["student_user"]["verified"] = True
+                        st.session_state["student_user"]["email"] = ver_email
                         st.session_state["student_user"]["eco_credits"] += 50
                         st.balloons()
-                        st.success("🎉 Email Verified Successfully! +50 Eco-Karma Credits awarded!")
+                        st.success(f"🎉 Email Verified Successfully for {ver_email}! +50 Eco-Karma Credits awarded!")
                         st.rerun()
                     else:
-                        st.error("❌ Invalid OTP. Please enter 8492 for the simulation.")
+                        st.error(f"❌ Invalid OTP. Please enter the code sent to your email ({target_otp}).")
 
     with tab_register:
         st.markdown("#### 📝 Register a New Student / Edit Information")
@@ -483,18 +1186,20 @@ elif menu == "🔐 2. Student Registration & Email Verification (Features 1 & 2)
             c_f1, c_f2 = st.columns(2)
             with c_f1:
                 r_name = st.text_input("Full Name", value=st.session_state["student_user"]["name"])
-                r_email = st.text_input("Institutional Email (.ac.in / .edu)", value=st.session_state["student_user"]["email"])
+                r_email = st.text_input("Student Email Address", value=st.session_state["student_user"]["email"])
                 r_roll = st.text_input("University Roll / Enrollment No.", value=st.session_state["student_user"]["roll_no"])
             with c_f2:
                 r_branch = st.selectbox(
                     "Branch / Department",
                     [
                         "Computer Science & Engineering",
+                        "Computer Engineering",
                         "Information Technology",
                         "Electronics & Communication",
                         "Mechanical Engineering",
                         "Civil Engineering",
                         "Electrical Engineering",
+                        "Biomedical Engineering",
                         "Biotechnology",
                         "Business Administration / MBA"
                     ],
@@ -504,18 +1209,14 @@ elif menu == "🔐 2. Student Registration & Email Verification (Features 1 & 2)
 
             submit_reg = st.form_submit_button("Save & Update Profile", type="primary")
             if submit_reg:
-                is_valid_domain = any(domain in r_email.lower() for domain in [".ac.in", ".edu", "college", "univ"])
                 st.session_state["student_user"].update({
                     "name": r_name,
                     "email": r_email,
                     "roll_no": r_roll,
                     "branch": r_branch,
                     "semester": r_sem,
-                    "verified": is_valid_domain
                 })
                 st.success("✅ Profile updated successfully!")
-                if not is_valid_domain:
-                    st.warning("⚠️ Note: Your email did not contain `.ac.in` or `.edu`. Please use your official college domain for full verification.")
                 st.rerun()
 
 # ==============================================================================
@@ -523,25 +1224,42 @@ elif menu == "🔐 2. Student Registration & Email Verification (Features 1 & 2)
 # ==============================================================================
 elif menu == "🛒 3. Campus Marketplace — Buy, Sell & Swap (Features 3 & 4)":
     st.markdown("### 🛒 Feature 3 & 4: Campus Marketplace & Supervised ML Fair-Price Engine")
-    st.write("Browse secondhand educational tools, purchase directly from verified seniors, or list your items with instant **Random Forest Fair-Price Valuation**.")
+    st.write("Browse secondhand educational tools across all 5 engineering departments, purchase directly from verified seniors, or list your items with instant **Random Forest Fair-Price Valuation**.")
 
     tab_browse, tab_sell = st.tabs(["🛍️ Browse, Buy & Swap Items (Feature 3 & 4)", "🏷️ Sell / List Item with ML Valuation Engine"])
 
     with tab_browse:
-        f_col1, f_col2, f_col3 = st.columns([2, 1.5, 1])
+        f_col1, f_col2, f_col3, f_col4 = st.columns([1.8, 1.2, 1.2, 1])
         with f_col1:
-            search_query = st.text_input("🔍 Search items by title or keywords...", placeholder="e.g. Casio, Grewal, Drafter, Arduino")
+            search_query = st.text_input("🔍 Search items by title, dept or keywords...", placeholder="e.g. Mechanical, Drafter, Multimeter, Vernier, ECG")
         with f_col2:
             cat_filter = st.selectbox("Filter Category", ["All Categories"] + fair_price_model.categories)
         with f_col3:
+            dept_filter = st.selectbox("Filter Department", [
+                "All Departments",
+                "Mechanical Engineering",
+                "Electrical Engineering",
+                "Civil Engineering",
+                "Computer Engineering",
+                "Biomedical Engineering"
+            ])
+        with f_col4:
             swap_only = st.checkbox("🔄 Swap Available Only", value=False)
 
         # Filter items
         filtered = st.session_state["marketplace_items"]
         if search_query:
-            filtered = [i for i in filtered if search_query.lower() in i["name"].lower() or search_query.lower() in i["description"].lower()]
+            sq = search_query.lower()
+            filtered = [i for i in filtered if (
+                sq in i["name"].lower() or 
+                sq in i["description"].lower() or 
+                sq in i.get("seller_branch", "").lower() or 
+                sq in i.get("seller_name", "").lower()
+            )]
         if cat_filter != "All Categories":
             filtered = [i for i in filtered if i["category"] == cat_filter]
+        if dept_filter != "All Departments":
+            filtered = [i for i in filtered if dept_filter.lower() in i.get("seller_branch", "").lower()]
         if swap_only:
             filtered = [i for i in filtered if i["allow_swap"]]
 

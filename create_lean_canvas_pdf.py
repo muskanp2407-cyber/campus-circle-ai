@@ -119,7 +119,7 @@ def create_lean_canvas(output_path):
 
     p_customer_segments = Paragraph("""
     <b>2. CUSTOMER SEGMENTS</b><br/>
-    • <b>Primary:</b> Undergraduate students in engineering, science & management residing in hostels & campus.<br/>
+    • <b>Primary:</b> Undergraduate students across 5 engineering disciplines (MECH, ELEC, CIVIL, CE, BIOMED) in hostels & campus.<br/>
     • <b>Secondary:</b> Student mentors, campus tech club leads, and faculty.<br/>
     <br/>
     <b>EARLY ADOPTERS</b><br/>

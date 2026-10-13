@@ -181,7 +181,8 @@ def create_concept_note(output_path):
     # Section 5: System Architecture & Implementation
     elements.append(Paragraph("5. System Implementation & Tech Stack", h1_style))
     elements.append(Paragraph("• <b>Machine Learning & Analytics:</b> Scikit-Learn (RandomForestRegressor, DecisionTreeRegressor, TfidfVectorizer, cosine_similarity), Pandas, NumPy.", bullet_style))
-    elements.append(Paragraph("• <b>Interactive Web Interface:</b> Streamlit application with custom responsive CSS styling, real-time KPI metrics, and modular tabs.", bullet_style))
+    elements.append(Paragraph("• <b>Cross-Disciplinary Academic Matrix:</b> End-to-end coverage across 5 engineering departments (Mechanical, Electrical, Civil, Computer Engineering, Biomedical) featuring 50 lab/academic resources and 50 peer-exchangeable technical skills.", bullet_style))
+    elements.append(Paragraph("• <b>Interactive Web Interface:</b> Streamlit application with custom responsive CSS styling, real-time KPI metrics, and modular tabs, paired with an asynchronous FastAPI REST backend.", bullet_style))
     elements.append(Paragraph("• <b>Conversational Assistant:</b> Integrated Campus Circle AI Agent providing context-aware guidance on learning roadmaps, fair pricing, and platform features.", bullet_style))
     elements.append(Paragraph("• <b>Verification Architecture:</b> Institutional email authentication domain gating ensuring safety and campus accountability.", bullet_style))
 

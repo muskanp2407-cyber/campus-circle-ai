@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +8,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/static/favicon.png">
+  <link rel="shortcut icon" href="/static/favicon.ico">
+  <link rel="apple-touch-icon" href="/static/apple-touch-icon.png">
   <link rel="stylesheet" href="/static/style.css">
   <!-- Chart.js CDN for live interactive ML visualizations -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -19,22 +24,27 @@
   <!-- ==================== SIDEBAR NAVIGATION ==================== -->
   <aside class="sidebar" id="sidebar">
     <div class="brand-section">
-      <img src="/static/../logo.jpeg" alt="Campus Circle Logo" class="brand-logo" onerror="this.style.display='none'">
-      <div class="brand-text">
-        <div class="brand-title">CAMPUS CIRCLE</div>
-        <div class="brand-sub">AI RESOURCE & SKILL NETWORK</div>
-      </div>
+      <img src="/static/logo.png" alt="Campus Circle - The All in One Students Exchange & Skill Network" class="brand-full-logo">
     </div>
 
-    <!-- Active Student Mini Banner -->
-    <div class="user-widget" id="user-widget">
-      <div class="user-name-text" id="widget-user-name">Muskan Priyadarshani Patra</div>
-      <div class="user-branch-text" id="widget-user-branch">CSE (Sem 6)</div>
-      <div style="font-size: 0.74rem; color: #a5b4fc; margin-top: 2px; font-weight: 600;">🆔 IBMUEML013863</div>
+    <!-- Active Student Mini Banner (Smart Student ID Card) -->
+    <div class="user-widget" id="user-widget" title="Click to view & edit your student profile ✏️">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+        <div>
+          <div class="user-name-text" id="widget-user-name">Muskan Priyadarshani Patra</div>
+          <div class="user-branch-text" id="widget-user-branch">CSE (Sem 6)</div>
+          <div class="user-id-text" id="widget-user-roll">🆔 Roll: 2105128</div>
+        </div>
+        <span class="user-widget-edit-btn" title="Edit Profile">✏️</span>
+      </div>
       <div class="user-badges">
         <span class="badge badge-verified" id="widget-verify-badge">✅ ID Verified</span>
         <span class="badge badge-pro" id="widget-pro-badge" style="display:none;">🏆 Campus Pro</span>
         <span class="badge badge-karma" id="widget-karma-badge">🌱 340 Karma</span>
+      </div>
+      <div class="user-widget-action-tag">
+        <span>👤 View & Edit Profile</span>
+        <span class="arrow-icon">➔</span>
       </div>
     </div>
 
@@ -81,11 +91,6 @@
         <span class="nav-text">10. ML Performance & Architecture</span>
       </li>
     </ul>
-
-    <div class="sidebar-footer">
-      <div>AICTE | IBM SkillsBuild Internship 2026</div>
-      <div style="color: #64748b; margin-top: 2px;">Partner: BharatCares (CSRBOX)</div>
-    </div>
   </aside>
 
   <!-- ==================== MAIN CONTENT WRAPPER ==================== -->
@@ -93,14 +98,22 @@
 
     <!-- Top Banner -->
     <header class="top-header">
-      <div>
-        <h1 class="page-title" id="page-title">Campus Circle AI Network</h1>
-        <p class="page-subtitle" id="page-subtitle">Circular Campus Economy & NLP Peer-to-Peer Skill Barter Engine</p>
+      <div style="display: flex; align-items: center; gap: 16px;">
+        <img src="/static/favicon.png" alt="Campus Circle Logo" class="top-header-logo">
+        <div>
+          <h1 class="page-title" id="page-title">Campus Circle AI Network</h1>
+          <p class="page-subtitle" id="page-subtitle">Circular Campus Economy, Verified Peer Tutoring & ML Valuation Portal</p>
+        </div>
       </div>
-      <div class="sdg-tag-group">
-        <span class="sdg-chip chip-sdg-4">SDG 4: Quality Edu</span>
-        <span class="sdg-chip chip-sdg-8">SDG 8: Decent Work</span>
-        <span class="sdg-chip chip-sdg-12">SDG 12: Circular</span>
+      <div class="header-actions">
+        <button class="btn-theme-toggle" id="theme-toggle-btn" title="Toggle Academic Theme">
+          <span id="theme-icon">🌙</span> <span id="theme-text">Executive Dark</span>
+        </button>
+        <div class="sdg-tag-group">
+          <span class="sdg-chip chip-sdg-4">SDG 4: Edu</span>
+          <span class="sdg-chip chip-sdg-8">SDG 8: Work</span>
+          <span class="sdg-chip chip-sdg-12">SDG 12: Circular</span>
+        </div>
       </div>
     </header>
 
@@ -132,28 +145,28 @@
 
       <!-- Problem vs Solution Breakdown -->
       <div class="grid-2">
-        <div class="card-box" style="border-left: 4px solid var(--accent-rose);">
-          <h3 style="color: #fda4af; margin-bottom: 12px;">🛑 The Campus Problems Solved</h3>
-          <ul style="list-style-type: none; display: flex; flex-direction: column; gap: 12px; color: var(--text-muted); font-size: 0.92rem;">
+        <div class="card-box" style="border-left: 4px solid var(--rose-accent);">
+          <h3 class="heading-problem">🛑 The Campus Problems Solved</h3>
+          <ul style="list-style-type: none; display: flex; flex-direction: column; gap: 12px; color: var(--text-body); font-size: 0.92rem;">
             <li><strong>💸 High Resource Expenses:</strong> Engineering tools, calculators, books are bought at 100% MRP, used 1 semester, and left to rot.</li>
             <li><strong>📚 Impersonal & Expensive EdTech:</strong> Students need practical guidance from seniors who took the exact syllabus & lab exams.</li>
             <li><strong>⚠️ Unsafe WhatsApp Groups:</strong> Informal college chat groups lack price transparency, buyer accountability, and authentication.</li>
           </ul>
         </div>
-        <div class="card-box" style="border-left: 4px solid var(--accent-emerald);">
-          <h3 style="color: #6ee7b7; margin-bottom: 12px;">💡 The Campus Circle AI Solution</h3>
-          <ul style="list-style-type: none; display: flex; flex-direction: column; gap: 12px; color: var(--text-muted); font-size: 0.92rem;">
+        <div class="card-box" style="border-left: 4px solid var(--emerald-accent);">
+          <h3 class="heading-solution">💡 The Campus Circle AI Solution</h3>
+          <ul style="list-style-type: none; display: flex; flex-direction: column; gap: 12px; color: var(--text-body); font-size: 0.92rem;">
             <li><strong>🤖 Supervised ML Regressor:</strong> Random Forest model (R²=0.952) predicts fair secondhand valuations, eliminating price gouging.</li>
             <li><strong>🔄 Two-Way Skill Barter:</strong> NLP TF-IDF Cosine Recommender pairs students for 100% Free mutual skill swaps (0-Rupee exchange).</li>
-            <li><strong>🎓 Institutional Graph:</strong> Restricted to verified college domains (.ac.in / .edu) with peer reviews and Eco-Karma points.</li>
+            <li><strong>🛡️ Student Trust Network:</strong> Direct email OTP verification with peer reviews and Eco-Karma points.</li>
           </ul>
         </div>
       </div>
 
       <!-- Quick Action Buttons -->
-      <div class="card-box" style="display: flex; justify-content: space-between; align-items: center;">
+      <div class="card-box" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
         <div>
-          <h4 style="color: #fff; margin-bottom: 4px;">Explore Core Platform Features</h4>
+          <h4 class="card-title" style="margin-bottom: 4px;">Explore Core Platform Features</h4>
           <p style="color: var(--text-muted); font-size: 0.88rem;">Test the live marketplace, schedule a peer mentor, or run fair price valuations.</p>
         </div>
         <div style="display: flex; gap: 12px;">
@@ -168,17 +181,18 @@
       <div class="grid-2">
         <!-- Identity Card -->
         <div class="card-box" style="border-left: 5px solid var(--primary);">
-          <h3 style="color: #fff; margin-bottom: 16px;">🎓 Institutional Student Card</h3>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+            <h3 class="card-title" style="margin: 0;">🎓 Student Identity Card</h3>
+            <img src="/static/logo.png" alt="Campus Circle" style="height: 38px; max-width: 135px; object-fit: contain; filter: drop-shadow(0 2px 4px rgba(245, 158, 11, 0.2));">
+          </div>
           <div style="display: flex; flex-direction: column; gap: 10px; font-size: 0.92rem;">
-            <div><strong>Full Name:</strong> <span id="card-name">Muskan Priyadarshani Patra</span></div>
-            <div><strong>College Email:</strong> <code id="card-email" style="color: #a5b4fc;">muskan.patra@kiit.ac.in</code></div>
+            <div><strong>Full Name:</strong> <span id="card-name" style="color: var(--text-heading); font-weight: 700;">Muskan Priyadarshani Patra</span></div>
+            <div><strong>Student Email:</strong> <code id="card-email" style="color: var(--yellow-dark); background: var(--primary-light); padding: 3px 8px; border-radius: 4px; font-weight: 700; border: 1px solid var(--primary-border);">muskan.patra@kiit.ac.in</code></div>
             <div><strong>Roll Number:</strong> <span id="card-roll">2105128</span></div>
             <div><strong>Branch:</strong> <span id="card-branch">Computer Science & Engineering</span></div>
             <div><strong>Semester:</strong> <span id="card-sem">Semester 6</span></div>
-            <div><strong>Official Internship ID:</strong> <span style="color: #38bdf8; font-weight:700;">IBMUEML013863</span></div>
-            <div><strong>Learning Plan ID:</strong> <span style="color: #cbd5e1;">PLAN-CD7DED2B108B</span></div>
-            <div style="margin-top: 8px;">
-              <span class="badge badge-verified" id="card-badge-status">✅ Institutional Email Verified</span>
+            <div style="margin-top: 10px;">
+              <span class="badge badge-verified" id="card-badge-status">✅ Verified Student Account</span>
               <span class="badge badge-karma" id="card-badge-karma">🌱 340 Eco-Credits</span>
             </div>
           </div>
@@ -186,29 +200,82 @@
 
         <!-- Verification & Edit Portal -->
         <div class="card-box">
-          <h3 style="color: #fff; margin-bottom: 14px;">📧 College Domain Verification</h3>
+          <h3 class="card-title" style="margin-bottom: 12px;">📧 Student Email OTP Verification</h3>
           <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 16px;">
-            Institutional security requires verified college email addresses ending in <code>.ac.in</code> or <code>.edu</code>.
+            Enter your student or personal email. Receive an instant 4-digit OTP code with live notification to verify your account and claim +50 Eco-Karma Credits.
           </p>
 
-          <div style="background: rgba(15, 23, 42, 0.6); padding: 16px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); margin-bottom: 16px;">
-            <div style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 8px;">Demo OTP Simulation System:</div>
-            <div style="display: flex; gap: 10px;">
-              <input type="text" class="form-input" id="otp-input" placeholder="Enter OTP (e.g. 8492)" maxlength="4" style="letter-spacing: 4px; font-weight:800; text-align:center;">
-              <button class="btn btn-emerald" id="btn-verify-otp">Verify OTP 🔑</button>
+          <div class="inner-box" style="margin-bottom: 20px;">
+            <!-- Step 1: Email Input and Send OTP -->
+            <div style="margin-bottom: 14px;">
+              <label class="form-label" style="font-weight: 700; margin-bottom: 6px;">1. Enter Your Email Address:</label>
+              <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <input type="email" class="form-input" id="otp-email-input" placeholder="e.g. muskan@gmail.com or student@kiit.ac.in" value="muskan.patra@kiit.ac.in" style="flex: 2; min-width: 220px;" required>
+                <button type="button" class="btn btn-primary" id="btn-send-otp" style="font-weight: 700; white-space: nowrap;">
+                  📨 Send OTP to Email
+                </button>
+              </div>
+              <div id="otp-sent-status" style="display: none; font-size: 0.84rem; margin-top: 8px; color: var(--emerald-accent); font-weight: 700;"></div>
             </div>
-            <div style="font-size: 0.75rem; color: #34d399; margin-top: 6px;">💡 Demo OTP code sent to mailbox: <strong>8492</strong></div>
+
+            <!-- Step 2: OTP Input and Verify -->
+            <div>
+              <label class="form-label" style="font-weight: 700; margin-bottom: 6px;">2. Enter Received 4-Digit OTP:</label>
+              <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
+                <input type="text" class="form-input" id="otp-input" placeholder="e.g. 5492" maxlength="4" style="letter-spacing: 4px; font-weight: 800; text-align: center; max-width: 170px;">
+                <button type="button" class="btn btn-emerald" id="btn-verify-otp" style="font-weight: 700;">Verify OTP 🔑</button>
+              </div>
+              <div id="otp-hint-banner" style="font-size: 0.78rem; color: var(--text-muted); margin-top: 8px; font-weight: 500;">
+                💡 <em>Click "Send OTP to Email" to receive an instant verification notification.</em>
+              </div>
+            </div>
+
+            <!-- Real Email SMTP Dispatch Setup (Collapsible) -->
+            <div style="margin-top: 16px; border-top: 1px dashed var(--border-strong); padding-top: 12px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; cursor: pointer; user-select: none;" id="toggle-smtp-box">
+                <span style="font-size: 0.82rem; font-weight: 700; color: var(--yellow-dark); display: flex; align-items: center; gap: 6px;">
+                  ⚙️ Real Email Delivery (Gmail SMTP)
+                  <span id="smtp-badge-status" style="font-size: 0.72rem; padding: 2px 7px; border-radius: 4px; background: #e2e8f0; color: #475569; font-weight: 700;">Demo Mode</span>
+                </span>
+                <span id="smtp-toggle-arrow" style="font-size: 0.8rem; color: var(--text-muted); font-weight: 800;">▼</span>
+              </div>
+
+              <div id="smtp-config-content" style="display: none; margin-top: 12px; background: var(--bg-surface); border: 1px solid var(--border-light); border-radius: 8px; padding: 14px;">
+                <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0; margin-bottom: 10px; line-height: 1.4;">
+                  Enter your Gmail ID and Google App Password to deliver real OTP emails directly to the student's actual mailbox:
+                </p>
+                <div class="grid-2" style="margin-bottom: 10px;">
+                  <div class="form-group" style="margin-bottom: 6px;">
+                    <label class="form-label" style="font-size: 0.76rem;">Sender Gmail Address</label>
+                    <input type="email" class="form-input" id="smtp-input-email" placeholder="e.g. yourname@gmail.com" style="font-size: 0.84rem; padding: 7px 10px;">
+                  </div>
+                  <div class="form-group" style="margin-bottom: 6px;">
+                    <label class="form-label" style="font-size: 0.76rem;">16-Digit Google App Password</label>
+                    <input type="password" class="form-input" id="smtp-input-pwd" placeholder="e.g. abcd efgh ijkl mnop" style="font-size: 0.84rem; padding: 7px 10px;">
+                  </div>
+                </div>
+                <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                  <button type="button" class="btn btn-emerald" id="btn-save-smtp" style="padding: 6px 12px; font-size: 0.8rem; font-weight: 700;">
+                    Save & Test SMTP Connection 🔌
+                  </button>
+                  <a href="https://myaccount.google.com/apppasswords" target="_blank" style="font-size: 0.76rem; color: var(--cyan-accent); text-decoration: underline; font-weight: 600;">
+                    Get 16-Digit App Password ↗
+                  </a>
+                </div>
+                <div id="smtp-save-result" style="font-size: 0.78rem; margin-top: 8px; display: none;"></div>
+              </div>
+            </div>
           </div>
 
-          <h4 style="color: #fff; margin-bottom: 12px; font-size: 0.95rem;">Edit Student Profile</h4>
+          <h4 class="card-title" style="margin-bottom: 12px; font-size: 0.98rem;">Edit Student Profile</h4>
           <form id="form-edit-user">
             <div class="form-group">
               <label class="form-label">Full Name</label>
               <input type="text" class="form-input" id="edit-name" value="Muskan Priyadarshani Patra" required>
             </div>
             <div class="form-group">
-              <label class="form-label">College Email Address</label>
-              <input type="email" class="form-input" id="edit-email" value="muskan.patra@kiit.ac.in" required>
+              <label class="form-label">Student Email Address</label>
+              <input type="email" class="form-input" id="edit-email" value="muskan.patra@kiit.ac.in" placeholder="Enter student email" required>
             </div>
             <div class="grid-2">
               <div class="form-group">
@@ -216,18 +283,22 @@
                 <input type="text" class="form-input" id="edit-roll" value="2105128" required>
               </div>
               <div class="form-group">
-                <label class="form-label">Semester</label>
-                <select class="form-select" id="edit-sem">
-                  <option value="1">Semester 1</option>
-                  <option value="2">Semester 2</option>
-                  <option value="3">Semester 3</option>
-                  <option value="4">Semester 4</option>
-                  <option value="5">Semester 5</option>
-                  <option value="6" selected>Semester 6</option>
-                  <option value="7">Semester 7</option>
-                  <option value="8">Semester 8</option>
-                </select>
+                <label class="form-label">Branch / Department</label>
+                <input type="text" class="form-input" id="edit-branch" value="Computer Science & Engineering" required>
               </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Semester</label>
+              <select class="form-select" id="edit-sem">
+                <option value="1">Semester 1</option>
+                <option value="2">Semester 2</option>
+                <option value="3">Semester 3</option>
+                <option value="4">Semester 4</option>
+                <option value="5">Semester 5</option>
+                <option value="6" selected>Semester 6</option>
+                <option value="7">Semester 7</option>
+                <option value="8">Semester 8</option>
+              </select>
             </div>
             <button type="submit" class="btn btn-primary" style="width: 100%;">Save Profile Changes 💾</button>
           </form>
@@ -238,9 +309,9 @@
     <!-- ==================== VIEW 3: CAMPUS MARKETPLACE ==================== -->
     <section class="view-section" id="view-marketplace">
       <!-- Filter and Search Bar -->
-      <div class="card-box" style="padding: 16px 20px; display: flex; gap: 16px; flex-wrap: wrap; align-items: center;">
+      <div class="card-box" style="padding: 18px 22px; display: flex; gap: 16px; flex-wrap: wrap; align-items: center;">
         <input type="text" class="form-input" id="market-search" placeholder="🔍 Search items by title (Casio, Grewal, Drafter, Arduino)..." style="flex: 2; min-width: 220px;">
-        <select class="form-select" id="market-cat" style="flex: 1; min-width: 160px;">
+        <select class="form-select" id="market-cat" style="flex: 1; min-width: 150px;">
           <option value="All Categories">All Categories</option>
           <option value="Calculators">Calculators</option>
           <option value="Textbooks">Textbooks</option>
@@ -249,7 +320,15 @@
           <option value="College Uniform/Coat">Uniform / Apron</option>
           <option value="Lab Tools">Lab Tools</option>
         </select>
-        <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--text-muted); cursor: pointer;">
+        <select class="form-select" id="market-branch" style="flex: 1; min-width: 160px;">
+          <option value="All Departments">All Departments</option>
+          <option value="Mechanical Engineering">Mechanical</option>
+          <option value="Electrical Engineering">Electrical</option>
+          <option value="Civil Engineering">Civil</option>
+          <option value="Computer Engineering">Computer</option>
+          <option value="Biomedical Engineering">Biomedical</option>
+        </select>
+        <label style="display: flex; align-items: center; gap: 8px; font-size: 0.86rem; color: var(--text-body); cursor: pointer; font-weight: 600;">
           <input type="checkbox" id="market-swap-only"> 🔄 Swap Eligible Only
         </label>
         <button class="btn btn-primary" onclick="switchView('view-sell')">+ List Your Item 🏷️</button>
@@ -266,7 +345,7 @@
       <div class="grid-2">
         <!-- Input Form -->
         <div class="card-box">
-          <h3 style="color: #fff; margin-bottom: 8px;">🏷️ List Item with Supervised ML Valuation</h3>
+          <h3 class="card-title" style="margin-bottom: 8px;">🏷️ List Item with Supervised ML Valuation</h3>
           <p style="color: var(--text-muted); font-size: 0.86rem; margin-bottom: 18px;">
             Powered by <strong>Random Forest Regressor (R² = 0.952)</strong> to compute honest campus depreciation.
           </p>
@@ -310,7 +389,7 @@
             </div>
 
             <div class="form-group">
-              <label style="display: flex; align-items: center; gap: 8px; color: var(--text-muted); font-size: 0.88rem; cursor: pointer;">
+              <label style="display: flex; align-items: center; gap: 8px; color: var(--text-body); font-size: 0.88rem; cursor: pointer; font-weight: 600;">
                 <input type="checkbox" id="sell-swap" checked> Allow Peer Skill / Item Swap for this item
               </label>
             </div>
@@ -320,9 +399,11 @@
               <textarea class="form-textarea" id="sell-desc" placeholder="e.g. Barely used in 2nd semester physics lab. Clean scales with box."></textarea>
             </div>
 
-            <div style="display: flex; gap: 12px; margin-top: 14px;">
-              <button type="button" class="btn btn-secondary" id="btn-recalculate-ml" style="flex:1;">📊 Re-Evaluate Price</button>
-              <button type="submit" class="btn btn-primary" style="flex:2;">🚀 Publish to Marketplace</button>
+            <div style="display: flex; gap: 12px; margin-top: 16px; align-items: center;">
+              <div id="ml-live-status" style="flex:1; display:flex; align-items:center; justify-content:center; gap:8px; background:var(--card-inner-bg); border:1px solid var(--emerald-accent); color:var(--emerald-accent); font-weight:700; padding:10px 14px; border-radius:8px; font-size:0.83rem;">
+                <span style="width:8px; height:8px; border-radius:50%; background:#10b981; display:inline-block; box-shadow:0 0 8px #10b981;"></span> ⚡ AI/ML Auto-Valuation Active
+              </div>
+              <button type="submit" class="btn btn-primary" style="flex:1.8;">🚀 Publish to Marketplace</button>
             </div>
           </form>
         </div>
@@ -330,32 +411,35 @@
         <!-- Live ML Evaluation & Explainable Chart -->
         <div class="card-box" style="display: flex; flex-direction: column; justify-content: space-between;">
           <div>
-            <h3 style="color: #fff; margin-bottom: 12px;">📊 Real-Time ML Valuation Card</h3>
+            <h3 class="card-title" style="margin-bottom: 14px; display:flex; justify-content:space-between; align-items:center;">
+              <span>📊 Real-Time ML Valuation Card</span>
+              <span class="badge badge-verified" style="font-size:0.75rem;">⚡ Auto-Calculated Live</span>
+            </h3>
             <div class="grid-3" style="margin-bottom: 20px;">
               <div class="stat-card" style="padding: 16px;">
                 <div class="stat-label">Fair Price</div>
-                <div class="stat-value" id="val-fair-price" style="font-size: 1.6rem; color: #34d399;">₹680</div>
+                <div class="stat-value" id="val-fair-price" style="font-size: 1.6rem; color: var(--emerald-accent);">₹680</div>
                 <div class="stat-sub" id="val-deprec">-43.3% Deprec</div>
               </div>
               <div class="stat-card" style="padding: 16px;">
                 <div class="stat-label">Buyer Savings</div>
-                <div class="stat-value" id="val-savings" style="font-size: 1.6rem; color: #38bdf8;">₹520</div>
+                <div class="stat-value" id="val-savings" style="font-size: 1.6rem; color: var(--primary);">₹520</div>
                 <div class="stat-sub">vs Buying New</div>
               </div>
               <div class="stat-card" style="padding: 16px;">
                 <div class="stat-label">Decision Tree</div>
-                <div class="stat-value" id="val-dt-baseline" style="font-size: 1.6rem; color: #f59e0b;">₹650</div>
+                <div class="stat-value" id="val-dt-baseline" style="font-size: 1.6rem; color: var(--amber-accent);">₹650</div>
                 <div class="stat-sub">Baseline Metric</div>
               </div>
             </div>
 
-            <h4 style="color: #fff; font-size: 0.95rem; margin-bottom: 10px;">🔍 Explainable AI (XAI) Depreciation Breakdown</h4>
-            <div style="background: rgba(15, 23, 42, 0.4); border-radius: var(--radius-sm); padding: 14px; border: 1px solid var(--border-subtle); height: 210px;">
+            <h4 class="card-title" style="font-size: 0.98rem; margin-bottom: 10px;">🔍 Explainable AI (XAI) Depreciation Breakdown</h4>
+            <div class="inner-box" style="height: 220px; padding: 10px;">
               <canvas id="chart-xai"></canvas>
             </div>
           </div>
 
-          <div style="background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.3); border-radius: var(--radius-sm); padding: 14px; margin-top: 14px; font-size: 0.85rem; color: #c7d2fe;">
+          <div style="background: var(--yellow-bg); border: 1px solid var(--yellow-border); border-radius: var(--radius-sm); padding: 14px; margin-top: 14px; font-size: 0.86rem; color: var(--yellow-dark); line-height: 1.5;">
             💡 <strong>Why This Matters:</strong> By quantifying depreciation transparently, Campus Circle eliminates friction between juniors and seniors, ensuring resources cycle through multiple batches.
           </div>
         </div>
@@ -366,7 +450,7 @@
     <section class="view-section" id="view-skills">
       <!-- 2-Way Barter Discovery Form -->
       <div class="card-box" style="border-left: 5px solid var(--primary);">
-        <h3 style="color: #fff; margin-bottom: 6px;">🧠 NLP Two-Way Mutual Skill Barter Discovery</h3>
+        <h3 class="card-title" style="margin-bottom: 6px;">🧠 NLP Two-Way Mutual Skill Barter Discovery</h3>
         <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 16px;">
           Matches what you want to learn against what mentors teach, AND matches what you can teach for a <strong>100% Free Mutual Barter</strong>!
         </p>
@@ -380,19 +464,21 @@
             <label class="form-label">2. What skill can you teach in return? (For 0-Cost Barter)</label>
             <input type="text" class="form-input" id="barter-teach-query" value="UI/UX Design, Figma wireframing, Public Speaking" placeholder="e.g. UI/UX Design, Web Dev, C++">
           </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px; flex-wrap:wrap; gap:10px;">
+          <button class="btn btn-primary" id="btn-run-barter">⚡ NLP AI Auto-Matching Live (or click to re-scan)</button>
+          <span class="badge badge-verified" style="font-size:0.8rem; padding:6px 12px;">⚡ Live Cosine Similarity &bull; TF-IDF Vectorizer</span>
         </div>
-        <button class="btn btn-primary" id="btn-run-barter">🔍 Run Semantic TF-IDF Skill Matching</button>
       </div>
 
       <!-- Matched Mentors Feed -->
-      <h3 style="color: #fff; margin-bottom: 14px;">🎯 Recommended Peer Mentors</h3>
+      <h3 class="card-title" style="margin-bottom: 14px;">🎯 Recommended Peer Mentors</h3>
       <div id="mentors-feed" style="display: flex; flex-direction: column; gap: 16px;">
         <!-- Rendered dynamically by JavaScript -->
       </div>
 
       <!-- Register as Mentor Card -->
       <div class="card-box" style="margin-top: 30px;">
-        <h3 style="color: #fff; margin-bottom: 8px;">➕ Register as a Campus Peer Mentor</h3>
+        <h3 class="card-title" style="margin-bottom: 8px;">➕ Register as a Campus Peer Mentor</h3>
         <p style="color: var(--text-muted); font-size: 0.86rem; margin-bottom: 16px;">
           Share your academic mastery with junior batches. Tutors receive verified student badges and earn +40 Eco-Credits.
         </p>
@@ -431,16 +517,22 @@
       <div class="grid-2">
         <!-- Schedule Form -->
         <div class="card-box">
-          <h3 style="color: #fff; margin-bottom: 12px;">🗓️ Schedule a 1-on-1 Peer Mentoring Session</h3>
+          <h3 class="card-title" style="margin-bottom: 14px;">🗓️ Schedule a 1-on-1 Peer Mentoring Session</h3>
           <form id="form-book-session">
             <div class="form-group">
               <label class="form-label">Select Peer Mentor</label>
               <select class="form-select" id="book-mentor-select">
                 <option value="Aarav Sharma">Aarav Sharma (Computer Engineering) — FREE Barter</option>
-                <option value="Priya Patel">Priya Patel (Information Technology) — ₹99/hr</option>
-                <option value="Rohan Deshmukh">Rohan Deshmukh (Mechanical Engineering) — ₹120/hr</option>
                 <option value="Ananya Sen">Ananya Sen (Computer Engineering) — ₹150/hr</option>
-                <option value="Vikram Singh">Vikram Singh (Electronics) — FREE Barter</option>
+                <option value="Rohan Deshmukh">Rohan Deshmukh (Mechanical Engineering) — ₹120/hr</option>
+                <option value="Karan Malhotra">Karan Malhotra (Mechanical Engineering) — FREE Barter</option>
+                <option value="Rahul Sundaram">Rahul Sundaram (Electrical Engineering) — FREE Barter</option>
+                <option value="Neha Reddy">Neha Reddy (Electrical Engineering) — ₹110/hr</option>
+                <option value="Aditya Kulkarni">Aditya Kulkarni (Civil Engineering) — FREE Barter</option>
+                <option value="Meera Nair">Meera Nair (Civil Engineering) — ₹80/hr</option>
+                <option value="Ishaan Das">Ishaan Das (Biomedical Engineering) — FREE Barter</option>
+                <option value="Anushka Sen">Anushka Sen (Biomedical Engineering) — ₹90/hr</option>
+                <option value="Priya Patel">Priya Patel (Information Technology) — ₹99/hr</option>
               </select>
             </div>
             <div class="form-group">
@@ -481,7 +573,7 @@
 
         <!-- Active Bookings List -->
         <div class="card-box">
-          <h3 style="color: #fff; margin-bottom: 14px;">📋 My Scheduled Sessions</h3>
+          <h3 class="card-title" style="margin-bottom: 14px;">📋 My Scheduled Sessions</h3>
           <div id="bookings-list" style="display: flex; flex-direction: column; gap: 14px;">
             <!-- Rendered dynamically by JavaScript -->
           </div>
@@ -494,7 +586,7 @@
       <div class="chat-wrapper">
         <!-- Chat Channels Sidebar -->
         <div class="chat-sidebar">
-          <div style="padding: 14px 16px; border-bottom: 1px solid var(--border-subtle); font-size: 0.85rem; font-weight: 800; color: #fff;">
+          <div class="chat-sidebar-header">
             ACTIVE CHAT CHANNELS
           </div>
           <ul class="chat-channel-list" id="chat-channels-list">
@@ -523,7 +615,7 @@
       <div class="grid-2">
         <!-- Reviews Feed -->
         <div>
-          <h3 style="color: #fff; margin-bottom: 14px;">🌟 Verified Campus Trust Feed</h3>
+          <h3 class="card-title" style="margin-bottom: 14px;">🌟 Verified Campus Trust Feed</h3>
           <div id="reviews-feed" style="display: flex; flex-direction: column; gap: 14px;">
             <!-- Rendered dynamically -->
           </div>
@@ -531,7 +623,7 @@
 
         <!-- Post a Review Form -->
         <div class="card-box">
-          <h3 style="color: #fff; margin-bottom: 12px;">✍️ Submit Verified Feedback</h3>
+          <h3 class="card-title" style="margin-bottom: 12px;">✍️ Submit Verified Feedback</h3>
           <form id="form-submit-review">
             <div class="form-group">
               <label class="form-label">Select Student / Mentor to Review</label>
@@ -577,24 +669,24 @@
     <!-- ==================== VIEW 9: REVENUE MODEL & PRO ==================== -->
     <section class="view-section" id="view-revenue">
       <div class="grid-2">
-        <div class="card-box" style="border-left: 5px solid var(--accent-amber);">
-          <h3 style="color: #fff; margin-bottom: 8px;">🏛️ Sustainable Freemium Monetization</h3>
+        <div class="card-box" style="border-left: 5px solid var(--amber-accent);">
+          <h3 class="card-title" style="margin-bottom: 8px;">🏛️ Sustainable Freemium Monetization</h3>
           <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 16px;">
             A non-exploitative model keeping essential student skill exchanges 100% free while generating steady university platform revenue.
           </p>
 
           <div style="display: flex; flex-direction: column; gap: 12px;">
-            <div style="background: rgba(15, 23, 42, 0.4); padding: 14px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
-              <h4 style="color: #f59e0b; margin-bottom: 4px;">1. 🏆 Campus Pro Membership (₹49 / Semester)</h4>
-              <p style="color: var(--text-muted); font-size: 0.84rem;">Zero platform fees on equipment, verified senior profile badge, and priority search rankings for tutoring.</p>
+            <div class="inner-box">
+              <h4 style="color: var(--amber-accent); margin-bottom: 4px; font-weight: 800;">1. 🏆 Campus Pro Membership (₹49 / Semester)</h4>
+              <p style="color: var(--text-muted); font-size: 0.84rem; margin: 0;">Zero platform fees on equipment, verified senior profile badge, and priority search rankings for tutoring.</p>
             </div>
-            <div style="background: rgba(15, 23, 42, 0.4); padding: 14px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
-              <h4 style="color: #38bdf8; margin-bottom: 4px;">2. 🏷️ 2% Micro-Convenience Fee on Cash Sales</h4>
-              <p style="color: var(--text-muted); font-size: 0.84rem;">Charged only on paid sales over ₹500 (e.g. ₹10 on a ₹500 drafter). <strong>100% Free on all Skill Barters and Swaps.</strong></p>
+            <div class="inner-box">
+              <h4 style="color: var(--primary); margin-bottom: 4px; font-weight: 800;">2. 🏷️ 2% Micro-Convenience Fee on Cash Sales</h4>
+              <p style="color: var(--text-muted); font-size: 0.84rem; margin: 0;">Charged only on paid sales over ₹500 (e.g. ₹10 on a ₹500 drafter). <strong>100% Free on all Skill Barters and Swaps.</strong></p>
             </div>
-            <div style="background: rgba(15, 23, 42, 0.4); padding: 14px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
-              <h4 style="color: #34d399; margin-bottom: 4px;">3. 🏢 Institutional SDG Dashboard Licensing</h4>
-              <p style="color: var(--text-muted); font-size: 0.84rem;">Universities license the verified campus graph to track institutional ESG / SDG compliance scores for NAAC and NIRF rankings.</p>
+            <div class="inner-box">
+              <h4 style="color: var(--emerald-accent); margin-bottom: 4px; font-weight: 800;">3. 🏢 Institutional SDG Dashboard Licensing</h4>
+              <p style="color: var(--text-muted); font-size: 0.84rem; margin: 0;">Universities license the verified campus graph to track institutional ESG / SDG compliance scores for NAAC and NIRF rankings.</p>
             </div>
           </div>
         </div>
@@ -602,18 +694,18 @@
         <!-- Upgrade / Status Card -->
         <div class="card-box" style="display: flex; flex-direction: column; justify-content: space-between;">
           <div>
-            <h3 style="color: #fff; margin-bottom: 8px;">👑 Your Membership Tier</h3>
-            <div id="pro-status-box" style="padding: 20px; border-radius: var(--radius-md); background: rgba(15, 23, 42, 0.6); border: 1px solid var(--border-subtle); margin-bottom: 16px;">
+            <h3 class="card-title" style="margin-bottom: 8px;">👑 Your Membership Tier</h3>
+            <div id="pro-status-box" class="inner-box" style="padding: 20px; margin-bottom: 16px;">
               <!-- Dynamic status text -->
             </div>
           </div>
-          <button class="btn btn-amber" id="btn-toggle-pro" style="width: 100%; padding: 12px; font-size: 0.95rem;">⚡ Toggle Campus Pro Status (Demo)</button>
+          <button class="btn btn-amber" id="btn-toggle-pro" style="width: 100%; padding: 12px; font-size: 0.95rem;">⚡ Upgrade to Campus Pro (₹49/sem)</button>
         </div>
       </div>
 
       <!-- Live Simulator -->
       <div class="card-box" style="margin-top: 10px;">
-        <h3 style="color: #fff; margin-bottom: 14px;">📊 Interactive Campus Financial & Sustainability Simulator</h3>
+        <h3 class="card-title" style="margin-bottom: 14px;">📊 Interactive Campus Financial & Sustainability Simulator</h3>
         <div class="grid-3">
           <div class="form-group">
             <label class="form-label">Total Campus Student Body (<span id="sim-stu-val">6000</span> Students)</label>
@@ -636,12 +728,12 @@
           </div>
           <div class="stat-card">
             <div class="stat-label">Student Body Savings</div>
-            <div class="stat-value" id="sim-sav-val" style="color: #38bdf8;">₹8,640,000</div>
+            <div class="stat-value" id="sim-sav-val" style="color: var(--primary);">₹8,640,000</div>
             <div class="stat-sub">59.5x Student ROI</div>
           </div>
           <div class="stat-card">
             <div class="stat-label">Landfill Waste Diverted</div>
-            <div class="stat-value" id="sim-waste-val" style="color: #34d399;">33,300 kg</div>
+            <div class="stat-value" id="sim-waste-val" style="color: var(--emerald-accent);">33,300 kg</div>
             <div class="stat-sub">SDG 12 Circular Impact</div>
           </div>
         </div>
@@ -653,7 +745,7 @@
       <div class="grid-3" style="margin-bottom: 24px;">
         <div class="stat-card">
           <div class="stat-label">Random Forest R²</div>
-          <div class="stat-value" style="color: #34d399;">95.27%</div>
+          <div class="stat-value" style="color: var(--emerald-accent);">95.27%</div>
           <div class="stat-sub">Ensemble Regressor</div>
         </div>
         <div class="stat-card">
@@ -663,26 +755,15 @@
         </div>
         <div class="stat-card">
           <div class="stat-label">Decision Tree Baseline</div>
-          <div class="stat-value" style="color: #f59e0b;">91.33%</div>
-          <div class="stat-sub">Masterclass 3 Benchmark</div>
+          <div class="stat-value" style="color: var(--amber-accent);">91.33%</div>
+          <div class="stat-sub">Baseline Benchmark</div>
         </div>
       </div>
 
-      <div class="grid-2">
-        <div class="card-box">
-          <h3 style="color: #fff; margin-bottom: 12px;">📊 Supervised Model Fit Comparison ($R^2$ Score)</h3>
-          <div style="height: 240px;">
-            <canvas id="chart-models"></canvas>
-          </div>
-        </div>
-        <div class="card-box">
-          <h3 style="color: #fff; margin-bottom: 12px;">🛠️ IBM SkillsBuild Curriculum Mapping</h3>
-          <ul style="list-style-type: none; display: flex; flex-direction: column; gap: 10px; font-size: 0.88rem; color: var(--text-muted);">
-            <li><strong>Masterclass 1 & 2 (EDA):</strong> Data ingestion, feature cleaning, categorical one-hot encoding on campus transaction distributions.</li>
-            <li><strong>Masterclass 3 (Supervised Learning):</strong> Decision Tree & Random Forest regression modeling, tree depth tuning, hyperparameter evaluation.</li>
-            <li><strong>Masterclass 4 (NLP & Recommenders):</strong> TF-IDF n-gram vectorization and pairwise Cosine Similarity calculation for 2-way barter matrix.</li>
-            <li><strong>Masterclass 5 (Deployment & SDGs):</strong> Application deployment, presentation packaging, and UN SDG 4, 8 & 12 alignment.</li>
-          </ul>
+      <div class="card-box">
+        <h3 class="card-title" style="margin-bottom: 12px;">📊 Supervised Model Fit Comparison (R² Score)</h3>
+        <div style="height: 260px;">
+          <canvas id="chart-models"></canvas>
         </div>
       </div>
     </section>
@@ -732,6 +813,165 @@
     <button class="btn btn-primary" id="btn-confirm-swap" style="width:100%;">Send Swap Proposal 📩</button>
   </div>
 </div>
+
+<!-- ==================== CAMPUS PRO PAYMENT GATEWAY MODAL ==================== -->
+<div class="modal-overlay" id="modal-payment">
+  <div class="modal-content payment-modal-content" style="max-width: 540px; padding: 0; overflow: hidden; border-radius: 16px;">
+    <!-- Gateway Header -->
+    <div style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #ffffff; padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--amber-accent);">
+      <div>
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span style="font-size: 1.3rem;">⚡</span>
+          <h3 style="margin: 0; font-size: 1.18rem; font-weight: 800; color: #ffffff; letter-spacing: -0.3px;">Campus Circle Pay</h3>
+          <span style="background: #10b981; color: #ffffff; font-size: 0.68rem; font-weight: 800; padding: 2px 7px; border-radius: 4px; text-transform: uppercase;">256-bit SSL</span>
+        </div>
+        <div style="font-size: 0.78rem; color: #94a3b8; margin-top: 4px;">Universal Student Peer Payment Gateway &bull; UPI 2.0 & Cards</div>
+      </div>
+      <button class="modal-close" onclick="closeModal('modal-payment')" style="color: #94a3b8; font-size: 1.8rem;">&times;</button>
+    </div>
+
+    <!-- Order Summary Banner -->
+    <div style="background: var(--card-inner-bg); padding: 16px 24px; border-bottom: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center;">
+      <div>
+        <div style="font-weight: 800; color: var(--text-heading); font-size: 0.96rem;">🏆 Campus Pro Membership (1 Semester)</div>
+        <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 2px;">Zero transaction fees &bull; Golden badge &bull; +100 Eco-Credits</div>
+      </div>
+      <div style="text-align: right;">
+        <div style="font-size: 1.45rem; font-weight: 800; color: var(--amber-accent); font-family: 'Outfit', sans-serif;" id="pay-total-display">₹49.00</div>
+        <div style="font-size: 0.72rem; color: var(--emerald-accent); font-weight: 700;">Zero Convenience Fee</div>
+      </div>
+    </div>
+
+    <!-- Payment Body -->
+    <div style="padding: 20px 24px;">
+      <!-- Payment Method Navigation Tabs -->
+      <div class="payment-tabs-nav" style="display: flex; gap: 6px; margin-bottom: 18px; border-bottom: 1px solid var(--border-light); padding-bottom: 10px;">
+        <button type="button" class="pay-tab-btn active" data-method="upi" onclick="switchPaymentTab('upi')">
+          <span>📱</span> UPI / QR
+        </button>
+        <button type="button" class="pay-tab-btn" data-method="card" onclick="switchPaymentTab('card')">
+          <span>💳</span> Card
+        </button>
+        <button type="button" class="pay-tab-btn" data-method="netbanking" onclick="switchPaymentTab('netbanking')">
+          <span>🏦</span> Net Banking
+        </button>
+        <button type="button" class="pay-tab-btn" data-method="wallet" onclick="switchPaymentTab('wallet')">
+          <span>🌱</span> Eco-Credits
+        </button>
+      </div>
+
+      <!-- Tab 1: UPI / QR Code -->
+      <div class="pay-tab-content active" id="pay-content-upi">
+        <div style="display: flex; gap: 16px; align-items: center; margin-bottom: 16px; background: var(--bg-surface); padding: 14px; border-radius: 10px; border: 1px solid var(--border-subtle);">
+          <div style="background: #ffffff; padding: 8px; border-radius: 8px; border: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: center;">
+            <img id="upi-qr-image" src="https://api.qrserver.com/v1/create-qr-code/?size=105x105&data=upi://pay?pa=campuscircle@upi%26pn=CampusCircle%20AI%26am=49.00%26cu=INR%26tn=CampusPro" alt="UPI QR Code" style="width: 100px; height: 100px; display: block;">
+          </div>
+          <div style="flex: 1;">
+            <div style="font-size: 0.88rem; font-weight: 800; color: var(--text-heading); margin-bottom: 3px;">Scan & Pay with Any UPI App</div>
+            <div style="font-size: 0.78rem; color: var(--text-muted); line-height: 1.4;">Open Google Pay, PhonePe, Paytm, or BHIM to scan and pay instantly.</div>
+            <div style="margin-top: 8px; display: flex; gap: 6px; flex-wrap: wrap;">
+              <span class="badge" style="background:#ea4335; color:#fff; font-size:0.68rem;">GPay</span>
+              <span class="badge" style="background:#5f259f; color:#fff; font-size:0.68rem;">PhonePe</span>
+              <span class="badge" style="background:#00b9f5; color:#fff; font-size:0.68rem;">Paytm</span>
+              <span class="badge" style="background:#00796b; color:#fff; font-size:0.68rem;">BHIM</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group" style="margin-bottom: 12px;">
+          <label class="form-label" style="font-size: 0.82rem;">Or Enter UPI ID / VPA</label>
+          <div style="display: flex; gap: 8px;">
+            <input type="text" class="form-input" id="pay-upi-id" placeholder="e.g. 9876543210@paytm or student@okhdfcbank" value="student.kiit@okhdfcbank" style="flex:1;">
+            <button type="button" class="btn btn-secondary btn-sm" onclick="verifyUpiId()" id="btn-verify-upi" style="padding: 0 14px;">Verify</button>
+          </div>
+          <div id="upi-verify-status" style="font-size: 0.75rem; margin-top: 4px; color: var(--emerald-accent); font-weight: 600;">Verified UPI Handle: Muskan P. Patra</div>
+        </div>
+      </div>
+
+      <!-- Tab 2: Credit / Debit Card -->
+      <div class="pay-tab-content" id="pay-content-card" style="display: none;">
+        <div class="form-group" style="margin-bottom: 10px;">
+          <label class="form-label" style="font-size: 0.82rem;">Card Number</label>
+          <input type="text" class="form-input" id="pay-card-num" placeholder="4532 8921 4452 7890" maxlength="19" value="4532 8820 1492 5128">
+        </div>
+        <div class="grid-2" style="margin-bottom: 10px;">
+          <div class="form-group">
+            <label class="form-label" style="font-size: 0.82rem;">Valid Thru (MM/YY)</label>
+            <input type="text" class="form-input" id="pay-card-exp" placeholder="08/28" maxlength="5" value="12/28">
+          </div>
+          <div class="form-group">
+            <label class="form-label" style="font-size: 0.82rem;">CVV / Security Code</label>
+            <input type="password" class="form-input" id="pay-card-cvv" placeholder="•••" maxlength="4" value="849">
+          </div>
+        </div>
+        <div class="form-group" style="margin-bottom: 12px;">
+          <label class="form-label" style="font-size: 0.82rem;">Cardholder Name</label>
+          <input type="text" class="form-input" id="pay-card-name" placeholder="Muskan Priyadarshani Patra" value="Muskan Priyadarshani Patra">
+        </div>
+      </div>
+
+      <!-- Tab 3: Net Banking -->
+      <div class="pay-tab-content" id="pay-content-netbanking" style="display: none;">
+        <div class="form-group" style="margin-bottom: 12px;">
+          <label class="form-label" style="font-size: 0.82rem;">Select Popular University Partner Bank</label>
+          <div class="grid-2" style="gap: 8px; margin-bottom: 10px;">
+            <label class="bank-radio-card active">
+              <input type="radio" name="pay-bank" value="State Bank of India (SBI)" checked>
+              <span>🏛️ State Bank of India</span>
+            </label>
+            <label class="bank-radio-card">
+              <input type="radio" name="pay-bank" value="HDFC Bank">
+              <span>🏦 HDFC Bank</span>
+            </label>
+            <label class="bank-radio-card">
+              <input type="radio" name="pay-bank" value="ICICI Bank">
+              <span>💳 ICICI Bank</span>
+            </label>
+            <label class="bank-radio-card">
+              <input type="radio" name="pay-bank" value="Axis Bank">
+              <span>🏧 Axis Bank</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 4: Eco-Credits Wallet -->
+      <div class="pay-tab-content" id="pay-content-wallet" style="display: none;">
+        <div style="background: var(--card-inner-bg); border: 1px solid var(--emerald-accent); border-radius: 10px; padding: 14px; margin-bottom: 12px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+            <span style="font-weight: 800; color: var(--text-heading);">🌱 Campus Eco-Karma Wallet</span>
+            <span class="badge badge-karma" id="pay-wallet-balance">340 Credits Available</span>
+          </div>
+          <p style="font-size: 0.82rem; color: var(--text-muted); margin: 0 0 10px 0;">
+            Redeem 200 Eco-Credits to get ₹20 discount, pay remaining ₹29 via UPI!
+          </p>
+          <label style="display: flex; align-items: center; gap: 8px; font-size: 0.84rem; color: var(--emerald-accent); font-weight: 700; cursor: pointer;">
+            <input type="checkbox" id="pay-redeem-credits" onchange="toggleCreditDiscount()">
+            Apply 200 Eco-Credits (₹20 Student Discount)
+          </label>
+        </div>
+      </div>
+
+      <!-- Final Pay Button -->
+      <div style="margin-top: 18px;">
+        <button class="btn btn-amber" id="btn-submit-payment" onclick="processGatewayPayment()" style="width: 100%; padding: 14px; font-size: 1.05rem; font-weight: 800; box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35);">
+          🔒 Pay Securely ₹49.00
+        </button>
+      </div>
+
+      <!-- Trust Badges -->
+      <div style="display: flex; justify-content: center; align-items: center; gap: 14px; margin-top: 14px; font-size: 0.72rem; color: var(--text-muted);">
+        <span>🛡️ RBI Approved UPI</span>
+        <span>•</span>
+        <span>🔒 PCI-DSS Compliant</span>
+        <span>•</span>
+        <span>🎓 University Verified</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Global In-App Notification Toast Container -->
+<div id="notification-container" class="notification-container"></div>
 
 <script src="/static/app.js"></script>
 </body>
