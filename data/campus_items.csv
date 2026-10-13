@@ -1,0 +1,301 @@
+item_id,category,original_mrp,age_semesters,condition_rating,demand_index,fair_price_inr
+ITM-1001,Calculators,800,3,3,0.92,492
+ITM-1002,Calculators,800,4,5,0.8,546
+ITM-1003,College Uniform/Coat,593,2,3,0.65,405
+ITM-1004,Calculators,1800,4,5,0.89,1235
+ITM-1005,Electronics Kit,1362,3,3,0.71,787
+ITM-1006,Textbooks,737,1,5,0.83,635
+ITM-1007,Calculators,1100,5,4,0.94,577
+ITM-1008,Calculators,1400,3,4,0.88,983
+ITM-1009,Textbooks,737,2,3,0.81,491
+ITM-1010,College Uniform/Coat,517,2,4,0.76,400
+ITM-1011,Lab Tools,1215,3,5,0.73,937
+ITM-1012,Engineering Drawing,837,3,2,0.85,471
+ITM-1013,College Uniform/Coat,487,1,3,0.52,334
+ITM-1014,Textbooks,412,3,4,0.88,275
+ITM-1015,Electronics Kit,1178,1,4,0.81,948
+ITM-1016,Textbooks,756,6,5,0.87,429
+ITM-1017,Lab Tools,1125,3,4,0.69,775
+ITM-1018,Electronics Kit,1302,3,4,0.85,889
+ITM-1019,Lab Tools,1438,2,3,0.68,993
+ITM-1020,Calculators,800,4,4,0.83,493
+ITM-1021,Lab Tools,940,4,2,0.53,386
+ITM-1022,College Uniform/Coat,344,2,3,0.44,219
+ITM-1023,Calculators,1800,4,4,0.98,1113
+ITM-1024,Calculators,1100,1,3,0.85,859
+ITM-1025,Calculators,1800,5,3,0.86,860
+ITM-1026,Calculators,800,3,4,0.87,534
+ITM-1027,College Uniform/Coat,673,1,3,0.43,473
+ITM-1028,Electronics Kit,2436,1,3,0.78,1845
+ITM-1029,College Uniform/Coat,519,2,5,0.51,413
+ITM-1030,Textbooks,1033,2,5,0.82,886
+ITM-1031,Lab Tools,602,4,4,0.6,349
+ITM-1032,College Uniform/Coat,694,3,3,0.46,428
+ITM-1033,Lab Tools,863,1,4,0.74,689
+ITM-1034,Lab Tools,888,1,5,0.65,757
+ITM-1035,College Uniform/Coat,428,3,3,0.45,255
+ITM-1036,Engineering Drawing,1071,1,3,0.95,825
+ITM-1037,College Uniform/Coat,336,3,5,0.54,257
+ITM-1038,Engineering Drawing,651,2,2,0.86,402
+ITM-1039,Textbooks,769,6,5,0.84,413
+ITM-1040,Electronics Kit,1756,1,3,0.71,1289
+ITM-1041,Calculators,1800,4,5,0.94,1295
+ITM-1042,Lab Tools,869,3,3,0.6,468
+ITM-1043,College Uniform/Coat,664,3,4,0.76,419
+ITM-1044,Lab Tools,1278,4,2,0.58,532
+ITM-1045,Electronics Kit,1458,3,3,0.71,892
+ITM-1046,Textbooks,867,3,5,0.61,643
+ITM-1047,College Uniform/Coat,601,1,5,0.79,503
+ITM-1048,Calculators,1400,1,5,0.83,1223
+ITM-1049,Lab Tools,965,2,4,0.73,744
+ITM-1050,College Uniform/Coat,426,3,4,0.75,283
+ITM-1051,Electronics Kit,1045,3,3,0.79,603
+ITM-1052,Lab Tools,1227,2,4,0.7,914
+ITM-1053,Electronics Kit,1199,2,5,0.8,986
+ITM-1054,Lab Tools,1253,3,2,0.56,642
+ITM-1055,College Uniform/Coat,449,2,4,0.41,310
+ITM-1056,Lab Tools,1476,4,5,0.89,1015
+ITM-1057,Calculators,1100,5,4,0.91,651
+ITM-1058,College Uniform/Coat,423,2,4,0.42,314
+ITM-1059,Calculators,1400,4,4,0.82,886
+ITM-1060,Calculators,1100,2,3,0.89,819
+ITM-1061,Textbooks,467,1,5,0.97,401
+ITM-1062,Electronics Kit,1380,2,3,0.83,1071
+ITM-1063,Textbooks,1005,3,2,0.65,514
+ITM-1064,Textbooks,443,6,3,0.88,172
+ITM-1065,Calculators,1100,2,3,0.89,783
+ITM-1066,Calculators,1100,5,4,0.85,556
+ITM-1067,Textbooks,1008,2,5,0.94,827
+ITM-1068,Textbooks,1108,2,2,0.95,743
+ITM-1069,Lab Tools,1251,4,5,0.66,807
+ITM-1070,Lab Tools,1466,4,2,0.53,729
+ITM-1071,Textbooks,602,3,3,0.87,379
+ITM-1072,Engineering Drawing,1101,2,3,0.77,754
+ITM-1073,Calculators,1100,5,4,0.93,621
+ITM-1074,Engineering Drawing,1175,2,2,0.89,782
+ITM-1075,Engineering Drawing,1188,3,3,0.76,773
+ITM-1076,Lab Tools,678,1,4,0.54,558
+ITM-1077,College Uniform/Coat,361,1,4,0.52,298
+ITM-1078,Electronics Kit,1650,2,5,0.72,1370
+ITM-1079,Textbooks,745,1,5,0.87,650
+ITM-1080,Electronics Kit,2956,1,4,0.99,2572
+ITM-1081,College Uniform/Coat,421,1,5,0.76,347
+ITM-1082,Textbooks,423,2,5,0.95,355
+ITM-1083,Engineering Drawing,673,1,3,0.8,496
+ITM-1084,Lab Tools,899,1,4,0.86,766
+ITM-1085,Lab Tools,1493,4,4,0.69,960
+ITM-1086,Textbooks,880,6,4,0.7,364
+ITM-1087,Calculators,1100,2,3,0.96,830
+ITM-1088,Textbooks,854,4,2,0.63,413
+ITM-1089,Lab Tools,533,2,5,0.89,423
+ITM-1090,Textbooks,562,3,5,0.63,426
+ITM-1091,Lab Tools,446,1,2,0.78,346
+ITM-1092,Lab Tools,1055,3,2,0.87,572
+ITM-1093,College Uniform/Coat,571,2,3,0.51,375
+ITM-1094,Calculators,1100,4,3,0.99,587
+ITM-1095,College Uniform/Coat,444,1,3,0.56,313
+ITM-1096,Textbooks,896,5,3,0.98,459
+ITM-1097,Electronics Kit,2638,1,4,0.72,2237
+ITM-1098,Textbooks,1150,6,2,0.79,397
+ITM-1099,College Uniform/Coat,566,1,4,0.55,461
+ITM-1100,Calculators,800,5,5,0.97,534
+ITM-1101,Engineering Drawing,1144,2,4,0.84,878
+ITM-1102,Calculators,1100,1,5,0.85,956
+ITM-1103,Textbooks,798,1,5,0.85,658
+ITM-1104,Electronics Kit,1473,2,4,0.95,1161
+ITM-1105,Textbooks,403,4,2,0.64,186
+ITM-1106,Calculators,1400,5,3,0.93,734
+ITM-1107,Engineering Drawing,602,2,3,0.79,392
+ITM-1108,Calculators,1400,2,3,0.9,1069
+ITM-1109,Electronics Kit,1819,2,5,0.86,1599
+ITM-1110,Calculators,800,2,3,0.85,586
+ITM-1111,Calculators,1100,5,4,0.87,556
+ITM-1112,Textbooks,1110,3,3,0.88,729
+ITM-1113,Textbooks,1045,1,4,0.95,903
+ITM-1114,Lab Tools,1474,3,2,0.57,767
+ITM-1115,Textbooks,1178,6,2,0.82,299
+ITM-1116,Engineering Drawing,577,2,2,0.78,374
+ITM-1117,Textbooks,396,1,3,0.63,300
+ITM-1118,Engineering Drawing,1124,3,2,0.95,641
+ITM-1119,Lab Tools,455,2,3,0.75,309
+ITM-1120,Electronics Kit,1325,3,5,0.91,949
+ITM-1121,Engineering Drawing,862,3,2,0.92,463
+ITM-1122,Textbooks,980,5,5,0.61,516
+ITM-1123,Textbooks,580,6,3,0.81,212
+ITM-1124,Calculators,1100,3,3,0.9,665
+ITM-1125,Textbooks,460,6,3,0.82,199
+ITM-1126,Calculators,800,4,4,0.92,554
+ITM-1127,Textbooks,664,5,3,0.84,306
+ITM-1128,Textbooks,852,4,3,0.67,442
+ITM-1129,Textbooks,956,1,4,0.62,815
+ITM-1130,Textbooks,467,1,3,0.67,359
+ITM-1131,Electronics Kit,2264,2,5,0.86,2009
+ITM-1132,Textbooks,759,6,5,0.77,393
+ITM-1133,Lab Tools,512,4,4,0.78,310
+ITM-1134,Lab Tools,1244,3,4,0.52,818
+ITM-1135,Textbooks,359,5,4,0.82,200
+ITM-1136,Textbooks,668,5,2,0.9,254
+ITM-1137,Lab Tools,717,4,5,0.66,466
+ITM-1138,College Uniform/Coat,619,2,3,0.46,381
+ITM-1139,Electronics Kit,2651,2,5,0.75,2263
+ITM-1140,Lab Tools,531,1,2,0.74,391
+ITM-1141,Electronics Kit,2663,3,4,0.97,1975
+ITM-1142,Calculators,800,1,3,0.98,703
+ITM-1143,Calculators,1100,5,5,0.91,622
+ITM-1144,Electronics Kit,2271,3,5,0.89,1715
+ITM-1145,Lab Tools,1322,4,2,0.56,537
+ITM-1146,Electronics Kit,2077,2,4,0.93,1599
+ITM-1147,Engineering Drawing,617,2,2,0.73,409
+ITM-1148,Textbooks,396,4,5,0.91,272
+ITM-1149,Textbooks,976,3,5,0.82,726
+ITM-1150,Textbooks,1191,6,3,0.76,407
+ITM-1151,Calculators,1100,3,4,0.92,865
+ITM-1152,Textbooks,1177,3,5,0.64,877
+ITM-1153,College Uniform/Coat,432,1,5,0.46,392
+ITM-1154,Calculators,800,1,4,0.98,712
+ITM-1155,Textbooks,962,5,3,0.94,468
+ITM-1156,Lab Tools,1060,3,2,0.8,623
+ITM-1157,Textbooks,662,5,3,0.73,318
+ITM-1158,College Uniform/Coat,685,3,4,0.59,407
+ITM-1159,College Uniform/Coat,427,3,5,0.58,309
+ITM-1160,Calculators,1100,5,3,0.87,514
+ITM-1161,Lab Tools,1061,2,5,0.59,877
+ITM-1162,Calculators,1800,4,5,1.0,1288
+ITM-1163,Lab Tools,1389,3,4,0.58,916
+ITM-1164,Textbooks,778,5,3,0.93,381
+ITM-1165,Lab Tools,1168,2,4,0.68,792
+ITM-1166,Calculators,1100,3,5,0.82,881
+ITM-1167,Textbooks,404,3,5,0.71,304
+ITM-1168,Engineering Drawing,554,4,3,0.92,327
+ITM-1169,Calculators,800,3,5,0.93,616
+ITM-1170,Electronics Kit,2087,2,5,0.77,1786
+ITM-1171,Electronics Kit,1251,1,4,0.76,1085
+ITM-1172,Textbooks,1124,1,4,0.94,945
+ITM-1173,Textbooks,897,5,5,0.88,560
+ITM-1174,Textbooks,735,3,4,0.61,507
+ITM-1175,Engineering Drawing,755,2,2,0.81,485
+ITM-1176,Electronics Kit,2103,1,4,0.87,1781
+ITM-1177,College Uniform/Coat,514,1,4,0.41,414
+ITM-1178,Lab Tools,893,4,3,0.71,429
+ITM-1179,Textbooks,1076,5,4,0.93,640
+ITM-1180,Calculators,1100,1,3,0.93,889
+ITM-1181,Engineering Drawing,1098,1,3,0.74,822
+ITM-1182,Electronics Kit,1409,1,3,0.85,1078
+ITM-1183,Lab Tools,1321,1,5,0.81,1049
+ITM-1184,College Uniform/Coat,492,3,3,0.64,281
+ITM-1185,Textbooks,498,3,5,0.77,383
+ITM-1186,Lab Tools,497,3,4,0.88,358
+ITM-1187,Textbooks,661,1,3,0.61,512
+ITM-1188,Textbooks,856,5,4,0.73,410
+ITM-1189,Electronics Kit,2324,1,3,0.81,1942
+ITM-1190,Lab Tools,424,3,4,0.83,287
+ITM-1191,Electronics Kit,971,3,4,0.7,652
+ITM-1192,Engineering Drawing,516,2,2,0.81,318
+ITM-1193,Textbooks,667,3,5,0.86,532
+ITM-1194,Lab Tools,865,1,5,0.59,759
+ITM-1195,College Uniform/Coat,664,2,5,0.42,498
+ITM-1196,Textbooks,684,5,4,0.72,411
+ITM-1197,College Uniform/Coat,614,3,3,0.59,365
+ITM-1198,Textbooks,839,1,3,0.84,664
+ITM-1199,Textbooks,537,5,3,0.95,221
+ITM-1200,Calculators,1400,1,3,0.93,1181
+ITM-1201,Electronics Kit,815,1,4,0.96,666
+ITM-1202,College Uniform/Coat,550,3,3,0.61,289
+ITM-1203,College Uniform/Coat,526,3,5,0.4,371
+ITM-1204,Lab Tools,776,2,3,0.67,519
+ITM-1205,Calculators,800,1,4,0.8,635
+ITM-1206,Engineering Drawing,645,2,2,0.71,395
+ITM-1207,Textbooks,934,1,2,0.87,705
+ITM-1208,College Uniform/Coat,310,2,3,0.8,216
+ITM-1209,Electronics Kit,1571,3,3,0.89,1018
+ITM-1210,Textbooks,575,1,3,0.61,478
+ITM-1211,College Uniform/Coat,675,2,3,0.42,430
+ITM-1212,Electronics Kit,2909,1,5,0.94,2370
+ITM-1213,Textbooks,469,5,4,0.61,206
+ITM-1214,Textbooks,890,1,4,0.98,733
+ITM-1215,Engineering Drawing,1020,3,2,0.84,566
+ITM-1216,Calculators,1800,3,3,0.81,1085
+ITM-1217,Lab Tools,436,4,5,0.77,251
+ITM-1218,Lab Tools,1097,3,5,0.76,805
+ITM-1219,Lab Tools,615,3,5,0.76,482
+ITM-1220,Electronics Kit,1993,3,5,0.93,1593
+ITM-1221,Textbooks,1096,5,3,0.79,490
+ITM-1222,College Uniform/Coat,381,2,4,0.7,297
+ITM-1223,Textbooks,573,5,3,0.73,243
+ITM-1224,Calculators,1800,5,5,0.83,1104
+ITM-1225,Textbooks,804,2,2,0.99,562
+ITM-1226,College Uniform/Coat,577,2,5,0.47,434
+ITM-1227,Electronics Kit,1685,1,4,0.89,1404
+ITM-1228,Electronics Kit,1830,1,5,0.95,1576
+ITM-1229,Calculators,1800,3,5,0.94,1322
+ITM-1230,College Uniform/Coat,398,1,3,0.47,288
+ITM-1231,Electronics Kit,1898,2,5,0.9,1540
+ITM-1232,College Uniform/Coat,535,1,3,0.76,431
+ITM-1233,Engineering Drawing,583,2,4,0.77,448
+ITM-1234,Engineering Drawing,1026,2,2,0.75,651
+ITM-1235,Engineering Drawing,1023,2,4,0.82,758
+ITM-1236,Textbooks,954,5,5,0.91,597
+ITM-1237,Engineering Drawing,698,3,2,0.73,407
+ITM-1238,Calculators,1100,1,4,0.94,951
+ITM-1239,Calculators,1100,1,5,0.93,964
+ITM-1240,Calculators,1800,5,3,0.8,745
+ITM-1241,Textbooks,669,2,3,0.99,509
+ITM-1242,Electronics Kit,2843,2,3,0.71,2075
+ITM-1243,Calculators,1800,1,3,0.82,1401
+ITM-1244,Calculators,1800,4,3,0.91,1014
+ITM-1245,Textbooks,351,1,2,0.95,244
+ITM-1246,College Uniform/Coat,389,2,4,0.72,284
+ITM-1247,Textbooks,777,1,5,0.85,703
+ITM-1248,Engineering Drawing,1189,4,3,0.9,678
+ITM-1249,Lab Tools,782,3,4,0.86,581
+ITM-1250,Calculators,1400,1,4,0.89,1198
+ITM-1251,Electronics Kit,2934,1,3,0.96,2283
+ITM-1252,Electronics Kit,1494,3,4,0.71,994
+ITM-1253,Electronics Kit,1348,1,5,0.9,1171
+ITM-1254,Textbooks,556,1,4,0.79,456
+ITM-1255,Engineering Drawing,658,2,2,0.91,456
+ITM-1256,Electronics Kit,1755,2,3,0.85,1291
+ITM-1257,Lab Tools,1265,4,5,0.85,869
+ITM-1258,Textbooks,720,2,3,0.74,521
+ITM-1259,Calculators,1100,5,5,0.85,658
+ITM-1260,Lab Tools,1339,2,3,0.71,981
+ITM-1261,Calculators,1100,5,3,0.85,514
+ITM-1262,Lab Tools,529,3,3,0.76,344
+ITM-1263,Textbooks,377,2,4,0.86,308
+ITM-1264,Textbooks,650,3,3,0.63,376
+ITM-1265,Textbooks,954,2,5,0.93,766
+ITM-1266,Lab Tools,912,1,5,0.64,763
+ITM-1267,Calculators,1400,5,5,0.93,926
+ITM-1268,Engineering Drawing,655,3,4,0.84,457
+ITM-1269,Lab Tools,733,2,2,0.71,453
+ITM-1270,College Uniform/Coat,624,1,3,0.63,455
+ITM-1271,Electronics Kit,1075,1,4,0.99,943
+ITM-1272,Calculators,1400,3,4,0.87,1002
+ITM-1273,Lab Tools,550,4,3,0.62,270
+ITM-1274,Electronics Kit,2833,1,3,0.92,2329
+ITM-1275,Textbooks,707,5,4,0.67,383
+ITM-1276,College Uniform/Coat,413,2,3,0.73,293
+ITM-1277,Engineering Drawing,1087,3,2,0.87,580
+ITM-1278,Electronics Kit,2127,1,3,0.73,1691
+ITM-1279,Electronics Kit,1809,2,5,0.99,1592
+ITM-1280,Electronics Kit,1288,3,4,0.82,890
+ITM-1281,Textbooks,963,3,3,0.96,615
+ITM-1282,Engineering Drawing,1140,4,3,0.84,653
+ITM-1283,Textbooks,1004,1,5,0.84,793
+ITM-1284,Lab Tools,704,4,2,0.68,344
+ITM-1285,Textbooks,616,3,5,0.87,465
+ITM-1286,Calculators,1100,2,4,0.98,957
+ITM-1287,Engineering Drawing,1164,4,2,0.8,589
+ITM-1288,Lab Tools,1343,3,3,0.8,937
+ITM-1289,Electronics Kit,1804,1,5,0.83,1540
+ITM-1290,Calculators,1800,5,3,0.87,877
+ITM-1291,Textbooks,722,4,3,0.72,389
+ITM-1292,Textbooks,769,6,3,0.76,324
+ITM-1293,College Uniform/Coat,389,1,4,0.47,302
+ITM-1294,Lab Tools,1358,4,2,0.73,653
+ITM-1295,Textbooks,385,4,5,0.63,249
+ITM-1296,Lab Tools,958,3,2,0.74,556
+ITM-1297,Engineering Drawing,719,1,3,0.75,529
+ITM-1298,Engineering Drawing,1083,4,2,0.76,565
+ITM-1299,Electronics Kit,849,3,5,0.9,668
+ITM-1300,Calculators,1100,5,5,0.85,647
