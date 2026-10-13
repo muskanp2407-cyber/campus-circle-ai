@@ -101,7 +101,7 @@ def create_concept_note(output_path):
     meta_data = [
         [
             Paragraph("<b>Program:</b> AICTE | IBM SkillsBuild Internship 2026<br/><b>Organizing Partner:</b> BharatCares (CSRBOX)<br/><b>Domain:</b> Machine Learning & Applied AI", meta_style),
-            Paragraph("<b>Author / Intern:</b> Muskan Priyadarshani Patra<br/><b>Plan ID:</b> PLAN-CD7DED2B108B<br/><b>SDG Focus:</b> SDG 4 (Education) & SDG 8 (Decent Work)", meta_style)
+            Paragraph("<b>Author / Intern:</b> Muskan Priyadarshani Patra<br/><b>Internship ID:</b> IBMUEML013863 | <b>Plan ID:</b> PLAN-CD7DED2B108B<br/><b>SDG Focus:</b> SDG 4 (Education) & SDG 8 (Decent Work)", meta_style)
         ]
     ]
     t_meta = Table(meta_data, colWidths=[260, 255])

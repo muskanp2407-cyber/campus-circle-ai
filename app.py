@@ -326,6 +326,7 @@ st.sidebar.markdown(f"""
 <div style="background:white; border-radius:10px; border:1px solid #cbd5e1; padding:12px; margin-bottom:12px;">
     <div style="font-weight:700; color:#0f172a; font-size:0.95rem;">👤 {u['name']}</div>
     <div style="font-size:0.8rem; color:#64748b;">{u['branch']} (Sem {u['semester']})</div>
+    <div style="font-size:0.75rem; color:#4338ca; margin-top:2px; font-weight:600;">🆔 ID: IBMUEML013863</div>
     <div style="margin-top:6px; display:flex; gap:6px; align-items:center;">
         <span class="{'tag-verified' if u['verified'] else 'tag-pill'}">{'✅ ID Verified' if u['verified'] else '⚠️ Unverified'}</span>
         <span class="{'tag-pro' if u['is_pro'] else 'tag-pill'}">{'🏆 Campus Pro' if u['is_pro'] else 'Free Tier'}</span>

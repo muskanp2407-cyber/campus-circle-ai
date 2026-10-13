@@ -96,7 +96,7 @@ def create_deck(output_path):
     p2.space_after = Pt(28)
 
     p3 = tf1.add_paragraph()
-    p3.text = "Submitted by: Muskan Priyadarshani Patra\nCertificate / Plan ID: PLAN-CD7DED2B108B\nAligned with UN SDGs: SDG 4 (Quality Education) & SDG 8 (Decent Work)"
+    p3.text = "Submitted by: Muskan Priyadarshani Patra\nInternship ID: IBMUEML013863 | Plan ID: PLAN-CD7DED2B108B\nAligned with UN SDGs: SDG 4 (Quality Education) & SDG 8 (Decent Work)"
     p3.font.size = Pt(13)
     p3.font.color.rgb = RGBColor(148, 163, 184)
 
@@ -555,7 +555,7 @@ def create_deck(output_path):
     p12_2.space_after = Pt(28)
 
     p12_3 = tf12.add_paragraph()
-    p12_3.text = "Acknowledgements:\n• AICTE (All India Council for Technical Education)\n• IBM SkillsBuild Internship Program 2026\n• BharatCares (CSRBOX) Team & Trainer Mr. Amit Tiwari\n\nSubmitted by: Muskan Priyadarshani Patra | Plan ID: PLAN-CD7DED2B108B"
+    p12_3.text = "Acknowledgements:\n• AICTE (All India Council for Technical Education)\n• IBM SkillsBuild Internship Program 2026\n• BharatCares (CSRBOX) Team & Trainer Mr. Amit Tiwari\n\nSubmitted by: Muskan Priyadarshani Patra | Internship ID: IBMUEML013863 | Plan ID: PLAN-CD7DED2B108B"
     p12_3.font.size = Pt(13)
     p12_3.font.color.rgb = RGBColor(148, 163, 184)
 

@@ -72,7 +72,7 @@ def create_lean_canvas(output_path):
     header_html = """
     <b>CAMPUS CIRCLE AI — LEAN CANVAS</b> 
     <font size="9" color="#2563EB">| AICTE - IBM SkillsBuild Machine Learning & Applied AI Internship 2026 | BharatCares</font><br/>
-    <font size="7.5" color="#64748B"><b>Author:</b> Muskan Priyadarshani Patra (PLAN-CD7DED2B108B) | <b>SDG Alignment:</b> SDG 4 (Quality Education) & SDG 8 (Decent Work) | <b>Date:</b> October 2026</font>
+    <font size="7.5" color="#64748B"><b>Author:</b> Muskan Priyadarshani Patra (IBMUEML013863 | PLAN-CD7DED2B108B) | <b>SDG Alignment:</b> SDG 4 (Quality Education) & SDG 8 (Decent Work) | <b>Date:</b> October 2026</font>
     """
     elements.append(Paragraph(header_html, title_style))
     elements.append(Spacer(1, 8))

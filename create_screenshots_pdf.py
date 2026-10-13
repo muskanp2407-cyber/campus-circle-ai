@@ -62,7 +62,7 @@ def create_screenshots_pdf(output_path):
     elements.append(Paragraph("PROJECT SCREENSHOTS & PROOF OF IMPLEMENTATION", ParagraphStyle('TopTag', fontName='Helvetica-Bold', fontSize=9, textColor=colors.HexColor('#EA580C'), leading=11)))
     elements.append(Paragraph("CAMPUS CIRCLE AI", title_style))
     elements.append(Paragraph("AICTE | IBM SkillsBuild Machine Learning & Applied AI Internship 2026 | BharatCares", sub_style))
-    elements.append(Paragraph("<b>Student:</b> Muskan Priyadarshani Patra | <b>Plan ID:</b> PLAN-CD7DED2B108B | <b>Domain:</b> Applied AI / ML", sub_style))
+    elements.append(Paragraph("<b>Student:</b> Muskan Priyadarshani Patra | <b>Internship ID:</b> IBMUEML013863 | <b>Plan ID:</b> PLAN-CD7DED2B108B | <b>Domain:</b> Applied AI / ML", sub_style))
     elements.append(HRFlowable(width="100%", thickness=1.5, color=colors.HexColor('#2563EB'), spaceBefore=6, spaceAfter=12))
 
     screens = [
