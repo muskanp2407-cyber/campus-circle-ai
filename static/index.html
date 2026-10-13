@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campus Circle AI — Student Exchange & Skill Network</title>
+  <meta name="description" content="AICTE & IBM SkillsBuild Applied AI Project: Circular Campus Resource Network and Peer-to-Peer Skill Exchange">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+  <!-- Chart.js CDN for live interactive ML visualizations -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="app-layout">
+
+  <!-- ==================== SIDEBAR NAVIGATION ==================== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand-section">
+      <img src="/static/../logo.jpeg" alt="Campus Circle Logo" class="brand-logo" onerror="this.style.display='none'">
+      <div class="brand-text">
+        <div class="brand-title">CAMPUS CIRCLE</div>
+        <div class="brand-sub">AI RESOURCE & SKILL NETWORK</div>
+      </div>
+    </div>
+
+    <!-- Active Student Mini Banner -->
+    <div class="user-widget" id="user-widget">
+      <div class="user-name-text" id="widget-user-name">Muskan Priyadarshani Patra</div>
+      <div class="user-branch-text" id="widget-user-branch">CSE (Sem 6)</div>
+      <div style="font-size: 0.74rem; color: #a5b4fc; margin-top: 2px; font-weight: 600;">🆔 IBMUEML013863</div>
+      <div class="user-badges">
+        <span class="badge badge-verified" id="widget-verify-badge">✅ ID Verified</span>
+        <span class="badge badge-pro" id="widget-pro-badge" style="display:none;">🏆 Campus Pro</span>
+        <span class="badge badge-karma" id="widget-karma-badge">🌱 340 Karma</span>
+      </div>
+    </div>
+
+    <!-- Navigation Menu Items (All 10 Features) -->
+    <ul class="nav-menu" id="nav-menu">
+      <li class="nav-item active" data-view="view-overview" id="nav-overview">
+        <span class="nav-icon">📊</span>
+        <span class="nav-text">1. Overview & SDG Impact</span>
+      </li>
+      <li class="nav-item" data-view="view-auth" id="nav-auth">
+        <span class="nav-icon">🔐</span>
+        <span class="nav-text">2. Student ID & Verification</span>
+      </li>
+      <li class="nav-item" data-view="view-marketplace" id="nav-marketplace">
+        <span class="nav-icon">🛒</span>
+        <span class="nav-text">3. Campus Marketplace</span>
+      </li>
+      <li class="nav-item" data-view="view-sell" id="nav-sell">
+        <span class="nav-icon">🏷️</span>
+        <span class="nav-text">4. Sell with ML Regressor</span>
+      </li>
+      <li class="nav-item" data-view="view-skills" id="nav-skills">
+        <span class="nav-icon">🧠</span>
+        <span class="nav-text">5. Skill Hub & 2-Way Barter</span>
+      </li>
+      <li class="nav-item" data-view="view-booking" id="nav-booking">
+        <span class="nav-icon">📅</span>
+        <span class="nav-text">6. Session Booking</span>
+      </li>
+      <li class="nav-item" data-view="view-chat" id="nav-chat">
+        <span class="nav-icon">💬</span>
+        <span class="nav-text">7. In-App Campus Chat</span>
+      </li>
+      <li class="nav-item" data-view="view-reviews" id="nav-reviews">
+        <span class="nav-icon">⭐</span>
+        <span class="nav-text">8. Ratings & Reviews</span>
+      </li>
+      <li class="nav-item" data-view="view-revenue" id="nav-revenue">
+        <span class="nav-icon">💰</span>
+        <span class="nav-text">9. Revenue Model & Pro</span>
+      </li>
+      <li class="nav-item" data-view="view-ml" id="nav-ml">
+        <span class="nav-icon">📈</span>
+        <span class="nav-text">10. ML Performance & Architecture</span>
+      </li>
+    </ul>
+
+    <div class="sidebar-footer">
+      <div>AICTE | IBM SkillsBuild Internship 2026</div>
+      <div style="color: #64748b; margin-top: 2px;">Partner: BharatCares (CSRBOX)</div>
+    </div>
+  </aside>
+
+  <!-- ==================== MAIN CONTENT WRAPPER ==================== -->
+  <main class="main-wrapper">
+
+    <!-- Top Banner -->
+    <header class="top-header">
+      <div>
+        <h1 class="page-title" id="page-title">Campus Circle AI Network</h1>
+        <p class="page-subtitle" id="page-subtitle">Circular Campus Economy & NLP Peer-to-Peer Skill Barter Engine</p>
+      </div>
+      <div class="sdg-tag-group">
+        <span class="sdg-chip chip-sdg-4">SDG 4: Quality Edu</span>
+        <span class="sdg-chip chip-sdg-8">SDG 8: Decent Work</span>
+        <span class="sdg-chip chip-sdg-12">SDG 12: Circular</span>
+      </div>
+    </header>
+
+    <!-- ==================== VIEW 1: OVERVIEW & SDG IMPACT ==================== -->
+    <section class="view-section active" id="view-overview">
+      <!-- 4 Stat Cards -->
+      <div class="grid-4" id="overview-metrics-grid">
+        <div class="stat-card">
+          <div class="stat-label">Student Money Saved</div>
+          <div class="stat-value" id="stat-money">₹95,680</div>
+          <div class="stat-sub">vs Buying New Equipment</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Peer Skill Hours</div>
+          <div class="stat-value" id="stat-hours">410 hrs</div>
+          <div class="stat-sub">Syllabus-Aligned Tutoring</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Waste Diverted</div>
+          <div class="stat-value" id="stat-waste">340.4 kg</div>
+          <div class="stat-sub">Paper & Plastic Saved</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Active Campus Users</div>
+          <div class="stat-value" id="stat-users">860</div>
+          <div class="stat-sub">Verified College Students</div>
+        </div>
+      </div>
+
+      <!-- Problem vs Solution Breakdown -->
+      <div class="grid-2">
+        <div class="card-box" style="border-left: 4px solid var(--accent-rose);">
+          <h3 style="color: #fda4af; margin-bottom: 12px;">🛑 The Campus Problems Solved</h3>
+          <ul style="list-style-type: none; display: flex; flex-direction: column; gap: 12px; color: var(--text-muted); font-size: 0.92rem;">
+            <li><strong>💸 High Resource Expenses:</strong> Engineering tools, calculators, books are bought at 100% MRP, used 1 semester, and left to rot.</li>
+            <li><strong>📚 Impersonal & Expensive EdTech:</strong> Students need practical guidance from seniors who took the exact syllabus & lab exams.</li>
+            <li><strong>⚠️ Unsafe WhatsApp Groups:</strong> Informal college chat groups lack price transparency, buyer accountability, and authentication.</li>
+          </ul>
+        </div>
+        <div class="card-box" style="border-left: 4px solid var(--accent-emerald);">
+          <h3 style="color: #6ee7b7; margin-bottom: 12px;">💡 The Campus Circle AI Solution</h3>
+          <ul style="list-style-type: none; display: flex; flex-direction: column; gap: 12px; color: var(--text-muted); font-size: 0.92rem;">
+            <li><strong>🤖 Supervised ML Regressor:</strong> Random Forest model (R²=0.952) predicts fair secondhand valuations, eliminating price gouging.</li>
+            <li><strong>🔄 Two-Way Skill Barter:</strong> NLP TF-IDF Cosine Recommender pairs students for 100% Free mutual skill swaps (0-Rupee exchange).</li>
+            <li><strong>🎓 Institutional Graph:</strong> Restricted to verified college domains (.ac.in / .edu) with peer reviews and Eco-Karma points.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Quick Action Buttons -->
+      <div class="card-box" style="display: flex; justify-content: space-between; align-items: center;">
+        <div>
+          <h4 style="color: #fff; margin-bottom: 4px;">Explore Core Platform Features</h4>
+          <p style="color: var(--text-muted); font-size: 0.88rem;">Test the live marketplace, schedule a peer mentor, or run fair price valuations.</p>
+        </div>
+        <div style="display: flex; gap: 12px;">
+          <button class="btn btn-primary" onclick="switchView('view-marketplace')">Browse Marketplace 🛒</button>
+          <button class="btn btn-secondary" onclick="switchView('view-skills')">Find Skill Mentor 🧠</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 2: STUDENT ID & EMAIL VERIFICATION ==================== -->
+    <section class="view-section" id="view-auth">
+      <div class="grid-2">
+        <!-- Identity Card -->
+        <div class="card-box" style="border-left: 5px solid var(--primary);">
+          <h3 style="color: #fff; margin-bottom: 16px;">🎓 Institutional Student Card</h3>
+          <div style="display: flex; flex-direction: column; gap: 10px; font-size: 0.92rem;">
+            <div><strong>Full Name:</strong> <span id="card-name">Muskan Priyadarshani Patra</span></div>
+            <div><strong>College Email:</strong> <code id="card-email" style="color: #a5b4fc;">muskan.patra@kiit.ac.in</code></div>
+            <div><strong>Roll Number:</strong> <span id="card-roll">2105128</span></div>
+            <div><strong>Branch:</strong> <span id="card-branch">Computer Science & Engineering</span></div>
+            <div><strong>Semester:</strong> <span id="card-sem">Semester 6</span></div>
+            <div><strong>Official Internship ID:</strong> <span style="color: #38bdf8; font-weight:700;">IBMUEML013863</span></div>
+            <div><strong>Learning Plan ID:</strong> <span style="color: #cbd5e1;">PLAN-CD7DED2B108B</span></div>
+            <div style="margin-top: 8px;">
+              <span class="badge badge-verified" id="card-badge-status">✅ Institutional Email Verified</span>
+              <span class="badge badge-karma" id="card-badge-karma">🌱 340 Eco-Credits</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Verification & Edit Portal -->
+        <div class="card-box">
+          <h3 style="color: #fff; margin-bottom: 14px;">📧 College Domain Verification</h3>
+          <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 16px;">
+            Institutional security requires verified college email addresses ending in <code>.ac.in</code> or <code>.edu</code>.
+          </p>
+
+          <div style="background: rgba(15, 23, 42, 0.6); padding: 16px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); margin-bottom: 16px;">
+            <div style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 8px;">Demo OTP Simulation System:</div>
+            <div style="display: flex; gap: 10px;">
+              <input type="text" class="form-input" id="otp-input" placeholder="Enter OTP (e.g. 8492)" maxlength="4" style="letter-spacing: 4px; font-weight:800; text-align:center;">
+              <button class="btn btn-emerald" id="btn-verify-otp">Verify OTP 🔑</button>
+            </div>
+            <div style="font-size: 0.75rem; color: #34d399; margin-top: 6px;">💡 Demo OTP code sent to mailbox: <strong>8492</strong></div>
+          </div>
+
+          <h4 style="color: #fff; margin-bottom: 12px; font-size: 0.95rem;">Edit Student Profile</h4>
+          <form id="form-edit-user">
+            <div class="form-group">
+              <label class="form-label">Full Name</label>
+              <input type="text" class="form-input" id="edit-name" value="Muskan Priyadarshani Patra" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">College Email Address</label>
+              <input type="email" class="form-input" id="edit-email" value="muskan.patra@kiit.ac.in" required>
+            </div>
+            <div class="grid-2">
+              <div class="form-group">
+                <label class="form-label">Roll / Reg No.</label>
+                <input type="text" class="form-input" id="edit-roll" value="2105128" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Semester</label>
+                <select class="form-select" id="edit-sem">
+                  <option value="1">Semester 1</option>
+                  <option value="2">Semester 2</option>
+                  <option value="3">Semester 3</option>
+                  <option value="4">Semester 4</option>
+                  <option value="5">Semester 5</option>
+                  <option value="6" selected>Semester 6</option>
+                  <option value="7">Semester 7</option>
+                  <option value="8">Semester 8</option>
+                </select>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Save Profile Changes 💾</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 3: CAMPUS MARKETPLACE ==================== -->
+    <section class="view-section" id="view-marketplace">
+      <!-- Filter and Search Bar -->
+      <div class="card-box" style="padding: 16px 20px; display: flex; gap: 16px; flex-wrap: wrap; align-items: center;">
+        <input type="text" class="form-input" id="market-search" placeholder="🔍 Search items by title (Casio, Grewal, Drafter, Arduino)..." style="flex: 2; min-width: 220px;">
+        <select class="form-select" id="market-cat" style="flex: 1; min-width: 160px;">
+          <option value="All Categories">All Categories</option>
+          <option value="Calculators">Calculators</option>
+          <option value="Textbooks">Textbooks</option>
+          <option value="Engineering Drawing">Engineering Drawing</option>
+          <option value="Electronics Kit">Electronics Kit</option>
+          <option value="College Uniform/Coat">Uniform / Apron</option>
+          <option value="Lab Tools">Lab Tools</option>
+        </select>
+        <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--text-muted); cursor: pointer;">
+          <input type="checkbox" id="market-swap-only"> 🔄 Swap Eligible Only
+        </label>
+        <button class="btn btn-primary" onclick="switchView('view-sell')">+ List Your Item 🏷️</button>
+      </div>
+
+      <!-- Marketplace Items Grid -->
+      <div class="marketplace-grid" id="market-items-grid">
+        <!-- Rendered dynamically by JavaScript -->
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 4: SELL WITH ML REGRESSOR ==================== -->
+    <section class="view-section" id="view-sell">
+      <div class="grid-2">
+        <!-- Input Form -->
+        <div class="card-box">
+          <h3 style="color: #fff; margin-bottom: 8px;">🏷️ List Item with Supervised ML Valuation</h3>
+          <p style="color: var(--text-muted); font-size: 0.86rem; margin-bottom: 18px;">
+            Powered by <strong>Random Forest Regressor (R² = 0.952)</strong> to compute honest campus depreciation.
+          </p>
+
+          <form id="form-sell-item">
+            <div class="form-group">
+              <label class="form-label">Item Title</label>
+              <input type="text" class="form-input" id="sell-title" placeholder="e.g. Casio fx-82MS Scientific Calculator" required>
+            </div>
+            <div class="grid-2">
+              <div class="form-group">
+                <label class="form-label">Category</label>
+                <select class="form-select" id="sell-cat">
+                  <option value="Calculators">Calculators</option>
+                  <option value="Textbooks">Textbooks</option>
+                  <option value="Engineering Drawing">Engineering Drawing</option>
+                  <option value="Electronics Kit">Electronics Kit</option>
+                  <option value="College Uniform/Coat">Uniform / Apron</option>
+                  <option value="Lab Tools">Lab Tools</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Original Retail MRP (₹)</label>
+                <input type="number" class="form-input" id="sell-mrp" value="1200" min="100" max="25000" step="50" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Age in Semesters Used (<span id="sell-age-val">2</span> Semesters)</label>
+              <input type="range" class="range-slider" id="sell-age" min="1" max="8" value="2">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Condition Rating (1 = Worn, 5 = Like New) (<span id="sell-cond-val">4</span> / 5)</label>
+              <input type="range" class="range-slider" id="sell-cond" min="1" max="5" value="4">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Campus Exam Demand Index (<span id="sell-demand-val">0.85</span>)</label>
+              <input type="range" class="range-slider" id="sell-demand" min="0.5" max="1.0" step="0.05" value="0.85">
+            </div>
+
+            <div class="form-group">
+              <label style="display: flex; align-items: center; gap: 8px; color: var(--text-muted); font-size: 0.88rem; cursor: pointer;">
+                <input type="checkbox" id="sell-swap" checked> Allow Peer Skill / Item Swap for this item
+              </label>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Item Notes / Condition Details</label>
+              <textarea class="form-textarea" id="sell-desc" placeholder="e.g. Barely used in 2nd semester physics lab. Clean scales with box."></textarea>
+            </div>
+
+            <div style="display: flex; gap: 12px; margin-top: 14px;">
+              <button type="button" class="btn btn-secondary" id="btn-recalculate-ml" style="flex:1;">📊 Re-Evaluate Price</button>
+              <button type="submit" class="btn btn-primary" style="flex:2;">🚀 Publish to Marketplace</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Live ML Evaluation & Explainable Chart -->
+        <div class="card-box" style="display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <h3 style="color: #fff; margin-bottom: 12px;">📊 Real-Time ML Valuation Card</h3>
+            <div class="grid-3" style="margin-bottom: 20px;">
+              <div class="stat-card" style="padding: 16px;">
+                <div class="stat-label">Fair Price</div>
+                <div class="stat-value" id="val-fair-price" style="font-size: 1.6rem; color: #34d399;">₹680</div>
+                <div class="stat-sub" id="val-deprec">-43.3% Deprec</div>
+              </div>
+              <div class="stat-card" style="padding: 16px;">
+                <div class="stat-label">Buyer Savings</div>
+                <div class="stat-value" id="val-savings" style="font-size: 1.6rem; color: #38bdf8;">₹520</div>
+                <div class="stat-sub">vs Buying New</div>
+              </div>
+              <div class="stat-card" style="padding: 16px;">
+                <div class="stat-label">Decision Tree</div>
+                <div class="stat-value" id="val-dt-baseline" style="font-size: 1.6rem; color: #f59e0b;">₹650</div>
+                <div class="stat-sub">Baseline Metric</div>
+              </div>
+            </div>
+
+            <h4 style="color: #fff; font-size: 0.95rem; margin-bottom: 10px;">🔍 Explainable AI (XAI) Depreciation Breakdown</h4>
+            <div style="background: rgba(15, 23, 42, 0.4); border-radius: var(--radius-sm); padding: 14px; border: 1px solid var(--border-subtle); height: 210px;">
+              <canvas id="chart-xai"></canvas>
+            </div>
+          </div>
+
+          <div style="background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.3); border-radius: var(--radius-sm); padding: 14px; margin-top: 14px; font-size: 0.85rem; color: #c7d2fe;">
+            💡 <strong>Why This Matters:</strong> By quantifying depreciation transparently, Campus Circle eliminates friction between juniors and seniors, ensuring resources cycle through multiple batches.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 5: SKILL HUB & 2-WAY BARTER ==================== -->
+    <section class="view-section" id="view-skills">
+      <!-- 2-Way Barter Discovery Form -->
+      <div class="card-box" style="border-left: 5px solid var(--primary);">
+        <h3 style="color: #fff; margin-bottom: 6px;">🧠 NLP Two-Way Mutual Skill Barter Discovery</h3>
+        <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 16px;">
+          Matches what you want to learn against what mentors teach, AND matches what you can teach for a <strong>100% Free Mutual Barter</strong>!
+        </p>
+
+        <div class="grid-2">
+          <div class="form-group">
+            <label class="form-label">1. What skill or subject do you want to learn?</label>
+            <input type="text" class="form-input" id="barter-learn-query" value="Python, Machine Learning, Data Science algorithms" placeholder="e.g. Python, AutoCAD, Data Structures">
+          </div>
+          <div class="form-group">
+            <label class="form-label">2. What skill can you teach in return? (For 0-Cost Barter)</label>
+            <input type="text" class="form-input" id="barter-teach-query" value="UI/UX Design, Figma wireframing, Public Speaking" placeholder="e.g. UI/UX Design, Web Dev, C++">
+          </div>
+        </div>
+        <button class="btn btn-primary" id="btn-run-barter">🔍 Run Semantic TF-IDF Skill Matching</button>
+      </div>
+
+      <!-- Matched Mentors Feed -->
+      <h3 style="color: #fff; margin-bottom: 14px;">🎯 Recommended Peer Mentors</h3>
+      <div id="mentors-feed" style="display: flex; flex-direction: column; gap: 16px;">
+        <!-- Rendered dynamically by JavaScript -->
+      </div>
+
+      <!-- Register as Mentor Card -->
+      <div class="card-box" style="margin-top: 30px;">
+        <h3 style="color: #fff; margin-bottom: 8px;">➕ Register as a Campus Peer Mentor</h3>
+        <p style="color: var(--text-muted); font-size: 0.86rem; margin-bottom: 16px;">
+          Share your academic mastery with junior batches. Tutors receive verified student badges and earn +40 Eco-Credits.
+        </p>
+        <form id="form-register-mentor">
+          <div class="grid-2">
+            <div class="form-group">
+              <label class="form-label">Skills You Can Teach</label>
+              <input type="text" class="form-input" id="reg-skills-offered" placeholder="e.g. C++, Object Oriented Programming, DSA" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Skills You Want to Learn (for Barter)</label>
+              <input type="text" class="form-input" id="reg-skills-wanted" placeholder="e.g. Cloud Computing, AWS, UI/UX" required>
+            </div>
+          </div>
+          <div class="grid-2">
+            <div class="form-group">
+              <label class="form-label">Hourly Fee (₹) [Set 0 for Free Peer Barter]</label>
+              <input type="number" class="form-input" id="reg-hourly-fee" value="0" min="0" max="500" step="25">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Years of Practical Experience</label>
+              <input type="number" class="form-input" id="reg-exp-years" value="1.5" min="0.5" max="4.0" step="0.5">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Short Academic Bio</label>
+            <textarea class="form-textarea" id="reg-bio" placeholder="e.g. 3rd year CSE student, scored 9.4 SGPA in DSA. Specialized in teaching practical code implementations."></textarea>
+          </div>
+          <button type="submit" class="btn btn-emerald">Join Campus Mentor Network 🎓</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 6: 1-ON-1 SESSION BOOKING ==================== -->
+    <section class="view-section" id="view-booking">
+      <div class="grid-2">
+        <!-- Schedule Form -->
+        <div class="card-box">
+          <h3 style="color: #fff; margin-bottom: 12px;">🗓️ Schedule a 1-on-1 Peer Mentoring Session</h3>
+          <form id="form-book-session">
+            <div class="form-group">
+              <label class="form-label">Select Peer Mentor</label>
+              <select class="form-select" id="book-mentor-select">
+                <option value="Aarav Sharma">Aarav Sharma (Computer Engineering) — FREE Barter</option>
+                <option value="Priya Patel">Priya Patel (Information Technology) — ₹99/hr</option>
+                <option value="Rohan Deshmukh">Rohan Deshmukh (Mechanical Engineering) — ₹120/hr</option>
+                <option value="Ananya Sen">Ananya Sen (Computer Engineering) — ₹150/hr</option>
+                <option value="Vikram Singh">Vikram Singh (Electronics) — FREE Barter</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Topic / Unit to Cover</label>
+              <input type="text" class="form-input" id="book-topic" placeholder="e.g. Dynamic Programming & Recursion" required>
+            </div>
+            <div class="grid-2">
+              <div class="form-group">
+                <label class="form-label">Date</label>
+                <input type="date" class="form-input" id="book-date" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Time Slot</label>
+                <select class="form-select" id="book-slot">
+                  <option value="03:30 PM - 04:30 PM">03:30 PM - 04:30 PM</option>
+                  <option value="04:30 PM - 05:30 PM">04:30 PM - 05:30 PM</option>
+                  <option value="05:30 PM - 06:30 PM">05:30 PM - 06:30 PM</option>
+                  <option value="07:00 PM - 08:00 PM (Online)">07:00 PM - 08:00 PM (Online)</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Meeting Location</label>
+              <select class="form-select" id="book-mode">
+                <option value="Campus Central Library (Room 204)">Campus Central Library (Room 204 Discussion Pod)</option>
+                <option value="Student Activity Centre (SAC Room 102)">Student Activity Centre (SAC Room 102)</option>
+                <option value="Campus Cafeteria Corner">Campus Cafeteria Corner</option>
+                <option value="Online (Google Meet / Teams)">Online (Google Meet / Microsoft Teams)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Notes / Doubts for Mentor</label>
+              <input type="text" class="form-input" id="book-notes" placeholder="e.g. Please bring notes for syllabus unit 3">
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Confirm & Book Session 🎟️</button>
+          </form>
+        </div>
+
+        <!-- Active Bookings List -->
+        <div class="card-box">
+          <h3 style="color: #fff; margin-bottom: 14px;">📋 My Scheduled Sessions</h3>
+          <div id="bookings-list" style="display: flex; flex-direction: column; gap: 14px;">
+            <!-- Rendered dynamically by JavaScript -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 7: IN-APP CAMPUS CHAT ==================== -->
+    <section class="view-section" id="view-chat">
+      <div class="chat-wrapper">
+        <!-- Chat Channels Sidebar -->
+        <div class="chat-sidebar">
+          <div style="padding: 14px 16px; border-bottom: 1px solid var(--border-subtle); font-size: 0.85rem; font-weight: 800; color: #fff;">
+            ACTIVE CHAT CHANNELS
+          </div>
+          <ul class="chat-channel-list" id="chat-channels-list">
+            <!-- Rendered dynamically by JavaScript -->
+          </ul>
+        </div>
+
+        <!-- Conversation Panel -->
+        <div class="chat-conversation">
+          <div class="chat-conv-header" id="active-channel-name">
+            💬 Aarav Sharma (Python Mentor)
+          </div>
+          <div class="chat-messages-body" id="chat-messages-container">
+            <!-- Messages rendered dynamically -->
+          </div>
+          <form class="chat-input-bar" id="form-chat-send">
+            <input type="text" class="form-input" id="chat-text-input" placeholder="Type your message here..." style="flex:1;">
+            <button type="submit" class="btn btn-primary">Send 📤</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 8: RATINGS & REVIEWS ==================== -->
+    <section class="view-section" id="view-reviews">
+      <div class="grid-2">
+        <!-- Reviews Feed -->
+        <div>
+          <h3 style="color: #fff; margin-bottom: 14px;">🌟 Verified Campus Trust Feed</h3>
+          <div id="reviews-feed" style="display: flex; flex-direction: column; gap: 14px;">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+
+        <!-- Post a Review Form -->
+        <div class="card-box">
+          <h3 style="color: #fff; margin-bottom: 12px;">✍️ Submit Verified Feedback</h3>
+          <form id="form-submit-review">
+            <div class="form-group">
+              <label class="form-label">Select Student / Mentor to Review</label>
+              <select class="form-select" id="review-target">
+                <option value="Aarav Sharma (Python Peer Mentor)">Aarav Sharma (Python Peer Mentor)</option>
+                <option value="Priya Patel (Web Dev Mentor)">Priya Patel (Web Dev Mentor)</option>
+                <option value="Rohan Joshi (Casio Calculator Seller)">Rohan Joshi (Casio Calculator Seller)</option>
+                <option value="Sneha Patel (Engineering Mini Drafter)">Sneha Patel (Engineering Mini Drafter)</option>
+                <option value="Vikram Singh (Arduino Sensor Kit)">Vikram Singh (Arduino Sensor Kit)</option>
+              </select>
+            </div>
+            <div class="grid-2">
+              <div class="form-group">
+                <label class="form-label">Interaction Type</label>
+                <select class="form-select" id="review-cat">
+                  <option value="Peer Mentoring">Peer Mentoring</option>
+                  <option value="Item Purchase">Item Purchase</option>
+                  <option value="Skill Barter">Skill Barter</option>
+                  <option value="Item Swap">Item Swap</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Rating (1 to 5 Stars)</label>
+                <select class="form-select" id="review-stars">
+                  <option value="5" selected>⭐⭐⭐⭐⭐ (5 Stars - Outstanding)</option>
+                  <option value="4">⭐⭐⭐⭐ (4 Stars - Great)</option>
+                  <option value="3">⭐⭐⭐ (3 Stars - Satisfactory)</option>
+                  <option value="2">⭐⭐ (2 Stars - Mediocre)</option>
+                  <option value="1">⭐ (1 Star - Poor)</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Your Review Comment</label>
+              <textarea class="form-textarea" id="review-comment" placeholder="e.g. Very patient mentor, explained recursive dynamic programming within 30 minutes!" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Post Verified Review 🌟</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 9: REVENUE MODEL & PRO ==================== -->
+    <section class="view-section" id="view-revenue">
+      <div class="grid-2">
+        <div class="card-box" style="border-left: 5px solid var(--accent-amber);">
+          <h3 style="color: #fff; margin-bottom: 8px;">🏛️ Sustainable Freemium Monetization</h3>
+          <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 16px;">
+            A non-exploitative model keeping essential student skill exchanges 100% free while generating steady university platform revenue.
+          </p>
+
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <div style="background: rgba(15, 23, 42, 0.4); padding: 14px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
+              <h4 style="color: #f59e0b; margin-bottom: 4px;">1. 🏆 Campus Pro Membership (₹49 / Semester)</h4>
+              <p style="color: var(--text-muted); font-size: 0.84rem;">Zero platform fees on equipment, verified senior profile badge, and priority search rankings for tutoring.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.4); padding: 14px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
+              <h4 style="color: #38bdf8; margin-bottom: 4px;">2. 🏷️ 2% Micro-Convenience Fee on Cash Sales</h4>
+              <p style="color: var(--text-muted); font-size: 0.84rem;">Charged only on paid sales over ₹500 (e.g. ₹10 on a ₹500 drafter). <strong>100% Free on all Skill Barters and Swaps.</strong></p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.4); padding: 14px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
+              <h4 style="color: #34d399; margin-bottom: 4px;">3. 🏢 Institutional SDG Dashboard Licensing</h4>
+              <p style="color: var(--text-muted); font-size: 0.84rem;">Universities license the verified campus graph to track institutional ESG / SDG compliance scores for NAAC and NIRF rankings.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Upgrade / Status Card -->
+        <div class="card-box" style="display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <h3 style="color: #fff; margin-bottom: 8px;">👑 Your Membership Tier</h3>
+            <div id="pro-status-box" style="padding: 20px; border-radius: var(--radius-md); background: rgba(15, 23, 42, 0.6); border: 1px solid var(--border-subtle); margin-bottom: 16px;">
+              <!-- Dynamic status text -->
+            </div>
+          </div>
+          <button class="btn btn-amber" id="btn-toggle-pro" style="width: 100%; padding: 12px; font-size: 0.95rem;">⚡ Toggle Campus Pro Status (Demo)</button>
+        </div>
+      </div>
+
+      <!-- Live Simulator -->
+      <div class="card-box" style="margin-top: 10px;">
+        <h3 style="color: #fff; margin-bottom: 14px;">📊 Interactive Campus Financial & Sustainability Simulator</h3>
+        <div class="grid-3">
+          <div class="form-group">
+            <label class="form-label">Total Campus Student Body (<span id="sim-stu-val">6000</span> Students)</label>
+            <input type="range" class="range-slider" id="sim-stu" min="1000" max="20000" step="500" value="6000">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Campus Pro Adoption Rate (<span id="sim-pro-val">10</span>%)</label>
+            <input type="range" class="range-slider" id="sim-pro" min="2" max="25" step="1" value="10">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Avg Resource Swaps / Student (<span id="sim-swaps-val">3</span> / yr)</label>
+            <input type="range" class="range-slider" id="sim-swaps" min="1" max="6" step="1" value="3">
+          </div>
+        </div>
+        <div class="grid-3" style="margin-top: 10px;">
+          <div class="stat-card">
+            <div class="stat-label">Projected Revenue</div>
+            <div class="stat-value" id="sim-rev-val">₹145,200</div>
+            <div class="stat-sub">Annual Platform Earnings</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Student Body Savings</div>
+            <div class="stat-value" id="sim-sav-val" style="color: #38bdf8;">₹8,640,000</div>
+            <div class="stat-sub">59.5x Student ROI</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Landfill Waste Diverted</div>
+            <div class="stat-value" id="sim-waste-val" style="color: #34d399;">33,300 kg</div>
+            <div class="stat-sub">SDG 12 Circular Impact</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 10: ML ARCHITECTURE ==================== -->
+    <section class="view-section" id="view-ml">
+      <div class="grid-3" style="margin-bottom: 24px;">
+        <div class="stat-card">
+          <div class="stat-label">Random Forest R²</div>
+          <div class="stat-value" style="color: #34d399;">95.27%</div>
+          <div class="stat-sub">Ensemble Regressor</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Random Forest MAE</div>
+          <div class="stat-value">₹68.23</div>
+          <div class="stat-sub">Mean Absolute Error</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Decision Tree Baseline</div>
+          <div class="stat-value" style="color: #f59e0b;">91.33%</div>
+          <div class="stat-sub">Masterclass 3 Benchmark</div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card-box">
+          <h3 style="color: #fff; margin-bottom: 12px;">📊 Supervised Model Fit Comparison ($R^2$ Score)</h3>
+          <div style="height: 240px;">
+            <canvas id="chart-models"></canvas>
+          </div>
+        </div>
+        <div class="card-box">
+          <h3 style="color: #fff; margin-bottom: 12px;">🛠️ IBM SkillsBuild Curriculum Mapping</h3>
+          <ul style="list-style-type: none; display: flex; flex-direction: column; gap: 10px; font-size: 0.88rem; color: var(--text-muted);">
+            <li><strong>Masterclass 1 & 2 (EDA):</strong> Data ingestion, feature cleaning, categorical one-hot encoding on campus transaction distributions.</li>
+            <li><strong>Masterclass 3 (Supervised Learning):</strong> Decision Tree & Random Forest regression modeling, tree depth tuning, hyperparameter evaluation.</li>
+            <li><strong>Masterclass 4 (NLP & Recommenders):</strong> TF-IDF n-gram vectorization and pairwise Cosine Similarity calculation for 2-way barter matrix.</li>
+            <li><strong>Masterclass 5 (Deployment & SDGs):</strong> Application deployment, presentation packaging, and UN SDG 4, 8 & 12 alignment.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ==================== INTERACTIVE MODAL DIALOGS ==================== -->
+<!-- Buy Item Modal -->
+<div class="modal-overlay" id="modal-buy">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 class="modal-title">🛒 Confirm Item Purchase</h3>
+      <button class="modal-close" onclick="closeModal('modal-buy')">&times;</button>
+    </div>
+    <div id="buy-modal-details" style="font-size: 0.92rem; margin-bottom: 16px;">
+      <!-- Populated by JS -->
+    </div>
+    <div class="form-group">
+      <label class="form-label">Select Campus Pickup Location</label>
+      <select class="form-select" id="buy-pickup-select">
+        <option value="Campus Central Library Ground Floor">Campus Central Library Ground Floor</option>
+        <option value="Student Cafeteria Corner">Student Cafeteria Corner</option>
+        <option value="Boys Hostel Gate 2">Boys Hostel Gate 2</option>
+        <option value="Girls Hostel Gate 1">Girls Hostel Gate 1</option>
+        <option value="Department Lab 104">Department Lab 104</option>
+      </select>
+    </div>
+    <button class="btn btn-emerald" id="btn-confirm-buy" style="width:100%;">Confirm Purchase with Seller 🤝</button>
+  </div>
+</div>
+
+<!-- Swap Proposal Modal -->
+<div class="modal-overlay" id="modal-swap">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 class="modal-title">🔄 Propose Resource / Skill Swap</h3>
+      <button class="modal-close" onclick="closeModal('modal-swap')">&times;</button>
+    </div>
+    <div id="swap-modal-details" style="font-size: 0.92rem; margin-bottom: 14px;">
+      <!-- Populated by JS -->
+    </div>
+    <div class="form-group">
+      <label class="form-label">What item or skill do you offer in exchange?</label>
+      <input type="text" class="form-input" id="swap-offer-input" placeholder="e.g. Engineering Mechanics Textbook (4th Sem) or 2 hours Python Tutoring">
+    </div>
+    <button class="btn btn-primary" id="btn-confirm-swap" style="width:100%;">Send Swap Proposal 📩</button>
+  </div>
+</div>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
