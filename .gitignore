@@ -1,5 +1,39 @@
+# Byte-compiled / optimized / Python caches
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Virtual Environments
 .env
 .venv/
+venv/
+ENV/
+env/
+
+# Secrets, Passwords, and Private Configs
+email_config.json
+secrets.json
+credentials.json
+token.json
+*.secret
+*.key
+*.pem
+*.pfx
+
+# Streamlit / Web framework local caches
 .streamlit/
+.cache/
+
+# Sensitive or Personal IBM Evaluation & Certificate Files
+*.pdf
+*.pptx
+*IBM*
+*sample*
+
+# OS & Editor generated files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
