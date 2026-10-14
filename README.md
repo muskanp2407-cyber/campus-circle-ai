@@ -201,4 +201,4 @@ This project is open-source under the [MIT License](LICENSE).
 
 ---
 
-**Developed with ❤️ by Muskan Priyadarshani Patra for the AICTE | IBM SkillsBuild Internship 2026.**
+**Developed by 🦋Muskan Priyadarshani Patra🌿 for the AICTE | IBM SkillsBuild Internship 2026.**
