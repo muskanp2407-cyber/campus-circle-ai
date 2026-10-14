@@ -10,8 +10,8 @@
 > **AICTE | IBM SkillsBuild Machine Learning & Applied AI Internship 2026**  
 > **Organizing Partner:** BharatCares (CSRBOX)  
 > **Author / Intern:** Muskan Priyadarshani Patra  
-> **Internship ID:** `IBMUEML013863` | **Plan ID:** `PLAN-CD7DED2B108B`  
 > **Repository:** [github.com/muskanp2407-cyber/campus-circle-ai](https://github.com/muskanp2407-cyber/campus-circle-ai)
+> **Deployed Link:** https://campus-circle-ai-beryl.vercel.app/
 
 ---
 
