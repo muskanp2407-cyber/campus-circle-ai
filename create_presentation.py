@@ -6,624 +6,816 @@ from pptx.dml.color import RGBColor
 from pptx.enum.text import PP_ALIGN
 from pptx.enum.shapes import MSO_SHAPE
 
-def create_deck(output_path):
+def create_deck(output_paths):
     prs = Presentation()
     prs.slide_width = Inches(13.333)
     prs.slide_height = Inches(7.5)
-    blank_layout = prs.slide_layouts[6] # blank layout
+    blank_layout = prs.slide_layouts[6]
 
-    # Colors
-    c_navy = RGBColor(15, 23, 42)      # #0f172a
-    c_blue = RGBColor(37, 99, 235)     # #2563eb
-    c_pink = RGBColor(225, 29, 72)     # #e11d48
-    c_orange = RGBColor(249, 115, 22)  # #f97316
-    c_gray_bg = RGBColor(248, 250, 252) # #f8fafc
-    c_text_dark = RGBColor(30, 41, 59)
-    c_text_muted = RGBColor(100, 116, 139)
+    # Premium Color Palette (IBM Carbon & Modern Design)
+    c_dark_navy = RGBColor(10, 15, 30)       # #0A0F1E
+    c_navy = RGBColor(15, 23, 42)            # #0F172A
+    c_blue = RGBColor(15, 98, 254)           # #0F62FE (IBM Carbon Blue)
+    c_vibrant_blue = RGBColor(37, 99, 235)   # #2563EB
+    c_teal = RGBColor(13, 148, 136)          # #0D9488
+    c_rose = RGBColor(225, 29, 72)           # #E11D48
+    c_orange = RGBColor(234, 88, 12)         # #EA580C
+    c_purple = RGBColor(124, 58, 237)        # #7C3AED
+    c_gray_bg = RGBColor(248, 250, 252)      # #F8FAFC
     c_white = RGBColor(255, 255, 255)
-    c_card_border = RGBColor(226, 232, 240)
+    c_text_dark = RGBColor(15, 23, 42)       # #0F172A
+    c_text_sub = RGBColor(51, 65, 85)        # #334155
+    c_text_muted = RGBColor(100, 116, 139)   # #64748B
+    c_border_light = RGBColor(226, 232, 240) # #E2E8F0
 
     logo_path = "c:/Users/User/Desktop/PAYAL IBM/campus_circle_ai/logo.jpeg"
+    sc_dir = "c:/Users/User/Desktop/PAYAL IBM/campus_circle_ai/screenshots"
 
-    def add_header(slide, title_text, category_text="IBM SKILLSBUILD | APPLIED AI & ML INTERNSHIP 2026"):
-        # Top banner line
-        top_line = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(0), Inches(0), Inches(13.333), Inches(0.1))
-        top_line.fill.solid()
-        top_line.fill.fore_color.rgb = c_orange
-        top_line.line.color.rgb = c_orange
+    def set_slide_bg(slide, color):
+        bg = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(0), Inches(0), Inches(13.333), Inches(7.5))
+        bg.fill.solid()
+        bg.fill.fore_color.rgb = color
+        bg.line.color.rgb = color
+        return bg
 
-        # Category / Tag
-        tx_box_cat = slide.shapes.add_textbox(Inches(0.8), Inches(0.4), Inches(11), Inches(0.4))
-        tf_cat = tx_box_cat.text_frame
-        tf_cat.word_wrap = True
-        p_cat = tf_cat.paragraphs[0]
-        p_cat.text = category_text.upper()
-        p_cat.font.size = Pt(11)
-        p_cat.font.bold = True
-        p_cat.font.color.rgb = c_blue
+    def add_header(slide, title_text, category_text, subtitle_text=None):
+        # Top accent decorative line
+        top_bar = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(0), Inches(0), Inches(13.333), Inches(0.08))
+        top_bar.fill.solid()
+        top_bar.fill.fore_color.rgb = c_blue
+        top_bar.line.color.rgb = c_blue
+
+        # Category Tag Pill
+        pill = slide.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(0.8), Inches(0.32), Inches(3.6), Inches(0.32))
+        pill.fill.solid()
+        pill.fill.fore_color.rgb = RGBColor(238, 242, 255)
+        pill.line.color.rgb = RGBColor(199, 210, 254)
+        pill.line.width = Pt(1)
+
+        tf_pill = pill.text_frame
+        tf_pill.word_wrap = True
+        p_pill = tf_pill.paragraphs[0]
+        p_pill.text = category_text.upper()
+        p_pill.font.size = Pt(10.5)
+        p_pill.font.bold = True
+        p_pill.font.color.rgb = c_vibrant_blue
+        p_pill.alignment = PP_ALIGN.CENTER
+
+        # Slide Main Title (Large, Bold, High-contrast)
+        tb_t = slide.shapes.add_textbox(Inches(0.8), Inches(0.68), Inches(10.5), Inches(0.75))
+        tf_t = tb_t.text_frame
+        tf_t.word_wrap = True
+        p_t = tf_t.paragraphs[0]
+        p_t.text = title_text
+        p_t.font.size = Pt(26)
+        p_t.font.bold = True
+        p_t.font.color.rgb = c_navy
+
+        if subtitle_text:
+            p_sub = tf_t.add_paragraph()
+            p_sub.text = subtitle_text
+            p_sub.font.size = Pt(12)
+            p_sub.font.color.rgb = c_text_muted
+
+        # Logo on right
+        if os.path.exists(logo_path):
+            slide.shapes.add_picture(logo_path, Inches(11.4), Inches(0.3), height=Inches(0.9))
+
+    def create_card(slide, x, y, width, height, title, subtitle, bullets, accent_color, body_font_size=13.5):
+        # Card container
+        card = slide.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, x, y, width, height)
+        card.fill.solid()
+        card.fill.fore_color.rgb = c_white
+        card.line.color.rgb = c_border_light
+        card.line.width = Pt(1.5)
+
+        # Top colored accent stripe
+        stripe = slide.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, x, y, width, Inches(0.12))
+        stripe.fill.solid()
+        stripe.fill.fore_color.rgb = accent_color
+        stripe.line.color.rgb = accent_color
+
+        # Text inside card
+        tb = slide.shapes.add_textbox(x + Inches(0.2), y + Inches(0.2), width - Inches(0.4), height - Inches(0.35))
+        tf = tb.text_frame
+        tf.word_wrap = True
 
         # Title
-        tx_box = slide.shapes.add_textbox(Inches(0.8), Inches(0.75), Inches(11), Inches(0.8))
-        tf = tx_box.text_frame
-        tf.word_wrap = True
-        p = tf.paragraphs[0]
-        p.text = title_text
-        p.font.size = Pt(24)
-        p.font.bold = True
-        p.font.color.rgb = c_navy
+        p_title = tf.paragraphs[0]
+        p_title.text = title
+        p_title.font.size = Pt(18)
+        p_title.font.bold = True
+        p_title.font.color.rgb = accent_color
+        p_title.space_after = Pt(3)
 
-        # Logo on right if available
-        if os.path.exists(logo_path):
-            slide.shapes.add_picture(logo_path, Inches(11.2), Inches(0.35), height=Inches(0.95))
+        # Subtitle
+        if subtitle:
+            p_sub = tf.add_paragraph()
+            p_sub.text = subtitle
+            p_sub.font.size = Pt(12.5)
+            p_sub.font.bold = True
+            p_sub.font.color.rgb = c_text_muted
+            p_sub.space_after = Pt(10)
 
-    # ---------------- SLIDE 1: TITLE SLIDE ----------------
+        # Bullets
+        for lead, text in bullets:
+            p_b = tf.add_paragraph()
+            p_b.space_after = Pt(7)
+            
+            run_lead = p_b.add_run()
+            run_lead.text = f"• {lead}: "
+            run_lead.font.size = Pt(body_font_size)
+            run_lead.font.bold = True
+            run_lead.font.color.rgb = c_text_dark
+
+            run_body = p_b.add_run()
+            run_body.text = text
+            run_body.font.size = Pt(body_font_size)
+            run_body.font.color.rgb = c_text_sub
+
+    # =========================================================================
+    # SLIDE 1: TITLE SLIDE
+    # =========================================================================
     s1 = prs.slides.add_slide(blank_layout)
-    # Background shape
-    bg1 = s1.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(0), Inches(0), Inches(13.333), Inches(7.5))
-    bg1.fill.solid()
-    bg1.fill.fore_color.rgb = c_navy
-    bg1.line.color.rgb = c_navy
+    set_slide_bg(s1, c_dark_navy)
 
-    # Accent decorative bar
-    bar1 = s1.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(1.0), Inches(1.2), Inches(0.15), Inches(5.0))
+    # Accent decorative bar on left
+    bar1 = s1.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(0.9), Inches(1.1), Inches(0.15), Inches(5.3))
     bar1.fill.solid()
-    bar1.fill.fore_color.rgb = c_orange
-    bar1.line.color.rgb = c_orange
+    bar1.fill.fore_color.rgb = c_blue
+    bar1.line.color.rgb = c_blue
 
-    # Title box
-    tbox = s1.shapes.add_textbox(Inches(1.4), Inches(1.2), Inches(7.5), Inches(4.8))
-    tf1 = tbox.text_frame
+    tbox1 = s1.shapes.add_textbox(Inches(1.3), Inches(1.1), Inches(8.5), Inches(5.3))
+    tf1 = tbox1.text_frame
     tf1.word_wrap = True
 
     p0 = tf1.paragraphs[0]
-    p0.text = "AICTE | IBM SkillsBuild Internship 2026 | BharatCares"
-    p0.font.size = Pt(14)
+    p0.text = "AICTE | IBM SKILLSBUILD APPLIED AI & ML INTERNSHIP 2026"
+    p0.font.size = Pt(15)
     p0.font.bold = True
     p0.font.color.rgb = c_orange
     p0.space_after = Pt(14)
 
     p1 = tf1.add_paragraph()
     p1.text = "CAMPUS CIRCLE AI"
-    p1.font.size = Pt(40)
+    p1.font.size = Pt(46)
     p1.font.bold = True
     p1.font.color.rgb = c_white
     p1.space_after = Pt(10)
 
     p2 = tf1.add_paragraph()
-    p2.text = "Smart Student Skill Exchange & Circular Campus Resource Network\nPowered by Machine Learning & Recommender Systems"
+    p2.text = "Smart Student Skill Exchange & Circular Campus Resource Network\nPowered by Machine Learning Regressors & Semantic Recommenders"
     p2.font.size = Pt(18)
     p2.font.color.rgb = RGBColor(203, 213, 225)
     p2.space_after = Pt(28)
 
     p3 = tf1.add_paragraph()
-    p3.text = "Submitted by: Muskan Priyadarshani Patra\nInternship ID: IBMUEML013863 | Plan ID: PLAN-CD7DED2B108B\nAligned with UN SDGs: SDG 4 (Quality Education) & SDG 8 (Decent Work)"
-    p3.font.size = Pt(13)
+    p3.text = "Submitted by: Muskan Priyadarshani Patra\nInternship ID: IBMUEML013863  |  Plan ID: PLAN-CD7DED2B108B\nOrganizing Partner: BharatCares (CSRBOX)  |  Domain: Applied AI & ML\nUN SDGs: SDG 4 (Quality Education) • SDG 8 (Decent Work) • SDG 12 (Consumption)"
+    p3.font.size = Pt(13.5)
     p3.font.color.rgb = RGBColor(148, 163, 184)
 
-    # Insert logo on right
     if os.path.exists(logo_path):
-        s1.shapes.add_picture(logo_path, Inches(9.2), Inches(2.2), width=Inches(3.2))
+        s1.shapes.add_picture(logo_path, Inches(10.1), Inches(2.2), width=Inches(2.5))
 
-    # ---------------- SLIDE 2: CONTEXT & UN SDG ALIGNMENT ----------------
+    # =========================================================================
+    # SLIDE 2: 1. PROBLEM
+    # =========================================================================
     s2 = prs.slides.add_slide(blank_layout)
-    add_header(s2, "UN Sustainable Development Goals (SDG) Alignment")
-    
-    sdgs = [
-        ("SDG 4: QUALITY EDUCATION", "Target 4.4: Substantially increase youth with technical and vocational skills", 
-         "• Peer-to-peer micro-mentoring in syllabus-aligned topics (Python, CAD, DSA).\n• Eliminates costly EdTech barriers through campus knowledge democratization.\n• Practical collaborative learning directly between seniors and juniors.", c_pink),
-        ("SDG 8: DECENT WORK & ECONOMIC GROWTH", "Target 8.6: Substantially reduce youth not in employment or education", 
-         "• Senior students gain recognized mentoring experience and micro-earnings.\n• Juniors build project portfolios, interview readiness, and industry tools.\n• Fosters campus entrepreneurship and localized professional networks.", c_blue),
-        ("SDG 12: RESPONSIBLE CONSUMPTION", "Target 12.5: Substantially reduce waste generation through reuse", 
-         "• Circular campus marketplace for textbooks, lab drafters, and calculators.\n• Prevents single-semester equipment dumping into landfills.\n• Saves students 40%–70% compared to purchasing new hardware.", c_orange)
+    set_slide_bg(s2, c_gray_bg)
+    add_header(s2, "01. The Problem: Campus Resource Inefficiencies", "TOPIC 1: PROBLEM STATEMENT", "Dual structural bottlenecks affecting millions of university students each term")
+
+    prob_cards = [
+        ("Wasted Academic Resources", "Single-Semester Discard Cycle",
+         [("Costly Hardware", "Mini drafters, calculators, and lab tools bought at full MRP."),
+          ("Idle After 4 Months", "Valuable items sit unused in hostels after just 1 semester."),
+          ("Recurring Expense", "Junior batches are forced to buy brand-new equipment repeatedly."),
+          ("Landfill Dumping", "Discarded tools and books create unnecessary campus solid waste.")], c_rose),
+        ("Inaccessible Practical Skills", "Generic & Costly EdTech Barrier",
+         [("Costly Subscriptions", "Commercial platforms charge high recurring fees."),
+          ("Syllabus Disconnect", "Online tutorials ignore college-specific lab exams & vivas."),
+          ("Missing Mentors", "Juniors lack direct access to seniors who mastered the subjects."),
+          ("Hands-on Gap", "Classroom theory fails to build practical engineering confidence.")], c_vibrant_blue),
+        ("Informal & Unsafe Exchanges", "Chaotic WhatsApp & Telegram Groups",
+         [("Unorganized Groups", "Student trades rely on noisy chats prone to spam and chaos."),
+          ("Price Haggling", "Unfair bargaining and disputes with zero price transparency."),
+          ("Identity Fraud", "No college verification; risk of external spammers & scammers."),
+          ("High Friction", "Difficult to discover trusted seniors or matching equipment.")], c_orange)
     ]
 
-    for i, (title, sub, details, color) in enumerate(sdgs):
+    for i, (title, sub, bullets, color) in enumerate(prob_cards):
         x = Inches(0.8 + i * 4.0)
-        card = s2.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, x, Inches(1.8), Inches(3.7), Inches(5.0))
-        card.fill.solid()
-        card.fill.fore_color.rgb = c_gray_bg
-        card.line.color.rgb = color
-        card.line.width = Pt(2)
+        create_card(s2, x, Inches(1.65), Inches(3.7), Inches(5.2), title, sub, bullets, color, 13.5)
 
-        tb = s2.shapes.add_textbox(x + Inches(0.15), Inches(1.95), Inches(3.4), Inches(4.7))
-        ctf = tb.text_frame
-        ctf.word_wrap = True
-        
-        cp1 = ctf.paragraphs[0]
-        cp1.text = title
-        cp1.font.size = Pt(14)
-        cp1.font.bold = True
-        cp1.font.color.rgb = color
-        cp1.space_after = Pt(8)
-
-        cp2 = ctf.add_paragraph()
-        cp2.text = sub
-        cp2.font.size = Pt(11)
-        cp2.font.italic = True
-        cp2.font.color.rgb = c_text_muted
-        cp2.space_after = Pt(14)
-
-        cp3 = ctf.add_paragraph()
-        cp3.text = details
-        cp3.font.size = Pt(12)
-        cp3.font.color.rgb = c_text_dark
-
-    # ---------------- SLIDE 3: PROBLEM STATEMENT ----------------
+    # =========================================================================
+    # SLIDE 3: 2. WHY THE PROBLEM MATTERS
+    # =========================================================================
     s3 = prs.slides.add_slide(blank_layout)
-    add_header(s3, "The Problems Faced by College Students")
+    set_slide_bg(s3, c_gray_bg)
+    add_header(s3, "02. Why the Problem Matters: Real-World Campus Impact", "TOPIC 2: PROBLEM RELEVANCE & URGENCY", "Tangible economic strain, environmental degradation, and career readiness gaps")
 
-    probs = [
-        ("Wasted Campus Resources", "Students buy expensive engineering tools, lab coats, and books that lie unused after 1 semester while juniors struggle to afford them.", "Over 70% of student hardware is discarded or remains idle."),
-        ("Expensive & Impersonal Skill Learning", "Commercial online courses are expensive, generic, and unhelpful for college exams and hands-on lab practicals.", "Students lack access to trusted peer mentors who took the exact course."),
-        ("No Unified, Safe Campus Platform", "Students currently rely on chaotic WhatsApp groups with zero verification, frequent scams, and unorganized listings.", "Lack of verified college email security and transparent ratings.")
+    why_cards = [
+        ("Financial Burden on Students", "Recurring Out-of-Pocket Expenses",
+         [("High Annual Cost", "Engineering students spend ₹6,000–₹10,000 annually on physical materials."),
+          ("Hostel Budget Strain", "Low-income students struggle with high upfront costs each semester."),
+          ("Grade Disadvantage", "Students without proper lab tools suffer in practical exams and marks."),
+          ("Avoidable Debt", "Money is wasted on tools that exist idle a few doors away in hostels.")], c_orange),
+        ("Environmental Degradation", "Campus Solid Waste & Plastic Footprint",
+         [("Non-Biodegradable", "Plastic drafters, rulers, and calculators take centuries to degrade."),
+          ("Massive Paper Waste", "Thousands of textbooks discarded rather than channeled to juniors."),
+          ("Missing Circularity", "Universities lack an automated system for equipment reuse."),
+          ("Green Campus Failure", "Campuses miss key NAAC/NIRF sustainability metrics.")], c_teal),
+        ("Employability & Skill Gap", "The Practical Competency Deficit",
+         [("Industry Demand", "Companies demand hands-on tools: Python, Git, CAD, DSA, and IoT."),
+          ("70%+ Skill Deficit", "Rote learning leaves students unprepared for tech interviews."),
+          ("1-on-1 Guidance", "Personalized senior mentoring accelerates practical mastery 3x faster."),
+          ("Campus Leadership", "Senior mentors gain valuable technical leadership portfolios.")], c_vibrant_blue)
     ]
 
-    for i, (title, desc, stat) in enumerate(probs):
-        y = Inches(1.8 + i * 1.7)
-        card = s3.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(0.8), y, Inches(11.7), Inches(1.4))
-        card.fill.solid()
-        card.fill.fore_color.rgb = c_gray_bg
-        card.line.color.rgb = c_card_border
+    for i, (title, sub, bullets, color) in enumerate(why_cards):
+        x = Inches(0.8 + i * 4.0)
+        create_card(s3, x, Inches(1.65), Inches(3.7), Inches(5.2), title, sub, bullets, color, 13.5)
 
-        num_card = s3.shapes.add_shape(MSO_SHAPE.OVAL, Inches(1.1), y + Inches(0.3), Inches(0.8), Inches(0.8))
-        num_card.fill.solid()
-        num_card.fill.fore_color.rgb = c_orange
-        num_card.line.color.rgb = c_orange
-        ntf = num_card.text_frame
-        np = ntf.paragraphs[0]
-        np.text = f"0{i+1}"
-        np.font.size = Pt(16)
-        np.font.bold = True
-        np.font.color.rgb = c_white
-        np.alignment = PP_ALIGN.CENTER
-
-        tb = s3.shapes.add_textbox(Inches(2.2), y + Inches(0.15), Inches(10.0), Inches(1.1))
-        tf = tb.text_frame
-        tf.word_wrap = True
-        p1 = tf.paragraphs[0]
-        p1.text = title
-        p1.font.size = Pt(16)
-        p1.font.bold = True
-        p1.font.color.rgb = c_navy
-        
-        p2 = tf.add_paragraph()
-        p2.text = f"{desc}  |  Impact: {stat}"
-        p2.font.size = Pt(12)
-        p2.font.color.rgb = c_text_muted
-
-    # ---------------- SLIDE 4: THE SOLUTION ----------------
+    # =========================================================================
+    # SLIDE 4: 3. PROPOSED SOLUTION
+    # =========================================================================
     s4 = prs.slides.add_slide(blank_layout)
-    add_header(s4, "Campus Circle AI — The Integrated Solution")
+    set_slide_bg(s4, c_gray_bg)
+    add_header(s4, "03. Proposed Solution: Campus Circle AI Platform", "TOPIC 3: PROPOSED SOLUTION", "A unified, closed-loop student ecosystem combining circular exchanges and peer learning")
 
-    sols = [
-        ("Campus Marketplace", "Verified student marketplace to buy, sell, or swap books, lab drafters, calculators, and tools inside campus.\n\nPromotes reuse, cuts costs, and eliminates landfill waste.", c_orange),
-        ("AI Peer Skill Hub", "Connects learners with senior student mentors in coding, CAD, public speaking, and machine learning.\n\nAI Recommender pairs students based on semantic needs & availability.", c_blue),
-        ("Verified Trust Graph", "Access strictly via official college email IDs (@college.edu).\n\nPeer review ratings and transaction history ensure high safety and zero scam risk.", c_pink)
+    # Banner quote
+    banner = s4.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(0.8), Inches(1.6), Inches(11.7), Inches(0.95))
+    banner.fill.solid()
+    banner.fill.fore_color.rgb = c_navy
+    banner.line.color.rgb = c_blue
+    banner.line.width = Pt(1.5)
+
+    tb_b = s4.shapes.add_textbox(Inches(1.0), Inches(1.65), Inches(11.3), Inches(0.85))
+    tf_b = tb_b.text_frame
+    p_b0 = tf_b.paragraphs[0]
+    p_b0.text = "“One Platform. Two Solutions. For Every Student.”"
+    p_b0.font.size = Pt(18)
+    p_b0.font.bold = True
+    p_b0.font.color.rgb = c_white
+    p_b0.alignment = PP_ALIGN.CENTER
+    p_b1 = tf_b.add_paragraph()
+    p_b1.text = "Fusing AI-Powered Peer Skill Tutoring and a Circular Campus Marketplace within a Verified Closed-Loop Network"
+    p_b1.font.size = Pt(12)
+    p_b1.font.color.rgb = RGBColor(203, 213, 225)
+    p_b1.alignment = PP_ALIGN.CENTER
+
+    sol_cards = [
+        ("AI Peer Skill Hub", "Democratizing Knowledge (SDG 4)",
+         [("Semantic Matching", "Connects learners with senior mentors via Natural Language AI."),
+          ("Syllabus Alignment", "Micro-tutoring focused on college exams, vivas, and lab practicals."),
+          ("Zero-Cost Swapping", "Skill exchange (e.g. learn Python in return for AutoCAD basics)."),
+          ("Mentor Portfolios", "Seniors gain leadership credentials and micro-earning perks.")], c_vibrant_blue),
+        ("Circular Campus Marketplace", "Sustainable Hardware Lifecycle (SDG 12)",
+         [("Verified Trades", "Buy, sell, or swap textbooks, drafting tools, and lab kits safely."),
+          ("ML Fair Pricing", "AI calculates true depreciated value to eliminate bargaining friction."),
+          ("Zero Shipping", "Instant hand-to-hand handoffs on campus with zero packaging waste."),
+          ("Massive Savings", "Students save 40%–70% compared to brand-new retail prices.")], c_teal),
+        ("Verified Campus Trust", "Safe & Closed-Loop Security",
+         [("College Email Gating", "Access strictly restricted to verified @college.ac.in emails."),
+          ("Zero Outsiders", "Completely eliminates anonymous spammers, bots, and scammers."),
+          ("Peer Reviews", "Ratings, session completion tracking, and batch verification."),
+          ("Admin Dashboard", "Universities track carbon diversion and total student savings.")], c_orange)
     ]
 
-    for i, (stitle, sdesc, scolor) in enumerate(sols):
+    for i, (title, sub, bullets, color) in enumerate(sol_cards):
         x = Inches(0.8 + i * 4.0)
-        c = s4.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, x, Inches(1.8), Inches(3.7), Inches(4.9))
-        c.fill.solid()
-        c.fill.fore_color.rgb = c_white
-        c.line.color.rgb = scolor
-        c.line.width = Pt(2)
+        create_card(s4, x, Inches(2.75), Inches(3.7), Inches(4.2), title, sub, bullets, color, 13)
 
-        tb = s4.shapes.add_textbox(x + Inches(0.2), Inches(2.0), Inches(3.3), Inches(4.5))
-        tf = tb.text_frame
-        tf.word_wrap = True
-        p1 = tf.paragraphs[0]
-        p1.text = stitle
-        p1.font.size = Pt(18)
-        p1.font.bold = True
-        p1.font.color.rgb = scolor
-        p1.space_after = Pt(14)
-
-        p2 = tf.add_paragraph()
-        p2.text = sdesc
-        p2.font.size = Pt(13)
-        p2.font.color.rgb = c_text_dark
-
-    # ---------------- SLIDE 4B: 5 DEPARTMENTS RESOURCE & SKILL MATRIX ----------------
-    s4b = prs.slides.add_slide(blank_layout)
-    add_header(s4b, "Cross-Disciplinary Coverage: 5 Departments • 50 Resources • 50 Skills", "MULTI-DEPARTMENT CAMPUS MATRIX")
-
-    dept_matrix = [
-        ("MECH", "Mechanical Engineering", c_orange,
-         "10 Marketplace Items:\n• Mechanics Textbooks\n• Engg Drawing Tools\n• Vernier Caliper & Gauge\n• Workshop Tool Kits\n• Machine Design & Thermo Notes\n• CAD Books & 3D Practice Files\n• Manufacturing Lab Manuals",
-         "10 Skill Hub Skills:\n• AutoCAD & SolidWorks\n• CATIA Basics & 3D Modeling\n• Engineering Drawing\n• CNC Machining\n• Workshop Safety\n• Thermodynamics Concepts\n• Machine Design Fundamentals"),
-        
-        ("ELEC", "Electrical Engineering", c_blue,
-         "10 Marketplace Items:\n• Electrical Machines Books\n• Circuit Theory Notes\n• Digital Multimeter\n• Breadboards & Jumpers\n• Electronic Component Kits\n• Measuring Instruments\n• Power & Control Systems Notes\n• Simulation Project Files",
-         "10 Skill Hub Skills:\n• Circuit Analysis\n• MATLAB / Simulink\n• Circuit Simulation\n• Basic Electronics\n• Digital Logic Design\n• Arduino Circuit Projects\n• Power System Analysis\n• PCB Design Basics"),
-        
-        ("CIVIL", "Civil Engineering", RGBColor(16, 185, 129),
-         "10 Marketplace Items:\n• Surveying Vol 1 & 2\n• A1/A2 Drawing Sheets\n• Scale Rulers & Stencils\n• Field Surveying Manuals\n• 30m Land Measuring Tapes\n• Plumb Bob & Field Kit\n• Building Materials Notes\n• Structural Analysis Books",
-         "10 Skill Hub Skills:\n• AutoCAD 2D Drafting\n• Civil 3D & Revit/BIM\n• Surveying Total Station\n• Quantity Estimation\n• Building Planning\n• Structural Analysis\n• Excel for Civil Calculations\n• Concrete Mix Design"),
-
-        ("CE", "Computer Engineering", RGBColor(99, 102, 241),
-         "10 Marketplace Items:\n• Programming Textbooks\n• DSA & LeetCode Notes\n• Operating Systems Books\n• DBMS Review Binders\n• Raspberry Pi 4 Model B\n• Arduino Uno R3 Boards\n• 37-in-1 Sensor Modules\n• Computer Networks Manuals",
-         "10 Skill Hub Skills:\n• C/C++ & Java\n• Python Programming\n• Full-Stack Web Dev\n• React.js Basics\n• Database & SQL\n• Git & GitHub Versioning\n• Machine Learning Basics\n• UI/UX & Cybersecurity"),
-
-        ("BIOMED", "Biomedical Engineering", c_pink,
-         "10 Marketplace Items:\n• Biomedical Textbooks\n• Ross & Wilson Anatomy\n• Medical Instrumentation\n• Signal Processing Notes\n• Medical Electronics Manuals\n• Anatomical Heart Models\n• AD8232 ECG Modules\n• MAX30102 Pulse Oximeters",
-         "10 Skill Hub Skills:\n• Biomedical Instruments\n• Human Physiology\n• ECG Signal Interpretation\n• MATLAB Signal Processing\n• Medical Image Processing\n• Biosensor Interfacing\n• Arduino Medical Prototypes\n• Biomedical Data Analytics")
-    ]
-
-    for i, (code, dname, col, res_list, skill_list) in enumerate(dept_matrix):
-        x = Inches(0.6 + i * 2.45)
-        card = s4b.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, x, Inches(1.7), Inches(2.35), Inches(5.3))
-        card.fill.solid()
-        card.fill.fore_color.rgb = c_gray_bg
-        card.line.color.rgb = col
-        card.line.width = Pt(2)
-
-        # Header tag
-        tag = s4b.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, x + Inches(0.1), Inches(1.8), Inches(2.15), Inches(0.55))
-        tag.fill.solid()
-        tag.fill.fore_color.rgb = col
-        tag.line.color.rgb = col
-        ttf = tag.text_frame
-        tp = ttf.paragraphs[0]
-        tp.text = f"{code}: {dname.split()[0]}"
-        tp.font.size = Pt(11)
-        tp.font.bold = True
-        tp.font.color.rgb = c_white
-        tp.alignment = PP_ALIGN.CENTER
-
-        tb = s4b.shapes.add_textbox(x + Inches(0.1), Inches(2.4), Inches(2.15), Inches(4.5))
-        tf = tb.text_frame
-        tf.word_wrap = True
-
-        p_r = tf.paragraphs[0]
-        p_r.text = res_list
-        p_r.font.size = Pt(8.5)
-        p_r.font.color.rgb = c_text_dark
-        p_r.space_after = Pt(8)
-
-        p_s = tf.add_paragraph()
-        p_s.text = skill_list
-        p_s.font.size = Pt(8.5)
-        p_s.font.color.rgb = c_navy
-
-    # ---------------- SLIDE 5: AI ENGINE 1 - SKILL MATCHER ----------------
+    # =========================================================================
+    # SLIDE 5: 4. HOW YOUR SYSTEM WORKS
+    # =========================================================================
     s5 = prs.slides.add_slide(blank_layout)
-    add_header(s5, "AI Module 1: Semantic Peer Skill Matcher (SDG 4)")
-
-    # Left card: Algorithm
-    c_left = s5.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(0.8), Inches(1.8), Inches(5.6), Inches(4.9))
-    c_left.fill.solid()
-    c_left.fill.fore_color.rgb = c_gray_bg
-    c_left.line.color.rgb = c_card_border
-
-    tbl = s5.shapes.add_textbox(Inches(1.1), Inches(2.0), Inches(5.0), Inches(4.5))
-    tfl = tbl.text_frame
-    tfl.word_wrap = True
-    pl1 = tfl.paragraphs[0]
-    pl1.text = "Natural Language Recommender Engine"
-    pl1.font.size = Pt(17)
-    pl1.font.bold = True
-    pl1.font.color.rgb = c_blue
-    pl1.space_after = Pt(10)
-
-    pl2 = tfl.add_paragraph()
-    pl2.text = "• Technology: Scikit-learn TF-IDF Vectorizer + Cosine Similarity.\n• Input: Student natural language queries (e.g., 'Want to learn Python, ML algorithms and data science').\n• Processing: Creates n-gram word vector representations across mentor skill offerings, bios, and branch domains.\n• Matching: Computes angular cosine similarity metric between learner query vector and all campus mentor vectors.\n• Output: Ranked compatibility score (%) with contact links."
-    pl2.font.size = Pt(13)
-    pl2.font.color.rgb = c_text_dark
-
-    # Right card: Example
-    c_right = s5.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(6.8), Inches(1.8), Inches(5.7), Inches(4.9))
-    c_right.fill.solid()
-    c_right.fill.fore_color.rgb = c_navy
-    c_right.line.color.rgb = c_navy
-
-    tbr = s5.shapes.add_textbox(Inches(7.1), Inches(2.0), Inches(5.1), Inches(4.5))
-    tfr = tbr.text_frame
-    tfr.word_wrap = True
-    pr1 = tfr.paragraphs[0]
-    pr1.text = "Live Match Output Sample"
-    pr1.font.size = Pt(17)
-    pr1.font.bold = True
-    pr1.font.color.rgb = c_orange
-    pr1.space_after = Pt(12)
-
-    pr2 = tfr.add_paragraph()
-    pr2.text = "Query: 'I want to learn Python and Machine Learning'\n\nRank #1: Aarav Sharma (CSE - 7th Sem)\n• Compatibility: 94.2% Match Score\n• Skills Offered: Python, Scikit-learn, ML, Pandas\n• Verified: IBM SkillsBuild Certified Intern\n• Fee Model: Skill Swap (Zero Cost)\n\nRank #2: Sneha Mukherjee (UI/UX - 6th Sem)\n• Compatibility: 48.1% (Secondary skill interest)\n\nEnables instant syllabus-matched tutoring!"
-    pr2.font.size = Pt(12)
-    pr2.font.color.rgb = RGBColor(226, 232, 240)
-
-    # ---------------- SLIDE 6: AI ENGINE 2 - FAIR PRICE PREDICTOR ----------------
-    s6 = prs.slides.add_slide(blank_layout)
-    add_header(s6, "AI Module 2: Supervised Fair-Price ML Regressor (SDG 8 & 12)")
-
-    c_left6 = s6.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(0.8), Inches(1.8), Inches(5.6), Inches(4.9))
-    c_left6.fill.solid()
-    c_left6.fill.fore_color.rgb = c_gray_bg
-    c_left6.line.color.rgb = c_card_border
-
-    tbl6 = s6.shapes.add_textbox(Inches(1.1), Inches(2.0), Inches(5.0), Inches(4.5))
-    tfl6 = tbl6.text_frame
-    tfl6.word_wrap = True
-    p6_1 = tfl6.paragraphs[0]
-    p6_1.text = "Supervised Regression Model"
-    p6_1.font.size = Pt(17)
-    p6_1.font.bold = True
-    p6_1.font.color.rgb = c_orange
-    p6_1.space_after = Pt(10)
-
-    p6_2 = tfl6.add_paragraph()
-    p6_2.text = "• Aligned with Masterclass 3 (Supervised Learning & Decision Trees).\n• Problem: Secondhand sellers overcharge or underprice, creating buyer friction and failed transactions.\n• Features Engineered:\n  1. Original MRP (Retail price)\n  2. Age in Semesters (1 to 8)\n  3. Condition Rating (1 to 5 scale)\n  4. Category (Books, Drafters, Calculators, Kits)\n  5. Campus Demand Index (Exam season factor)\n• Algorithm: Ensemble Random Forest Regressor & Decision Tree."
-    p6_2.font.size = Pt(13)
-    p6_2.font.color.rgb = c_text_dark
-
-    # Right Card: Results
-    c_right6 = s6.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(6.8), Inches(1.8), Inches(5.7), Inches(4.9))
-    c_right6.fill.solid()
-    c_right6.fill.fore_color.rgb = c_white
-    c_right6.line.color.rgb = c_blue
-    c_right6.line.width = Pt(2)
-
-    tbr6 = s6.shapes.add_textbox(Inches(7.1), Inches(2.0), Inches(5.1), Inches(4.5))
-    tfr6 = tbr6.text_frame
-    tfr6.word_wrap = True
-    pr6_1 = tfr6.paragraphs[0]
-    pr6_1.text = "Valuation & Savings Output"
-    pr6_1.font.size = Pt(17)
-    pr6_1.font.bold = True
-    pr6_1.font.color.rgb = c_blue
-    pr6_1.space_after = Pt(12)
-
-    pr6_2 = tfr6.add_paragraph()
-    pr6_2.text = "Example Item: Casio Scientific Calculator\n• Original MRP: ₹1,200\n• Age: 2 Semesters | Condition: 4/5 Stars\n\nAI Predictions:\n• Suggested Fair Price: ₹620\n• Depreciation: 48.3%\n• Direct Student Saving: ₹580\n• Decision Tree Baseline: ₹600\n\nProtects both student buyers and sellers with objective, machine-learned transparency."
-    pr6_2.font.size = Pt(13)
-    pr6_2.font.color.rgb = c_text_dark
-
-    # ---------------- SLIDE 7: MODEL EVALUATION METRICS ----------------
-    s7 = prs.slides.add_slide(blank_layout)
-    add_header(s7, "Model Performance & Masterclass Alignment")
-
-    metrics_cards = [
-        ("Random Forest Regressor", "R² Score: 95.27%", "MAE: ₹68.23", "Primary Production Model with low generalization error across 300 campus listings.", c_blue),
-        ("Decision Tree Regressor", "R² Score: 91.33%", "MAE: ₹96.25", "Direct reference to Masterclass 3 curriculum; baseline tree with depth=5.", c_orange),
-        ("TF-IDF Skill Recommender", "Cosine Similarity", "Top-K Matching", "Sub-10ms response time; extracts uni-grams and bi-grams across mentor bios and skill tags.", c_pink)
-    ]
-
-    for i, (mtitle, mstat1, mstat2, mdesc, mcol) in enumerate(metrics_cards):
-        x = Inches(0.8 + i * 4.0)
-        card = s7.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, x, Inches(1.8), Inches(3.7), Inches(4.9))
-        card.fill.solid()
-        card.fill.fore_color.rgb = c_gray_bg
-        card.line.color.rgb = mcol
-        card.line.width = Pt(2)
-
-        tb = s7.shapes.add_textbox(x + Inches(0.2), Inches(2.0), Inches(3.3), Inches(4.5))
-        tf = tb.text_frame
-        tf.word_wrap = True
-        
-        p1 = tf.paragraphs[0]
-        p1.text = mtitle
-        p1.font.size = Pt(17)
-        p1.font.bold = True
-        p1.font.color.rgb = mcol
-        p1.space_after = Pt(12)
-
-        p2 = tf.add_paragraph()
-        p2.text = mstat1
-        p2.font.size = Pt(18)
-        p2.font.bold = True
-        p2.font.color.rgb = c_navy
-        p2.space_after = Pt(4)
-
-        p3 = tf.add_paragraph()
-        p3.text = mstat2
-        p3.font.size = Pt(15)
-        p3.font.bold = True
-        p3.font.color.rgb = c_text_muted
-        p3.space_after = Pt(16)
-
-        p4 = tf.add_paragraph()
-        p4.text = mdesc
-        p4.font.size = Pt(12)
-        p4.font.color.rgb = c_text_dark
-
-    # ---------------- SLIDE 8: LEAN CANVAS SUMMARY ----------------
-    s8 = prs.slides.add_slide(blank_layout)
-    add_header(s8, "Lean Canvas Summary (Masterclass 5 Reference)")
-
-    canvas_items = [
-        ("Problem", "Expensive books & tools; isolated skill learning; unsafe WhatsApp groups."),
-        ("Solution", "AI-based peer skill matcher + verified campus secondhand marketplace."),
-        ("Unique Value", "One verified platform: Swap items, gain practical skills, save money."),
-        ("Unfair Advantage", "Closed-loop university email verification & student trust network."),
-        ("Customer Segments", "Engineering, science & management students in hostels and campus housing."),
-        ("Channels", "Campus student councils, orientations, tech clubs, WhatsApp integration."),
-        ("Cost Structure", "Cloud hosting, domain, SMS verification, maintenance & promotion."),
-        ("Revenue Streams", "Small listing fee for premium ads; 5-10% fee on paid tutoring; stationery deals.")
-    ]
-
-    for i, (head, body) in enumerate(canvas_items):
-        row = i // 4
-        col = i % 4
-        x = Inches(0.8 + col * 2.95)
-        y = Inches(1.8 + row * 2.5)
-
-        card = s8.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, x, y, Inches(2.8), Inches(2.3))
-        card.fill.solid()
-        card.fill.fore_color.rgb = c_white
-        card.line.color.rgb = c_card_border
-
-        tb = s8.shapes.add_textbox(x + Inches(0.1), y + Inches(0.1), Inches(2.6), Inches(2.1))
-        tf = tb.text_frame
-        tf.word_wrap = True
-        p1 = tf.paragraphs[0]
-        p1.text = head
-        p1.font.size = Pt(13)
-        p1.font.bold = True
-        p1.font.color.rgb = c_blue
-        p1.space_after = Pt(4)
-
-        p2 = tf.add_paragraph()
-        p2.text = body
-        p2.font.size = Pt(10.5)
-        p2.font.color.rgb = c_text_dark
-
-    # ---------------- SLIDE 9: APPLICATION ARCHITECTURE & UI ----------------
-    s9 = prs.slides.add_slide(blank_layout)
-    add_header(s9, "Application Demo & User Interface")
-
-    # Left: App Modules
-    tb9 = s9.shapes.add_textbox(Inches(0.8), Inches(1.8), Inches(5.8), Inches(4.9))
-    tf9 = tb9.text_frame
-    tf9.word_wrap = True
-    p9_1 = tf9.paragraphs[0]
-    p9_1.text = "Interactive Streamlit Web Application"
-    p9_1.font.size = Pt(18)
-    p9_1.font.bold = True
-    p9_1.font.color.rgb = c_navy
-    p9_1.space_after = Pt(10)
-
-    p9_2 = tf9.add_paragraph()
-    p9_2.text = "• Module 1: Dashboard & SDG Impact Tracker\n  Live tracking of student savings, peer hours, and waste diverted.\n\n• Module 2: AI Peer Skill Matcher\n  Semantic NLP matching of learning requirements against campus mentors.\n\n• Module 3: Smart Fair-Price Predictor\n  Real-time Supervised ML estimation of secondhand equipment valuation.\n\n• Module 4: Campus Circle AI Agent\n  Natural language chatbot assisting with peer learning roadmaps.\n\n• Module 5: Model Analytics & Metrics\n  Live R² regression curves and algorithm comparison graphs."
-    p9_2.font.size = Pt(12.5)
-    p9_2.font.color.rgb = c_text_dark
-
-    # Right: Technology Stack Card
-    c9_r = s9.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(7.0), Inches(1.8), Inches(5.5), Inches(4.9))
-    c9_r.fill.solid()
-    c9_r.fill.fore_color.rgb = c_navy
-    c9_r.line.color.rgb = c_navy
-
-    tb9_r = s9.shapes.add_textbox(Inches(7.3), Inches(2.0), Inches(4.9), Inches(4.5))
-    tf9_r = tb9_r.text_frame
-    tf9_r.word_wrap = True
-    pr9_1 = tf9_r.paragraphs[0]
-    pr9_1.text = "Technology Stack Overview"
-    pr9_1.font.size = Pt(18)
-    pr9_1.font.bold = True
-    pr9_1.font.color.rgb = c_orange
-    pr9_1.space_after = Pt(14)
-
-    pr9_2 = tf9_r.add_paragraph()
-    pr9_2.text = "• Core Language: Python 3.10+\n• Machine Learning: Scikit-learn (Random Forest, Decision Tree, TF-IDF)\n• Frontend Framework: Streamlit UI with responsive custom styling\n• Analytics: Pandas, NumPy, Matplotlib\n• Version Control: Git & GitHub\n• Evaluation Framework: Train/Test cross validation (80:20 split)\n• Target Deployment: Localhost / Streamlit Community Cloud"
-    pr9_2.font.size = Pt(13)
-    pr9_2.font.color.rgb = RGBColor(226, 232, 240)
-
-    # ---------------- SLIDE 10: IMPACT & SUSTAINABILITY ----------------
-    s10 = prs.slides.add_slide(blank_layout)
-    add_header(s10, "Measurable Impact: People + Planet")
-
-    impacts = [
-        ("Financial Savings for Students", "Students save an average of ₹520 per item exchanged and learn skills at 70% lower rates than commercial coaching.", "₹95,000+ Projected Campus Savings", c_blue),
-        ("Environmental Sustainability", "Reuse of engineering instruments, calculators, and books diverts substantial plastic and paper waste from college dumpsters.", "340+ kg Waste Diverted per Batch", c_orange),
-        ("Peer Community & Collaboration", "Fosters meaningful senior-junior mentorship, builds career networks, and creates an open campus culture.", "410+ Hours of Peer Mentoring", c_pink)
-    ]
-
-    for i, (ititle, idesc, istat, icol) in enumerate(impacts):
-        x = Inches(0.8 + i * 4.0)
-        card = s10.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, x, Inches(1.8), Inches(3.7), Inches(4.9))
-        card.fill.solid()
-        card.fill.fore_color.rgb = c_gray_bg
-        card.line.color.rgb = icol
-        card.line.width = Pt(2)
-
-        tb = s10.shapes.add_textbox(x + Inches(0.2), Inches(2.0), Inches(3.3), Inches(4.5))
-        tf = tb.text_frame
-        tf.word_wrap = True
-        p1 = tf.paragraphs[0]
-        p1.text = ititle
-        p1.font.size = Pt(17)
-        p1.font.bold = True
-        p1.font.color.rgb = icol
-        p1.space_after = Pt(12)
-
-        p2 = tf.add_paragraph()
-        p2.text = istat
-        p2.font.size = Pt(15)
-        p2.font.bold = True
-        p2.font.color.rgb = c_navy
-        p2.space_after = Pt(12)
-
-        p3 = tf.add_paragraph()
-        p3.text = idesc
-        p3.font.size = Pt(12.5)
-        p3.font.color.rgb = c_text_dark
-
-    # ---------------- SLIDE 11: FUTURE ROADMAP ----------------
-    s11 = prs.slides.add_slide(blank_layout)
-    add_header(s11, "Future Roadmap & Scaling Vision")
+    set_slide_bg(s5, c_gray_bg)
+    add_header(s5, "04. How Your System Works: End-to-End Workflow & Branches", "TOPIC 4: SYSTEM WORKFLOW & ARCHITECTURE", "Structured 4-step user journey backed by 5 engineering disciplines")
 
     steps = [
-        ("Phase 1: Single Campus Pilot", "Launch within our college campus with verified student email IDs. Focus on textbook swap and coding mentorship.", "Months 1-3"),
-        ("Phase 2: Inter-College Network", "Expand to neighboring universities and institutes across Daman and regional tech hubs.", "Months 4-6"),
-        ("Phase 3: Advanced AI Integration", "Integrate IBM watsonx / IBM BOB for automatic code review, skill badge verification, and mobile app release.", "Months 7-12")
+        ("Step 1: Auth & Verification", "College Email Gating",
+         "Students register using official college email ID (@college.ac.in). Branch and semester profile initialized."),
+        ("Step 2: Smart Discovery", "50 Resources & 50 Skills",
+         "Explore cataloged resources & skills across Mechanical, Electrical, Civil, Computer & Biomedical."),
+        ("Step 3: ML Valuation & Match", "Random Forest & TF-IDF",
+         "Predicts fair secondhand price & calculates semantic compatibility score with verified peer mentors."),
+        ("Step 4: Safe On-Campus Handoff", "Zero-Cost Exchange",
+         "Schedule 1-on-1 peer session or meet on campus for hardware handover with zero delivery overhead.")
     ]
 
-    for i, (st, sd, stime) in enumerate(steps):
-        y = Inches(1.8 + i * 1.7)
-        card = s11.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(0.8), y, Inches(11.7), Inches(1.4))
+    for i, (title, sub, body) in enumerate(steps):
+        x = Inches(0.8 + i * 3.0)
+        card = s5.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, x, Inches(1.65), Inches(2.8), Inches(2.5))
         card.fill.solid()
         card.fill.fore_color.rgb = c_white
-        card.line.color.rgb = c_card_border
+        card.line.color.rgb = c_vibrant_blue
+        card.line.width = Pt(1.5)
 
-        badge = s11.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(1.1), y + Inches(0.4), Inches(2.0), Inches(0.6))
-        badge.fill.solid()
-        badge.fill.fore_color.rgb = c_blue
-        badge.line.color.rgb = c_blue
-        btf = badge.text_frame
-        bp = btf.paragraphs[0]
-        bp.text = stime
-        bp.font.size = Pt(13)
-        bp.font.bold = True
-        bp.font.color.rgb = c_white
-        bp.alignment = PP_ALIGN.CENTER
+        tb = s5.shapes.add_textbox(x + Inches(0.12), Inches(1.75), Inches(2.55), Inches(2.3))
+        ctf = tb.text_frame
+        ctf.word_wrap = True
 
-        tb = s11.shapes.add_textbox(Inches(3.4), y + Inches(0.15), Inches(8.8), Inches(1.1))
-        tf = tb.text_frame
-        tf.word_wrap = True
-        p1 = tf.paragraphs[0]
-        p1.text = st
-        p1.font.size = Pt(16)
-        p1.font.bold = True
-        p1.font.color.rgb = c_navy
-        
-        p2 = tf.add_paragraph()
-        p2.text = sd
-        p2.font.size = Pt(12.5)
-        p2.font.color.rgb = c_text_muted
+        p_t = ctf.paragraphs[0]
+        p_t.text = title
+        p_t.font.size = Pt(14)
+        p_t.font.bold = True
+        p_t.font.color.rgb = c_vibrant_blue
+        p_t.space_after = Pt(2)
 
-    # ---------------- SLIDE 12: CONCLUSION & ACKNOWLEDGEMENTS ----------------
+        p_s = ctf.add_paragraph()
+        p_s.text = sub
+        p_s.font.size = Pt(11)
+        p_s.font.bold = True
+        p_s.font.color.rgb = c_text_muted
+        p_s.space_after = Pt(6)
+
+        p_b = ctf.add_paragraph()
+        p_b.text = body
+        p_b.font.size = Pt(12)
+        p_b.font.color.rgb = c_text_sub
+
+    # Cross-disciplinary matrix card at bottom
+    bot_card = s5.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(0.8), Inches(4.35), Inches(11.7), Inches(2.65))
+    bot_card.fill.solid()
+    bot_card.fill.fore_color.rgb = c_white
+    bot_card.line.color.rgb = c_border_light
+    bot_card.line.width = Pt(1.5)
+
+    tb_bot = s5.shapes.add_textbox(Inches(1.0), Inches(4.45), Inches(11.3), Inches(2.45))
+    tf_bot = tb_bot.text_frame
+    tf_bot.word_wrap = True
+
+    p_bt = tf_bot.paragraphs[0]
+    p_bt.text = "Cross-Disciplinary Academic Matrix: 5 Engineering Branches (50 Items • 50 Skills)"
+    p_bt.font.size = Pt(15)
+    p_bt.font.bold = True
+    p_bt.font.color.rgb = c_navy
+    p_bt.space_after = Pt(6)
+
+    matrix_lines = [
+        ("Mechanical (MECH)", "Drawing tools, Vernier caliper, Workshop kits, Mechanics books", "AutoCAD, SolidWorks, CATIA, Ansys, 3D Printing"),
+        ("Electrical (ELEC)", "Breadboards, Digital Multimeter, Circuit kits, Arduino boards", "Circuit design, MATLAB/Simulink, PCB Design, IoT systems"),
+        ("Civil (CIVIL)", "Surveying tools, Mini drafters, Building materials guides, Total Station", "AutoCAD Civil 3D, Revit Architecture, STAAD Pro, GIS"),
+        ("Computer (CE/CSE)", "Programming books, DSA guides, Raspberry Pi, Crimping kits", "Python, Web Dev, DSA, Machine Learning, Git/GitHub, SQL"),
+        ("Biomedical (BIOMED)", "Medical instrumentation guides, Physiology atlases, Sensor kits", "Biosignal analysis, MATLAB Healthcare, Medical imaging, IoT")
+    ]
+    for dept, res, skl in matrix_lines:
+        p_m = tf_bot.add_paragraph()
+        p_m.space_after = Pt(2)
+        run_d = p_m.add_run()
+        run_d.text = f"• {dept}: "
+        run_d.font.size = Pt(12)
+        run_d.font.bold = True
+        run_d.font.color.rgb = c_blue
+
+        run_r = p_m.add_run()
+        run_r.text = f"{res}  ➔  Skills: {skl}"
+        run_r.font.size = Pt(12)
+        run_r.font.color.rgb = c_text_sub
+
+    # =========================================================================
+    # SLIDE 6: 5. AI/ML USED
+    # =========================================================================
+    s6 = prs.slides.add_slide(blank_layout)
+    set_slide_bg(s6, c_gray_bg)
+    add_header(s6, "05. AI & Machine Learning Architecture", "TOPIC 5: MACHINE LEARNING ENGINES", "Direct implementation of IBM SkillsBuild Masterclasses 3, 4 & 5")
+
+    # Left Card: Supervised Regression
+    c_left = s6.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(0.8), Inches(1.65), Inches(5.7), Inches(5.2))
+    c_left.fill.solid()
+    c_left.fill.fore_color.rgb = c_white
+    c_left.line.color.rgb = c_blue
+    c_left.line.width = Pt(2)
+
+    tb_l = s6.shapes.add_textbox(Inches(1.0), Inches(1.85), Inches(5.3), Inches(4.8))
+    tf_l = tb_l.text_frame
+    tf_l.word_wrap = True
+
+    p_lt = tf_l.paragraphs[0]
+    p_lt.text = "1. Supervised Fair-Price Regressor"
+    p_lt.font.size = Pt(18)
+    p_lt.font.bold = True
+    p_lt.font.color.rgb = c_blue
+    p_lt.space_after = Pt(2)
+
+    p_ls = tf_l.add_paragraph()
+    p_ls.text = "IBM SkillsBuild Masterclass 3: Supervised Learning & Regression"
+    p_ls.font.size = Pt(13)
+    p_ls.font.bold = True
+    p_ls.font.color.rgb = c_text_muted
+    p_ls.space_after = Pt(10)
+
+    rf_bullets = [
+        ("Objective", "Predicts transparent secondhand price to eliminate student negotiation disputes."),
+        ("Engineered Features", "Original MRP (₹), Age in Semesters (1–8), Physical Condition (1–5), Category, and Campus Demand Index."),
+        ("Model Benchmark", "Random Forest Regressor (R² = 0.9527, MAE = ₹68.23) vs Decision Tree (R² = 0.9133, MAE = ₹96.25)."),
+        ("Production Choice", "Random Forest selected for low variance and superior non-linear depreciation modeling.")
+    ]
+    for lead, text in rf_bullets:
+        p_b = tf_l.add_paragraph()
+        p_b.space_after = Pt(8)
+        run_l = p_b.add_run()
+        run_l.text = f"• {lead}: "
+        run_l.font.size = Pt(13.5)
+        run_l.font.bold = True
+        run_l.font.color.rgb = c_text_dark
+        run_t = p_b.add_run()
+        run_t.text = text
+        run_t.font.size = Pt(13.5)
+        run_t.font.color.rgb = c_text_sub
+
+    # Right Card: NLP Recommender
+    c_right = s6.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(6.8), Inches(1.65), Inches(5.7), Inches(5.2))
+    c_right.fill.solid()
+    c_right.fill.fore_color.rgb = c_white
+    c_right.line.color.rgb = c_teal
+    c_right.line.width = Pt(2)
+
+    tb_r = s6.shapes.add_textbox(Inches(7.0), Inches(1.85), Inches(5.3), Inches(4.8))
+    tf_r = tb_r.text_frame
+    tf_r.word_wrap = True
+
+    p_rt = tf_r.paragraphs[0]
+    p_rt.text = "2. NLP Semantic Skill Recommender"
+    p_rt.font.size = Pt(18)
+    p_rt.font.bold = True
+    p_rt.font.color.rgb = c_teal
+    p_rt.space_after = Pt(2)
+
+    p_rs = tf_r.add_paragraph()
+    p_rs.text = "IBM SkillsBuild Masterclasses 4 & 5: Applied AI & Recommenders"
+    p_rs.font.size = Pt(13)
+    p_rs.font.bold = True
+    p_rs.font.color.rgb = c_text_muted
+    p_rs.space_after = Pt(10)
+
+    nlp_bullets = [
+        ("Objective", "Matches free-text student learning goals with verified senior peer mentors."),
+        ("TF-IDF Vectorization", "N-gram word frequency weighting with sublinear TF scaling on skill terms."),
+        ("Cosine Angular Similarity", "Computes high-dimensional vector alignment (0% to 100% compatibility score)."),
+        ("Output Delivery", "Ranks mentors displaying verified branch, rating, shared interests, and free swap options.")
+    ]
+    for lead, text in nlp_bullets:
+        p_b = tf_r.add_paragraph()
+        p_b.space_after = Pt(8)
+        run_l = p_b.add_run()
+        run_l.text = f"• {lead}: "
+        run_l.font.size = Pt(13.5)
+        run_l.font.bold = True
+        run_l.font.color.rgb = c_text_dark
+        run_t = p_b.add_run()
+        run_t.text = text
+        run_t.font.size = Pt(13.5)
+        run_t.font.color.rgb = c_text_sub
+
+    # =========================================================================
+    # SLIDE 7: 6. TECHNOLOGY USED
+    # =========================================================================
+    s7 = prs.slides.add_slide(blank_layout)
+    set_slide_bg(s7, c_gray_bg)
+    add_header(s7, "06. Technology Used: Full-Stack & Machine Learning Architecture", "TOPIC 6: TECHNOLOGY STACK", "Modern, scalable, and production-tested open source software ecosystem")
+
+    tech_cols = [
+        ("Machine Learning & Data", "Scikit-Learn, Pandas, NumPy",
+         [("Scikit-Learn", "RandomForestRegressor, DecisionTreeRegressor, TfidfVectorizer, cosine_similarity."),
+          ("Data Science", "Pandas & NumPy for data cleansing and one-hot encoding."),
+          ("Validation", "Train-test split (80:20), MAE, and R² score evaluation.")], c_blue),
+        ("Analytical Web App", "Streamlit & Matplotlib",
+         [("Streamlit 1.30+", "Reactive UI with 5 multi-disciplinary interactive modules."),
+          ("Custom Styles", "Glassmorphism cards, badges, and real-time KPI metrics."),
+          ("Matplotlib", "Depreciation visualizer & feature importance charts.")], c_rose),
+        ("Asynchronous REST API", "FastAPI & Uvicorn",
+         [("FastAPI", "High-performance asynchronous REST backend engine."),
+          ("Uvicorn ASGI", "Lightning-fast production server on port 8000."),
+          ("Pydantic", "Strict request/response data validation schemas.")], c_teal),
+        ("Modern Web Client", "HTML5, CSS3, JavaScript",
+         [("Modern SPA", "Interactive marketplace with branch filter dropdown."),
+          ("Dynamic AJAX", "Real-time peer session scheduling & price calculator."),
+          ("Chart.js", "Live campus savings and waste diversion metrics.")], c_orange)
+    ]
+
+    for i, (title, sub, bullets, color) in enumerate(tech_cols):
+        x = Inches(0.8 + i * 3.0)
+        create_card(s7, x, Inches(1.65), Inches(2.8), Inches(5.2), title, sub, bullets, color, 12.5)
+
+    # =========================================================================
+    # SLIDE 8: 7. SCREENSHOTS/DEMO - PART 1
+    # =========================================================================
+    s8 = prs.slides.add_slide(blank_layout)
+    set_slide_bg(s8, c_gray_bg)
+    add_header(s8, "07. Screenshots / Demo: Dashboard & Skill Matcher", "TOPIC 7: LIVE DEMO & UI WALKTHROUGH", "High-resolution proof of working platform modules in the Streamlit application")
+
+    im1_path = os.path.join(sc_dir, "1_dashboard_impact.png")
+    if os.path.exists(im1_path):
+        s8.shapes.add_picture(im1_path, Inches(0.8), Inches(1.65), width=Inches(5.7))
+    tb_cap1 = s8.shapes.add_textbox(Inches(0.8), Inches(5.65), Inches(5.7), Inches(1.5))
+    tf_c1 = tb_cap1.text_frame
+    tf_c1.word_wrap = True
+    pc1_t = tf_c1.paragraphs[0]
+    pc1_t.text = "Module 1: Real-Time Campus Impact & SDG Metrics"
+    pc1_t.font.size = Pt(15)
+    pc1_t.font.bold = True
+    pc1_t.font.color.rgb = c_navy
+    pc1_b = tf_c1.add_paragraph()
+    pc1_b.text = "Live KPI counters displaying total student rupees saved (₹95,000+), peer tutoring hours completed (400+), and physical hardware diverted from municipal landfills (340+ kg)."
+    pc1_b.font.size = Pt(13)
+    pc1_b.font.color.rgb = c_text_sub
+
+    im2_path = os.path.join(sc_dir, "2_skill_matcher.png")
+    if os.path.exists(im2_path):
+        s8.shapes.add_picture(im2_path, Inches(6.8), Inches(1.65), width=Inches(5.7))
+    tb_cap2 = s8.shapes.add_textbox(Inches(6.8), Inches(5.65), Inches(5.7), Inches(1.5))
+    tf_c2 = tb_cap2.text_frame
+    tf_c2.word_wrap = True
+    pc2_t = tf_c2.paragraphs[0]
+    pc2_t.text = "Module 2: Natural Language Semantic Peer Skill Matcher"
+    pc2_t.font.size = Pt(15)
+    pc2_t.font.bold = True
+    pc2_t.font.color.rgb = c_navy
+    pc2_b = tf_c2.add_paragraph()
+    pc2_b.text = "Ranks verified peer mentors using TF-IDF and Cosine Angular Similarity with exact compatibility percentages, displaying verified branch, rating, and zero-cost swap opportunities."
+    pc2_b.font.size = Pt(13)
+    pc2_b.font.color.rgb = c_text_sub
+
+    # =========================================================================
+    # SLIDE 9: 7. SCREENSHOTS/DEMO - PART 2
+    # =========================================================================
+    s9 = prs.slides.add_slide(blank_layout)
+    set_slide_bg(s9, c_gray_bg)
+    add_header(s9, "07. Screenshots / Demo: Fair-Price Valuation & ML Engine", "TOPIC 7: LIVE DEMO & UI WALKTHROUGH", "Supervised regression pricing module and comparative machine learning benchmarking")
+
+    im3_path = os.path.join(sc_dir, "3_fair_price_predictor.png")
+    if os.path.exists(im3_path):
+        s9.shapes.add_picture(im3_path, Inches(0.8), Inches(1.65), width=Inches(5.7))
+    tb_cap3 = s9.shapes.add_textbox(Inches(0.8), Inches(5.65), Inches(5.7), Inches(1.5))
+    tf_c3 = tb_cap3.text_frame
+    tf_c3.word_wrap = True
+    pc3_t = tf_c3.paragraphs[0]
+    pc3_t.text = "Module 3: Supervised ML Fair-Price Predictor"
+    pc3_t.font.size = Pt(15)
+    pc3_t.font.bold = True
+    pc3_t.font.color.rgb = c_navy
+    pc3_b = tf_c3.add_paragraph()
+    pc3_b.text = "Evaluates original retail MRP, semesters used, condition rating (1–5), and demand to predict transparent fair prices, estimated discount percentage, and student rupee savings."
+    pc3_b.font.size = Pt(13)
+    pc3_b.font.color.rgb = c_text_sub
+
+    im4_path = os.path.join(sc_dir, "4_ml_architecture.png")
+    if os.path.exists(im4_path):
+        s9.shapes.add_picture(im4_path, Inches(6.8), Inches(1.65), width=Inches(5.7))
+    tb_cap4 = s9.shapes.add_textbox(Inches(6.8), Inches(5.65), Inches(5.7), Inches(1.5))
+    tf_c4 = tb_cap4.text_frame
+    tf_c4.word_wrap = True
+    pc4_t = tf_c4.paragraphs[0]
+    pc4_t.text = "Module 4: Machine Learning Model Benchmarking"
+    pc4_t.font.size = Pt(15)
+    pc4_t.font.bold = True
+    pc4_t.font.color.rgb = c_navy
+    pc4_b = tf_c4.add_paragraph()
+    pc4_b.text = "Direct comparative benchmarking between Random Forest and Decision Tree Regressor displaying R² accuracy scores, MAE errors, and predictive feature importance rankings."
+    pc4_b.font.size = Pt(13)
+    pc4_b.font.color.rgb = c_text_sub
+
+    # =========================================================================
+    # SLIDE 10: 8. RESULTS
+    # =========================================================================
+    s10 = prs.slides.add_slide(blank_layout)
+    set_slide_bg(s10, c_gray_bg)
+    add_header(s10, "08. Results: Machine Learning Performance & Validation", "TOPIC 8: RESULTS & METRICS", "Quantitative model evaluation and projected single-campus pilot validation")
+
+    # ML Results Box on Left
+    c_res_l = s10.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(0.8), Inches(1.65), Inches(6.8), Inches(5.2))
+    c_res_l.fill.solid()
+    c_res_l.fill.fore_color.rgb = c_white
+    c_res_l.line.color.rgb = c_blue
+    c_res_l.line.width = Pt(2)
+
+    tb_rl = s10.shapes.add_textbox(Inches(1.0), Inches(1.8), Inches(6.4), Inches(4.9))
+    tf_rl = tb_rl.text_frame
+    tf_rl.word_wrap = True
+
+    p_rlt = tf_rl.paragraphs[0]
+    p_rlt.text = "Machine Learning Benchmark Results"
+    p_rlt.font.size = Pt(18)
+    p_rlt.font.bold = True
+    p_rlt.font.color.rgb = c_navy
+    p_rlt.space_after = Pt(10)
+
+    # Insert Table with larger font
+    table_shape = s10.shapes.add_table(3, 4, Inches(1.0), Inches(2.4), Inches(6.4), Inches(1.8))
+    table = table_shape.table
+    table.columns[0].width = Inches(2.3)
+    table.columns[1].width = Inches(1.2)
+    table.columns[2].width = Inches(1.4)
+    table.columns[3].width = Inches(1.5)
+
+    headers = ["Model", "R² Score", "MAE", "Status"]
+    for col_idx, h in enumerate(headers):
+        cell = table.cell(0, col_idx)
+        cell.text = h
+        cell.fill.solid()
+        cell.fill.fore_color.rgb = c_navy
+        for p in cell.text_frame.paragraphs:
+            p.font.size = Pt(13)
+            p.font.bold = True
+            p.font.color.rgb = c_white
+
+    row1 = ["Random Forest Regressor", "0.9527", "₹68.23", "Selected Model"]
+    for col_idx, val in enumerate(row1):
+        cell = table.cell(1, col_idx)
+        cell.text = val
+        for p in cell.text_frame.paragraphs:
+            p.font.size = Pt(13)
+            p.font.bold = (col_idx == 1 or col_idx == 3)
+            p.font.color.rgb = c_blue if col_idx == 3 else c_text_dark
+
+    row2 = ["Decision Tree Regressor", "0.9133", "₹96.25", "Masterclass Baseline"]
+    for col_idx, val in enumerate(row2):
+        cell = table.cell(2, col_idx)
+        cell.text = val
+        for p in cell.text_frame.paragraphs:
+            p.font.size = Pt(13)
+            p.font.color.rgb = c_text_dark
+
+    tb_sub = s10.shapes.add_textbox(Inches(1.0), Inches(4.4), Inches(6.4), Inches(2.3))
+    tf_sub = tb_sub.text_frame
+    tf_sub.word_wrap = True
+    p_sub0 = tf_sub.paragraphs[0]
+    p_sub0.text = "Key ML Performance Insights:"
+    p_sub0.font.size = Pt(14)
+    p_sub0.font.bold = True
+    p_sub0.font.color.rgb = c_navy
+    p_sub0.space_after = Pt(6)
+
+    res_insights = [
+        ("High Accuracy", "Random Forest achieves 95.27% R² score on 300 test transactions."),
+        ("Feature Dominance", "Original MRP & Condition account for 68% of predictive importance."),
+        ("Zero Latency", "Model inference executes in <15ms via FastAPI and Streamlit.")
+    ]
+    for lead, text in res_insights:
+        p_b = tf_sub.add_paragraph()
+        p_b.space_after = Pt(4)
+        run_l = p_b.add_run()
+        run_l.text = f"• {lead}: "
+        run_l.font.size = Pt(13)
+        run_l.font.bold = True
+        run_l.font.color.rgb = c_text_dark
+        run_t = p_b.add_run()
+        run_t.text = text
+        run_t.font.size = Pt(13)
+        run_t.font.color.rgb = c_text_sub
+
+    # Right Card: Projected Campus Impact
+    c_res_r = s10.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(7.8), Inches(1.65), Inches(4.7), Inches(5.2))
+    c_res_r.fill.solid()
+    c_res_r.fill.fore_color.rgb = c_white
+    c_res_r.line.color.rgb = c_teal
+    c_res_r.line.width = Pt(2)
+
+    tb_rr = s10.shapes.add_textbox(Inches(8.0), Inches(1.8), Inches(4.3), Inches(4.9))
+    tf_rr = tb_rr.text_frame
+    tf_rr.word_wrap = True
+
+    p_rrt = tf_rr.paragraphs[0]
+    p_rrt.text = "Campus Pilot Impact (Single Term)"
+    p_rrt.font.size = Pt(18)
+    p_rrt.font.bold = True
+    p_rrt.font.color.rgb = c_navy
+    p_rrt.space_after = Pt(12)
+
+    stat_cards = [
+        ("₹95,000+", "Total Student Money Saved per Semester", c_blue),
+        ("340+ kg", "Hardware & Textbook Waste Diverted from Landfills", c_teal),
+        ("400+ hrs", "Peer Tutoring & Practical Skill Learning Completed", c_orange),
+        ("5 Disciplines", "50 Resources & 50 Skills Mapped across 15 Mentors", c_rose)
+    ]
+
+    for val, lbl, col in stat_cards:
+        p_v = tf_rr.add_paragraph()
+        p_v.text = val
+        p_v.font.size = Pt(26)
+        p_v.font.bold = True
+        p_v.font.color.rgb = col
+        p_l = tf_rr.add_paragraph()
+        p_l.text = lbl
+        p_l.font.size = Pt(12.5)
+        p_l.font.bold = True
+        p_l.font.color.rgb = c_text_muted
+        p_l.space_after = Pt(8)
+
+    # =========================================================================
+    # SLIDE 11: 9. BENEFITS
+    # =========================================================================
+    s11 = prs.slides.add_slide(blank_layout)
+    set_slide_bg(s11, c_gray_bg)
+    add_header(s11, "09. Benefits: Triple Impact for People, Planet & Campus", "TOPIC 9: PLATFORM BENEFITS & VALUE", "Substantial measurable value delivered across students, institutions, and global goals")
+
+    benefit_cards = [
+        ("For Students", "Affordability & Practical Skills",
+         [("40%–70% Savings", "Cut semester expenses on lab kits, books, and drafting gear."),
+          ("Syllabus Mastery", "1-on-1 tutoring focused on upcoming internal exams and lab vivas."),
+          ("Peer Micro-Earnings", "Experienced senior mentors gain recognized income and perks."),
+          ("Career Portfolios", "Builds verified practical competence for technical job placements.")], c_vibrant_blue),
+        ("For University Campus", "Community & Green Campus Culture",
+         [("Strong Camaraderie", "Builds productive, friendly bonds across senior and junior batches."),
+          ("Circular Campus", "Promotes sustainable, zero-waste equipment reuse within hostels."),
+          ("Accreditation Boost", "Directly improves NIRF & NAAC Green Campus evaluation scores."),
+          ("Zero Risk", "Closed-loop authentication eliminates external spam and theft.")], c_teal),
+        ("UN Sustainable Development", "Global Goals Alignment",
+         [("SDG 4 (Education)", "Target 4.4: Democratizes technical and vocational micro-learning."),
+          ("SDG 8 (Decent Work)", "Target 8.6: Fosters youth employability and technical leadership."),
+          ("SDG 12 (Consumption)", "Target 12.5: Substantially diverts equipment waste from landfills."),
+          ("Scalable Model", "Ready to replicate across all Indian engineering universities.")], c_orange)
+    ]
+
+    for i, (title, sub, bullets, color) in enumerate(benefit_cards):
+        x = Inches(0.8 + i * 4.0)
+        create_card(s11, x, Inches(1.65), Inches(3.7), Inches(5.2), title, sub, bullets, color, 13.5)
+
+    # =========================================================================
+    # SLIDE 12: 10. FUTURE SCOPE
+    # =========================================================================
     s12 = prs.slides.add_slide(blank_layout)
-    bg12 = s12.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(0), Inches(0), Inches(13.333), Inches(7.5))
-    bg12.fill.solid()
-    bg12.fill.fore_color.rgb = c_navy
-    bg12.line.color.rgb = c_navy
+    set_slide_bg(s12, c_gray_bg)
+    add_header(s12, "10. Future Scope & Phased Implementation Roadmap", "TOPIC 10: SCALABILITY & FUTURE ROADMAP", "Clear strategic roadmap from local university pilot to national collegiate network")
 
-    tb12 = s12.shapes.add_textbox(Inches(1.5), Inches(1.5), Inches(10.3), Inches(4.5))
-    tf12 = tb12.text_frame
-    tf12.word_wrap = True
+    phases = [
+        ("Phase 1: Campus Pilot", "Months 1 – 3",
+         [("Host College Rollout", "Deploy in university hostels, academic departments, and tech clubs."),
+          ("500+ Active Users", "Onboard 500+ verified students across 5 engineering streams."),
+          ("Live Valuation", "Validate fair-price regressor on 250+ live student marketplace trades."),
+          ("200+ Tutoring Hours", "Facilitate peer tutoring with satisfaction rating benchmark > 4.7/5.")], c_vibrant_blue),
+        ("Phase 2: Regional College Hubs", "Months 4 – 8",
+         [("Multi-College Network", "Expand to colleges across Daman, Vapi, and neighboring clusters."),
+          ("Inter-Campus Swaps", "Enable inter-college technical hackathons and shared resource pools."),
+          ("Stationery Partnerships", "Collaborate with university bookstores for student discounts."),
+          ("Computer Vision AI", "Integrate automated image analysis for item condition grading.")], c_teal),
+        ("Phase 3: Pan-India Scalability", "Months 9 – 18",
+         [("National Expansion", "Scale across India's 40,000,000+ higher education student population."),
+          ("Mobile Application", "Launch native Flutter iOS and Android app with instant push alerts."),
+          ("University SaaS", "Admin dashboard for colleges to track verified campus sustainability."),
+          ("2M+ User Goal", "Achieving 5% adoption creates an active ecosystem of 2M+ students.")], c_orange)
+    ]
 
-    p12_1 = tf12.paragraphs[0]
-    p12_1.text = "THANK YOU!"
-    p12_1.font.size = Pt(44)
-    p12_1.font.bold = True
-    p12_1.font.color.rgb = c_white
-    p12_1.space_after = Pt(14)
+    for i, (title, sub, bullets, color) in enumerate(phases):
+        x = Inches(0.8 + i * 4.0)
+        create_card(s12, x, Inches(1.65), Inches(3.7), Inches(5.2), title, sub, bullets, color, 13.5)
 
-    p12_2 = tf12.add_paragraph()
-    p12_2.text = '"With Campus Circle AI, every campus becomes a smarter, more connected, and self-sustaining community. We are not just building an app — we are building a culture of sharing, learning, and growth."'
-    p12_2.font.size = Pt(18)
-    p12_2.font.italic = True
-    p12_2.font.color.rgb = RGBColor(203, 213, 225)
-    p12_2.space_after = Pt(28)
+    # =========================================================================
+    # SLIDE 13: CONCLUSION & THANK YOU
+    # =========================================================================
+    s13 = prs.slides.add_slide(blank_layout)
+    set_slide_bg(s13, c_dark_navy)
 
-    p12_3 = tf12.add_paragraph()
-    p12_3.text = "Acknowledgements:\n• AICTE (All India Council for Technical Education)\n• IBM SkillsBuild Internship Program 2026\n• BharatCares (CSRBOX) Team & Trainer Mr. Amit Tiwari\n\nSubmitted by: Muskan Priyadarshani Patra | Internship ID: IBMUEML013863 | Plan ID: PLAN-CD7DED2B108B"
-    p12_3.font.size = Pt(13)
-    p12_3.font.color.rgb = RGBColor(148, 163, 184)
+    bar13 = s13.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(0.9), Inches(1.1), Inches(0.15), Inches(5.3))
+    bar13.fill.solid()
+    bar13.fill.fore_color.rgb = c_orange
+    bar13.line.color.rgb = c_orange
 
-    prs.save(output_path)
-    print(f"Presentation saved successfully to {output_path} with {len(prs.slides)} slides.")
+    tbox13 = s13.shapes.add_textbox(Inches(1.3), Inches(1.1), Inches(8.5), Inches(5.3))
+    tf13 = tbox13.text_frame
+    tf13.word_wrap = True
+
+    p_th0 = tf13.paragraphs[0]
+    p_th0.text = "AICTE | IBM SKILLSBUILD INTERNSHIP 2026"
+    p_th0.font.size = Pt(15)
+    p_th0.font.bold = True
+    p_th0.font.color.rgb = c_orange
+    p_th0.space_after = Pt(12)
+
+    p_th1 = tf13.add_paragraph()
+    p_th1.text = "THANK YOU!"
+    p_th1.font.size = Pt(46)
+    p_th1.font.bold = True
+    p_th1.font.color.rgb = c_white
+    p_th1.space_after = Pt(10)
+
+    p_th2 = tf13.add_paragraph()
+    p_th2.text = "“With CampusCircle, every campus becomes a smarter, more connected, and self-sustaining community.”"
+    p_th2.font.size = Pt(18)
+    p_th2.font.color.rgb = RGBColor(203, 213, 225)
+    p_th2.space_after = Pt(26)
+
+    p_th3 = tf13.add_paragraph()
+    p_th3.text = (
+        "• Project: Campus Circle AI — Student Skill Exchange & Circular Resource Network\n"
+        "• Author / Intern: Muskan Priyadarshani Patra\n"
+        "• Internship ID: IBMUEML013863  |  Plan ID: PLAN-CD7DED2B108B\n"
+        "• GitHub Repository: github.com/muskanp2407-cyber/campus-circle-ai\n"
+        "• Live Streamlit Application: localhost:8501  |  FastAPI Backend: 127.0.0.1:8000\n"
+        "• Ready for Questions & Discussion!"
+    )
+    p_th3.font.size = Pt(14)
+    p_th3.font.color.rgb = RGBColor(148, 163, 184)
+
+    if os.path.exists(logo_path):
+        s13.shapes.add_picture(logo_path, Inches(10.1), Inches(2.2), width=Inches(2.5))
+
+    for p in output_paths:
+        prs.save(p)
+        print(f"Presentation saved successfully to {p} with {len(prs.slides)} slides.")
 
 if __name__ == "__main__":
-    out = "c:/Users/User/Desktop/PAYAL IBM/Campus_Circle_AI_Final_Presentation.pptx"
-    create_deck(out)
+    out1 = "c:/Users/User/Desktop/PAYAL IBM/Campus_Circle_AI_Final_Presentation.pptx"
+    out2 = "c:/Users/User/Desktop/PAYAL IBM/campus_circle_ai/Campus_Circle_AI_Final_Presentation.pptx"
+    create_deck([out1, out2])
